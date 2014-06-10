@@ -26,7 +26,6 @@ Rails.application.configure do
   config.static_cache_control = "public, max-age=31536000"
   config.action_controller.asset_host = ENV['CDN_SUMO_URL']
   config.assets.compress = true
-  config.assets.compile = true
   config.assets.digest = true
 
   # Version of your assets, change this if you want to expire all your assets.
