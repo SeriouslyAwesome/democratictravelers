@@ -5,29 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
     resource_saved = resource.save
     yield resource if block_given?
     if resource_saved
-      if resource.active_for_authentication?
-        set_flash_message :notice, :signed_up if is_flashing_format?
-        sign_up(resource_name, resource)
-        greet = "Hey #{resource.first_name}! Welcome! #{sign_out_link}"
-        respond_to do |format|
-          format.json do
-            render json: {
-              success: true, conversion: conversion?, greeting: greet,
-              api_key: resource.authentication_token, user_id: resource.uuid
-            }
-          end
-          format.html { redirect_to after_sign_up_path_for(resource) }
-        end
-      else
-        set_flash_message(
-          :notice, :"signed_up_but_#{resource.inactive_message}"
-        ) if is_flashing_format?
-        expire_data_after_sign_in!
-        respond_with(
-          resource,
-          location: after_inactive_sign_up_path_for(resource)
-        )
-      end
+      successful_response(resource)
     else
       clean_up_passwords resource
       respond_with resource
@@ -53,5 +31,26 @@ class RegistrationsController < Devise::RegistrationsController
     @password = SecureRandom.base64(9)
     params[:user][:password] = @password
     params[:user][:password_confirmation] = @password
+  end
+
+  def successful_response(resource)
+    set_flash_message :notice, :signed_up if is_flashing_format?
+    sign_up(resource_name, resource)
+
+    respond_to do |format|
+      format.json do
+        render json: json_response(resource)
+      end
+      format.html { redirect_to after_sign_up_path_for(resource) }
+    end
+  end
+
+  def json_response(resource)
+    greet = "Hey #{resource.first_name}! Welcome! #{sign_out_link}"
+
+    {
+      success: true, conversion: conversion?, greeting: greet,
+      api_key: resource.authentication_token, user_id: resource.uuid
+    }
   end
 end
