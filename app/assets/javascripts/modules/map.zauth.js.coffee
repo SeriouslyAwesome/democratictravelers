@@ -7,11 +7,8 @@ DemocraticTravelers.Map.Auth =
 
     signInForm.on 'ajax:success', (e, data, status, xhr) ->
       if data.success
-        console.log(data)
-        console.log($('meta[name=api-key]'))
-        $("meta[name='api-key']").attr('content', data.api_key)
-        console.log($('meta[name=api-key]'))
-        $("meta[name='user-id']").attr('content', data.user_id)
+        $("meta[name='application-name']").attr('data-api-key', data.api_key)
+        $("meta[name='application-name']").attr('data-user-id', data.user_id)
         $('p#suggestion-authentication').empty().html(data.greeting)
         $(this).slideUp 'fast', ->
           $('#sign-up, #sign-in').remove()
@@ -29,9 +26,8 @@ DemocraticTravelers.Map.Auth =
 
     signUpForm.on 'ajax:success', (e, data, status, xhr) ->
       if data.success
-        console.log()
-        $("meta[name='api-key']").attr('content', data.api_key)
-        $("meta[name='user-id']").attr('content', data.user_id)
+        $("meta[name='application-name']").attr('data-api-key', data.api_key)
+        $("meta[name='application-name']").attr('data-user-id', data.user_id)
         $('p#suggestion-authentication').empty().html(data.greeting)
         $(this).slideUp 'fast', ->
           $('#sign-up, #sign-in').remove()

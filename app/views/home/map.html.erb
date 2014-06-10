@@ -1,9 +1,11 @@
 <% content_for :head do %>
   <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
-  <meta name="api-key" content="<%= current_or_guest_user.authentication_token %>">
-  <meta name="user-id" content="<%= current_or_guest_user.uuid %>">
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true&amp;libraries=places"></script>
+  <meta name="application-name" content="The Democratic Travelers"
+    data-api-key="<%= current_or_guest_user.authentication_token %>"
+    data-user-id="<%= current_or_guest_user.uuid %>"
+  />
 <% end %>
 
 <div id="map-view-controls">

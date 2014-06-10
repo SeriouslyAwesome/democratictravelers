@@ -8,27 +8,28 @@
     </div>
   <% end %>
 
-  <%= sign_up.label :name %>
-  <%= sign_up.text_field :name, placeholder: 'John/Jane Doe' %>
+  <%= sign_up.label :name, nil, for: 'sign-up-name' %>
+  <%= sign_up.text_field :name, id: 'sign-up-name', placeholder: 'John/Jane Doe' %>
 
-  <%= sign_up.label :username %>
-  <%= sign_up.text_field :username, placeholder: 'johndoe123' %>
+  <%= sign_up.label :username, nil, for: 'sign-up-username' %>
+  <%= sign_up.text_field :username, id: 'sign-up-username', placeholder: 'johndoe123' %>
   <span class="help-block"><small>(Only numbers, letters, underscores and dashes, please.)</small></span>
 
-  <%= sign_up.label :email %>
-  <%= sign_up.text_field :email, placeholder: 'you@youremail.com' %>
+  <%= sign_up.label :email, nil, for: 'sign-up-email' %>
+  <%= sign_up.text_field :email, id: 'sign-up-email', placeholder: 'you@youremail.com' %>
 
-  <%= sign_up.label :password %>
-  <%= sign_up.password_field :password %>
+  <%= sign_up.label :password, nil, for: 'sign-up-password' %>
+  <%= sign_up.password_field :password, id: 'sign-up-password' %>
 
-  <%= sign_up.label :password_confirmation, 'Confirm Password' %>
-  <%= sign_up.password_field :password_confirmation %>
+  <%= sign_up.label :password_confirmation, 'Confirm Password', for: 'sign-up-password-confirmation'  %>
+  <%= sign_up.password_field :password_confirmation, id: 'sign-up-password-confirmation' %>
 
-  <label class="checkbox">
-    <%= sign_up.check_box :mailing_list, checked: true %> Put me on the mailing list!
-  </label>
+  <span class="checkbox">
+    <%= sign_up.check_box :mailing_list, checked: true %>
+    <%= sign_up.label :mailing_list, 'Put me on the mailing list!' %>
+  </span>
 
-  <%= text_field_tag 'comment_body', nil, class: 'honeypot', placeholder: 'Do not fill this in.' %>
+  <%= text_field_tag 'comment_body', nil, id: 'sign-up-comment', class: 'honeypot', placeholder: 'Do not fill this in.' %>
 
   <p>
     <%= fa_icon 'circle-o-notch', class: 'fa-spin loader' %>

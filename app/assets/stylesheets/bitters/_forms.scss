@@ -38,11 +38,11 @@ label {
   abbr {
     display: none;
   }
-  
-  &.checkbox {
-    font-weight: normal;
-    input[type="checkbox"] { display: inline-block; vertical-align: middle; }
-  }
+}
+
+span.checkbox {
+  font-weight: normal;
+  input[type="checkbox"], label { display: inline-block; vertical-align: middle; }
 }
 
 textarea,

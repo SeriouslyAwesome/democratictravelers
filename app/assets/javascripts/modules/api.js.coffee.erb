@@ -4,8 +4,8 @@ DemocraticTravelers.API =
   Base: "<%= Rails.env.production? ? 'http://api.thedemocratictravelers.com/v1' : 'http://api.democratictravelers.dev/v1' %>"
   getJSON: (endpoint, callback) ->
     url = "#{@Base}/#{endpoint}"
-    apiKey = $('meta[name=api-key]').attr('content')
-    userId = $('meta[name=user-id]').attr('content')
+    apiKey = $("meta[name='application-name']").attr('data-api-key')
+    userId = $("meta[name='application-name']").attr('data-user-id')
     $.ajax url,
       dataType: 'json'
       beforeSend: (xhr) ->
@@ -33,8 +33,8 @@ DemocraticTravelers.API =
           
   vote: (btn, endpoint) ->
     url = "#{@Base}/#{endpoint}"
-    apiKey = $('meta[name=api-key]').attr('content')
-    userId = $('meta[name=user-id]').attr('content')
+    apiKey = $("meta[name='application-name']").attr('data-api-key')
+    userId = $("meta[name='application-name']").attr('data-user-id')
     btnClass = $(btn).find('i').attr('class')
     id = $(btn).data('id')
 
