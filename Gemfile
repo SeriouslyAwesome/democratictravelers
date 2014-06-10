@@ -53,7 +53,7 @@ gem 'devise_marketable'
 # FILE HANDLING
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'fog', '~> 1.3.1'
+gem 'carrierwave-aws'
 
 # EXTERNAL APIs
 gem 'gibbon' # Mailchimp

@@ -30,5 +30,5 @@ Devise.setup do |config|
   config.omniauth :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET']
 
   config.omniauth :facebook, ENV['FACEBOOK_API_KEY'],
-                             ENV['FACEBOOK_API_SECRET']
+                  ENV['FACEBOOK_API_SECRET']
 end
