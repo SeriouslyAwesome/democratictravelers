@@ -2,7 +2,7 @@
 
 #The Democratic Travelers v4.0
 
-This is the official code repository for theDemocraticTravelers.com, a travel blog where visitors submit their suggestions of places/events for John and Laura to visit (and for [Shane](https://github.com/shiftshane) to visit them while they're visiting things), and others vote on the suggestions.
+This is the official code repository for [TheDemocraticTravelers.com](http://www.thedemocratictravelers.com), a travel blog where visitors submit their suggestions of places/events for John and Laura to visit (and for [Shane](https://github.com/shiftshane) to visit them while they're visiting things), and others vote on the suggestions.
 
 ##Overview
 It's a [Ruby on Rails](http://rubyonrails.org) (4.1) application on the back-end, with [Mapbox](https://www.mapbox.com/) & the Google Places API powering the suggestion map. Styling is done with a glass of [Bourbon](http://bourbon.io), [Neat](http://neat.bourbon.io), with a dash of [Bitters](http://bitters.bourbon.io).
