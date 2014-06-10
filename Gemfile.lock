@@ -151,6 +151,10 @@ GEM
       sprockets (>= 2.0.3)
       tilt
     hashie (2.1.1)
+    heroku_rails_deflate (1.0.3)
+      actionpack (>= 3.2.13)
+      activesupport (>= 3.2.13)
+      rack (>= 1.4.5)
     hike (1.2.3)
     hirefire-resource (0.3.2)
     http_parser.rb (0.6.0)
@@ -405,6 +409,7 @@ DEPENDENCIES
   guard-rspec
   guard-rubocop
   handlebars_assets
+  heroku_rails_deflate
   hirefire-resource
   jbuilder
   jquery-fileupload-rails

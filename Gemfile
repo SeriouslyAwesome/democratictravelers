@@ -27,6 +27,7 @@ gem 'font-awesome-rails'
 gem 'handlebars_assets'
 gem 'jquery-ui-rails'
 gem 'yajl-ruby', require: 'yajl'
+gem 'heroku_rails_deflate', group: :production
 
 # FUNCTIONALITY
 gem 'friendly_id'
