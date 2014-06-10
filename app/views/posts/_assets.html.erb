@@ -3,7 +3,7 @@
 
     <ul class="thumbnails files row">
       <% post.assets.each do |asset| %>
-        <li class="thumbnail asset-<%= asset.id %> <%= 'cover' if asset.cover? %>" data-asset-id="<%= asset.id %>" data-markdown="<div class='caption'><img src='<%= asset.asset.url %>' /><p>CAPTION</p></div>">
+        <li class="thumbnail asset-<%= asset.id %> <%= 'cover' if asset.cover? %>" data-asset-id="<%= asset.id %>" data-markdown="<div class='caption'><img src='<%= asset.asset.url %>' alt='<%= asset.alt_name %> /><p>CAPTION</p></div>">
           <%= image_tag asset.asset.thumb %>
 
           <p class="thumbnail-controls">

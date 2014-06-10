@@ -16,7 +16,7 @@ body.about {
   }
 
   #intro {
-    @extend main;
+    @extend .row;
     font-size: $base-font-size * 1.375;
 
     p {
@@ -28,7 +28,7 @@ body.about {
   }
 
   #howitworks {
-    @extend main;
+    @extend .row;
 
     .step {
       margin-top: $baseline * 1.5;
@@ -43,7 +43,7 @@ body.about {
   }
 
   #family {
-    @extend main;
+    @extend .row;
 
     #john, #laura {
       @include media($tablet) {
@@ -155,7 +155,7 @@ body.about {
   }
 
   #press {
-    @extend main;
+    @extend .row;
     
     #press-logos { display: inline-block; }
 

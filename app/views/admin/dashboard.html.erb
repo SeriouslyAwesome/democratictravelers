@@ -2,7 +2,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
 <% end %>
 
-<main>
+<div class="row">
   <h2 class="structural">
     What up, <%= current_user.first_name %>
     <small>
@@ -36,9 +36,9 @@
       <%= f.submit 'Set' %>
     <% end %>
   </div>
-</main>
+</div>
 
-<main>
+<div class="row">
   <div id="admin-suggestions">
     <h3 class="structural">Suggestions</h3>
     <% if Experience.closest.any? %>
@@ -118,4 +118,4 @@
       </ul>
     <% end %>
   </div>
-</main>
+</div>

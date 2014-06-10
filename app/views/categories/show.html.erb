@@ -6,7 +6,7 @@
     <%= render 'posts/cover_tease', post: @latest %>
   <% end %>
 
-  <main class="archive">
+  <div class="archive row">
     <div class="post-list">
       <%= content_tag(:h3, "More from #{@category.name}", class: "category-heading") %>
 
@@ -18,5 +18,5 @@
     </div>
 
     <%= render 'shared/blog_sidebar' %>
-  </main>
+  </div>
 <% end %>

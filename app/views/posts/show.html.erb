@@ -11,13 +11,13 @@
 
     <%= hero_image_tag_for @post %>
 
-    <main class="post">
+    <div class="post row">
       <%= render 'post', :post => @post %>
 
       <aside>
         <%= render 'shared/blog_sidebar' %>
       </aside>
-    </main>
+    </div>
 <% else %>
 
   <div id="posts">

@@ -6,7 +6,7 @@
     <%= render 'posts/cover_tease', post: @posts.first %>
   <% end %>
 
-  <main>
+  <div class="row">
     <div class="post-list">
       <%= content_tag(:h3, 'Blog Archives', class: "category-heading") %>
 
@@ -14,5 +14,5 @@
     </div>
 
     <%= render 'shared/blog_sidebar' %>
-  </main>
+  </div>
 <% end %>

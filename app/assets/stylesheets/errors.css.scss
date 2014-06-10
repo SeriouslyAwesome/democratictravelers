@@ -2,7 +2,7 @@ body.errors {
   color: $white;
   h1 { color: white; }
   
-  main {
+  .row {
     @include media($tablet) {
       max-width: 50%;
       position: relative;

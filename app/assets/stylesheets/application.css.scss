@@ -60,7 +60,7 @@ body {
   }
 }
 
-main {
+.row {
   //@include baseline-grid;
   @include outer-container;
   @include clearfix;

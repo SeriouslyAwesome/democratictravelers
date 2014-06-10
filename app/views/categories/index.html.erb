@@ -5,16 +5,14 @@
     <%= render 'posts/cover_tease', post: @cover %>
   <% end %>
 
-<main>
+<div class="row">
     <!-- QUICK TRIP -->
     <div id="quicktrip">
       <h2 class="category-heading"><%= link_to 'Quick Trip', category_path('quicktrips') %></h2>
 
       <% if @quicktrip %>
         <%= link_to @quicktrip, class: 'quicktrip-image' do %>
-          <%= image_tag 'transparent.gif', width: '100%',
-                                           height: '100%',
-                                           style: "background-image: url(#{@quicktrip.cover(:big)})" %>
+          <%= image_tag 'transparent.gif', style: "background-image: url(#{@quicktrip.cover(:big)}); width: 100%; height: 100%;" %>
         <% end %>
 
         <div>
@@ -44,9 +42,9 @@
     <h2 class="category-heading">Visual Diary</h2>
     <%= render 'shared/instagram' %>
   </div>
-</main>
+</div>
 
-<main>
+<div class="row">
     <div class="category-preview">
       <h3 class="category-heading"><a href="/blog/departments/food">The Kitchen</a></h3>
 
@@ -64,6 +62,6 @@
 
       <%= render 'posts/mini_preview', post: @garage if @garage %>
     </div>
-</main>
+</div>
 
 <p class="archives-link"><%= link_to 'View the Archives', archives_path %></p>

@@ -13,4 +13,8 @@ class Asset < ActiveRecord::Base
   def cover?
     cover == true
   end
+  
+  def alt_name
+    asset.file.filename.split('.').first.gsub(/[_,-]/, ' ')
+  end
 end

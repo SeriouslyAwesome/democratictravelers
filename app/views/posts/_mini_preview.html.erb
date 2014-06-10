@@ -2,10 +2,10 @@
   <%= link_to post, class: "post-mini-preview" do %>
     <%= image_tag post.assets.cover.first.asset.url(:big) if post.assets.any? && post.assets.cover.any? %>
 
-    <div>
+    <span class="link-content">
       <%= post.title %>
       <small><%= post.subtitle %></small>
-    </div>
+    </span>
   <% end %>
 </h4>
 
