@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/repos/536a51a26956804685005d0e/badges/8d466e7f8fcbc359f269/gpa.png)](https://codeclimate.com/repos/536a51a26956804685005d0e/feed)
+[![Code Climate](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers.png)](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers)
 
 #The Democratic Travelers v4.0
 
