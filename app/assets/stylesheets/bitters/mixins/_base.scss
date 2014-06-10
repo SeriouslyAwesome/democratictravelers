@@ -1,0 +1,59 @@
+@import "flash";
+
+@mixin background-size($size) {
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  -o-background-size: $size;
+  background-size: $size;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@mixin btn($color) {
+  display: inline-block;
+  font-size: $base-font-size;
+  font-family: $sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: $color;
+  color: $white;
+  padding: 1px ($base-font-size);
+  height: $baseline * 1.5;
+  border: none;
+  vertical-align: top;
+  line-height: $baseline * 1.5;
+  white-space: nowrap;
+  margin-top: $baseline * 0.25;
+  @include border-top-radius(5px);
+  @include border-bottom-radius(5px);
+  @include border-left-radius(5px);
+  @include border-right-radius(5px);
+  
+  &:hover, &:focus {
+    color: $white;
+    background-color: darken($color, 15%);
+  }
+  
+  &:disabled {
+    background-color: $color;
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+@mixin baseline-grid {
+  background: image-url('baseline-grid.gif') repeat left top;
+}
+
+@mixin border-radius($radius) {
+  @include border-top-radius($radius);
+  @include border-bottom-radius($radius);
+  @include border-left-radius($radius);
+  @include border-right-radius($radius);
+}
+
+@mixin navigational-text {
+  font-family: $sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}

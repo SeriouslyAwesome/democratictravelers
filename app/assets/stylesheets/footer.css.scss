@@ -1,0 +1,77 @@
+#site-footer {
+  color: $dark-gray;
+  background-color: $black;
+  width: 100%;
+  z-index: 110;
+
+  #footer {
+    @include outer-container;
+    text-align: center;
+    @include clearfix;
+    padding: ($baseline * 1.5) $baseline;
+
+    #footer-social-links {
+      font-size: 1.5em;
+      line-height: 0.75em;
+      margin-bottom: 0.25em;
+
+      @include media($tablet) {
+        float: right;
+      }
+
+      li { 
+        display: inline-block;
+
+        a {
+          span { display: none; }
+          .fa-fw { color: $dark-gray; }
+          &:hover, &:focus {
+            @import "social";
+          }
+        }
+      }
+    }
+
+    #footer-copyright {
+      margin-bottom: 0;
+      @include media($tablet) {
+        float: left;
+      }
+      a { 
+        color: $medium-gray;
+        &:hover, &:focus { color: $white; }
+      }
+    }
+  }
+}
+
+body.home.index,
+body.home.map,
+body.users.show,
+body.locations.show {
+  #site-footer {
+    @include media($tablet) {
+      position: absolute;
+      bottom: 0;
+      background-color: transparent;
+      color: $white;
+      text-shadow: 0 0 2px $black;
+      z-index: 5000;
+      @include background-image(linear-gradient(transparent 0, rgba($black, 0.4) 100%));
+
+      #footer {
+        padding: ($baseline * 0.5) $baseline;
+        #footer-copyright a { color: $light-gray; }
+        #footer-social-links a .fa-fw { color: $light-gray; }
+      }
+    }
+  }
+}
+
+body.map {
+  #site-footer {
+    @include media($tablet) {
+      @include background-image(linear-gradient(transparent 0, rgba($black, 0.75) 100%));
+    }
+  }
+}

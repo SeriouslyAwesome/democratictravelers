@@ -1,0 +1,15 @@
+body.sessions, body.registrations {
+  background-color: $white;
+
+  #sign-in {
+    @include media($tablet) {
+      @include shift(2);
+    }
+  }
+
+  #sign-in, #sign-up {
+    @include media($tablet) {
+      @include span-columns(4);
+    }
+  }
+}

@@ -1,0 +1,56 @@
+<div class="post-hero">
+  <%= render 'assets', post: post %>
+</div>
+
+
+<%= form_for post, html: { class: "form-post" } do |f| %>
+  <article>
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: "A Catchy Title" %>
+
+    <%= f.label :subtitle, class: "sr-only" %>
+    <%= f.text_field :subtitle, placeholder: "The Story of Excellent Subtitles" %>
+
+    <div class="form-post-meta">
+      <%= f.label :published_at, "Publish On", class: "sr-only" %>
+      <%= f.date_select :published_at, {} %>
+      by
+      <%= f.collection_select :user_id, User.with_role(:admin), :id, :name, { selected: current_user.id } %>
+    </div>
+
+    <%= f.label :excerpt, class: "sr-only" %>
+    <%= f.text_area :excerpt, placeholder: "Write a good excerpt here.", rows: 4 %>
+
+    <%= f.label :body, class: "sr-only" %>
+    <%= f.text_area :body, rows: 20, placeholder: "Alright, let's get to it, baby. Write the meat of the thing here." %>
+
+    <p>
+      <%= f.submit "Post This Bitch!" %>
+      <label class="user-notification"><%= check_box_tag :notify_contributors %> Notify related users of this post?</label>
+    </p>
+  </article>
+
+  <aside id="sidebar">
+    <% if Category.any? %>
+      <h4>Categories</h4>
+      <ul class="post-categories">
+        <%= f.hidden_field "category_ids[]", value: "[]" %>
+
+        <% for category in Category.all %>
+          <li><%= check_box_tag "post[category_ids][]", category.id, !!@post.categories.include?(category) %> <%= category.name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% if @experiences.any? %>
+      <h4>Related Experiences</h4>
+      <%= select_tag "state-select", options_from_collection_for_select(State.done, :abbr, :name), class: "form-control"  %>
+
+      <ul class="post-experiences">
+        <% for exp in @experiences %>
+          <li class="state-<%= exp.state.abbr %>"><%= check_box_tag "post[experience_ids][]", exp.id, !!@post.experiences.include?(exp) %> <%= exp.name_for_checkboxes %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </aside>
+<% end %>

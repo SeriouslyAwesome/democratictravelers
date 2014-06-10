@@ -1,0 +1,25 @@
+<%= form_tag api_v1_suggestions_url, authenticity_token: false, id: 'suggestion' do |f| %>
+  <h4 class="structural">Add Your Suggestion:</h4>
+
+  <label>Where should we go?</label>
+  <input type="text" id="location-search" placeholder="'Skip Church's Bistro', or 'Boulder, CO', etc.">
+
+  <%= label_tag 'suggestion[experience_name]', 'What should we do there?' %>
+  <%= text_field_tag 'suggestion[experience_name]', nil, placeholder: '\'Order the Skip\'s Scramble\' or \'Hike the Rockies\', etc.' %>
+
+  <%= label_tag 'suggestion[description]', 'Why should we do it?' %>
+  <%= text_area_tag 'suggestion[description]', nil, placeholder: '\'It will knock you into next week!\'', rows: 5 %>
+
+  <%= hidden_field_tag 'suggestion[location_name]' %>
+  <%= hidden_field_tag 'suggestion[latitude]' %>
+  <%= hidden_field_tag 'suggestion[longitude]' %>
+  <%= hidden_field_tag 'suggestion[formatted_address]' %>
+  <%= hidden_field_tag 'suggestion[address]' %>
+  <%= hidden_field_tag 'suggestion[city]' %>
+  <%= hidden_field_tag 'suggestion[state]' %>
+  <%= text_field_tag 'comment_body', nil, class: 'honeypot', placeholder: 'Do not fill this in.' %>
+
+  <p>
+    <%= submit_tag 'Suggest It' %> <a href="#cancel" class="cancel">Cancel</a>
+  </p>
+<% end %>

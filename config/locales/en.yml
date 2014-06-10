@@ -1,0 +1,14 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  activerecord:
+    attributes:
+      user:
+        email: "Email address"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "is already registered. If you've signed in with Facebook before, you should do that again instead."

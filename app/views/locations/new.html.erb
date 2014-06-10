@@ -1,0 +1,22 @@
+<div id="location-search" class="experience">
+	<p><input type="text" name="" value="" id="current-location-search" class="form-control" placeholder="Where are you now?"></p>
+	<%= form_for @location, html: { id: "location-form" }, remote: true, method: :post do |location| %>
+		
+	  <fieldset id="hidden-location-fields" style="display:none;">
+			<%= location.hidden_field :name%>
+			<%= location.hidden_field :formatted_address %>
+			<%= location.hidden_field :address1 %>
+			<%= location.hidden_field :city %>
+			<%= location.hidden_field :state %>
+			<%= location.hidden_field :zip %>
+			<%= location.hidden_field :lat %>
+			<%= location.hidden_field :long %>
+		</fieldset>
+				
+	  <p class="clearfix"><%= location.submit raw("Set Current Location"), class: "btn btn-primary ", disabled: "disabled" %></p>
+		
+	<% end %>
+	<%= render "shared/alerts" %>
+</div><!-- .row-fluid -->
+
+<%= render 'experiences/map' %>

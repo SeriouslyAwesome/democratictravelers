@@ -1,0 +1,6 @@
+<%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { id: "convert" }, remote: true, format: :json, method: :post do |sign_up| %>
+  <%= sign_up.text_field :name, placeholder: 'Anonymous' %>
+  <%= sign_up.text_field :email, placeholder: 'you@youremail.com' %>
+
+  <%= sign_up.submit 'Okay!', id: 'btn-sign-up' %>
+<% end %>

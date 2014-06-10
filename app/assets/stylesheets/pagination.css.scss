@@ -1,0 +1,53 @@
+.pager {
+  @include clearfix;
+  margin-top: $base-line-height;
+  margin-bottom: $base-line-height * 3;
+  
+  li a { @include btn($yellow) }
+  
+  li.previous { float: left }
+  li.next { float: right }
+}
+
+.pagination {
+  text-align: center;
+  padding-top: $base-line-height;
+  padding-bottom: $base-line-height;
+  
+  li {
+    a {
+      display: block;
+      width: 100%; height: 100%;
+    }
+    font-family: $sans-serif;
+    font-weight: bold;
+    display: inline-block;
+    width: $base-line-height * 1.5;
+    height: $base-line-height * 1.5;
+    line-height: $base-line-height * 1.5;
+    @include border-radius(100px);
+    border: 1px solid $medium-gray;
+    margin: 0 $base-line-height * 0.125;
+    @include transition(color 0.1s linear);
+    @include transition(border-color 0.1s linear);
+    
+    &.first, &.prev, &.next, &.last {
+      width: $base-line-height * 1;
+      height: $base-line-height * 1;
+      line-height: $base-line-height * 1;
+      margin-top: $base-line-height * 0.5;
+    }
+    
+    &.disabled {
+      border-color: $light-gray;
+      a { color: $light-gray; }
+    }
+    
+    a { color: $dark-gray; }
+    
+    &:hover {
+      border-color: $black;
+      a { color: $black; }
+    };
+  }
+}

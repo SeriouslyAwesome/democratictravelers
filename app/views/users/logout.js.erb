@@ -1,0 +1,7 @@
+pane = '<%=j render "shared/pane_auth" %>'
+$('#sidebar').append(pane);
+$('#pane-auth, #pane-intro').hide();
+$('#pane-experience').slideFadeToggle('fast', function(){
+	$(this).remove();
+	$('#pane-auth').slideFadeToggle('fast').find('#form-sign-up').hide();
+})

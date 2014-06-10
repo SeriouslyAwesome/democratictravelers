@@ -1,0 +1,74 @@
+<div id="post-assets">
+  <%= form_for ['admin', Asset.new], :html => { :multipart => true } do |a| %>
+
+    <ul class="thumbnails files row">
+      <% post.assets.each do |asset| %>
+        <li class="thumbnail asset-<%= asset.id %> <%= 'cover' if asset.cover? %>" data-asset-id="<%= asset.id %>" data-markdown="<div class='caption'><img src='<%= asset.asset.url %>' /><p>CAPTION</p></div>">
+          <%= image_tag asset.asset.thumb %>
+
+          <p class="thumbnail-controls">
+            <a href="#" class="asset-copy-to-clipboard">
+              <%= fa_icon 'cut' %>
+            </a>
+
+            <%= link_to admin_asset_toggle_cover_path(asset), class: 'asset-toggle-cover' do %>
+              <%= fa_icon 'picture-o' %>
+            <% end %>
+
+            <%= link_to admin_asset_path(asset), class: 'asset-delete' do %>
+              <%= fa_icon 'trash-o' %>
+            <% end %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+
+    <p class="clearfix centered">
+      <span class="add-images-btn">
+        <span><%= fa_icon 'plus-circle', class: 'fa-lg' %> Add images...</span>
+        <%= a.file_field :asset, multiple: true, name: 'asset[asset]' %>
+      </span>
+    </p>
+  <% end %>
+</div>
+
+<% content_for :head do %>
+  <script>
+    var fileUploadErrors = {
+    maxFileSize: 'File is too big',
+    minFileSize: 'File is too small',
+    acceptFileTypes: 'Filetype not allowed',
+    maxNumberOfFiles: 'Max number of files exceeded',
+    uploadedBytes: 'Uploaded bytes exceed file size',
+    emptyResult: 'Empty file upload result'
+    };
+  </script>
+
+  <!-- The template to display files available for upload -->
+  <script id="template-upload" type="text/x-tmpl">
+    {% for (var i=0, file; file=o.files[i]; i++) { %}
+      <li class="thumbnail">
+        <%= image_tag 'loading.gif', class: 'thumbnail-loading' %>
+      </li><!-- end .thumbnail -->
+    {% } %}
+  </script>
+
+  <!-- The template to display files available for download -->
+  <script id="template-download" type="text/x-tmpl">
+    {% for (var i=0, file; file=o.files[i]; i++) { %}
+      <li class="thumbnail asset-{%=file.id%}" data-asset-id="{%=file.id%}" data-markdown="<div class='caption'><img src='{%=file.url%}' /><p>CAPTION</p></div>">
+        <img src="{%=file.thumbnail_url%}" alt="{%=file.name%}" />
+
+        <p class="thumbnail-controls">
+          <a href="{%=file.cover_url%}" class="asset-toggle-cover">
+            <%= fa_icon 'picture-o' %>
+          </a>
+
+          <a href="{%=file.delete_url%}" class="asset-delete">
+            <%= fa_icon 'trash-o' %>
+          </a>
+        </p>
+      </li>
+    {% } %}
+  </script>
+<% end %>

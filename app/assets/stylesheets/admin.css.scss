@@ -1,0 +1,150 @@
+body.admin.dashboard,
+body.admin.new,
+body.admin.edit {
+  #post-assets {
+    .add-images-btn {
+      @include btn($yellow);
+      cursor: pointer;
+      
+      input {
+        position: absolute;
+        bottom: 0;
+        visibility: hidden;
+      }
+    }
+    .thumbnails {
+      text-align: center;
+    }
+    .thumbnail {
+      display: inline-block;
+      width: $baseline * 3;
+      height: $baseline * 3;
+      margin: ($baseline) ($baseline * 0.5);
+      margin-top: 0;
+      padding: 0;
+      
+      .thumbnail-controls {
+        line-height: $baseline;
+        text-align: right;
+        a { 
+          color: $medium-gray;
+          
+          &:hover, &:focus { color: $black; }
+        }
+      }
+      
+      .thumbnail-loading { padding: 26px; }
+      
+      &.cover {
+        img {
+          -webkit-box-shadow: 0 0 5px 2px $green;
+          box-shadow: 0 0 5px 2px $green;
+        }
+      }
+    }
+  }
+  
+  .form-post {
+    label {
+      display: none;
+    }
+    
+    input[type="text"], textarea {
+      border: 0;
+      padding: 0;
+      @include border-radius(0);
+      @include box-shadow(none);
+      @include placeholder {
+        color: $light-gray;
+      }
+    }
+    
+    .form-post-meta {
+      & select { display: inline; }
+    }
+    
+    .user-notification {
+      display: inline-block;
+      margin-left: 0.5em;
+      vertical-align: middle;
+      margin-top: $baseline / 4;
+    }
+  }
+  
+  #post_title {
+    @extend h1;
+    height: $baseline * 2;
+    font-weight: bold;
+  }
+  
+  #post_subtitle {
+    @extend h3;
+    color: $medium-gray;
+  }
+  
+  #post_excerpt {
+    font-size: $base-font-size * 1.375;
+    line-height: $baseline;
+  }
+  
+  #post_body {
+    color: $dark-gray;
+    line-height: $baseline;
+    font-weight: normal;
+  }
+  .post-categories { margin-bottom: $baseline }
+  #state-select { display: block; }
+}
+
+#admin-actions, #admin-location {
+  @include media($tablet) {
+    text-align: center;
+    padding: $baseline 0;
+    margin-top: $baseline / 2;
+    @include span-columns(6);
+  }
+}
+
+#admin-actions a {
+  @include btn($yellow)
+}
+
+#admin-location {
+  #admin-location-search { 
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+    margin-top: $baseline / 4;
+    margin-bottom: 0;
+  }
+}
+
+#admin-suggestions {
+  clear: left;
+}
+
+#admin-suggestions, #admin-users {
+  @include media($tablet) {
+    @include span-columns(5);
+  }
+  
+  .admin-controls {
+    text-align: right;
+    
+    .fa-check-circle {
+      color: $green;
+      &:hover { color: $yellow; }
+    }
+  }
+}
+
+#admin-states {
+  @include media($tablet) {
+    @include span-columns(2);
+  }
+
+  li {
+    vertical-align: middle;
+    line-height: $baseline;
+  }
+}

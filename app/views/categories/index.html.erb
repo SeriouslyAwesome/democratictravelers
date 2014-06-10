@@ -1,0 +1,69 @@
+<% title 'An Airstream Adventure Blog' %>
+<% meta_description 'Stories from the road, based on your suggested stops.' %>
+
+  <% if @cover %>
+    <%= render 'posts/cover_tease', post: @cover %>
+  <% end %>
+
+<main>
+    <!-- QUICK TRIP -->
+    <div id="quicktrip">
+      <h2 class="category-heading"><%= link_to 'Quick Trip', category_path('quicktrips') %></h2>
+
+      <% if @quicktrip %>
+        <%= link_to @quicktrip, class: 'quicktrip-image' do %>
+          <%= image_tag 'transparent.gif', width: '100%',
+                                           height: '100%',
+                                           style: "background-image: url(#{@quicktrip.cover(:big)})" %>
+        <% end %>
+
+        <div>
+          <h3>
+            <%= link_to @quicktrip do %>
+              <%= @quicktrip.title %> <small><%= @quicktrip.subtitle %></small>
+            <% end %>
+          </h3>
+
+          <p class="post-meta">
+            <%= @quicktrip.published_date %> by <%= @quicktrip.author %>
+          </p>
+
+          <%= markdown @quicktrip.excerpt %>
+
+          <p>
+            <%= link_to @quicktrip, class: 'read-more' do %>
+              Read More &raquo;
+            <% end %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+
+  <!-- VISUAL DIARY -->
+  <div id="visual-diary">
+    <h2 class="category-heading">Visual Diary</h2>
+    <%= render 'shared/instagram' %>
+  </div>
+</main>
+
+<main>
+    <div class="category-preview">
+      <h3 class="category-heading"><a href="/blog/departments/food">The Kitchen</a></h3>
+
+      <%= render 'posts/mini_preview', post: @food if @food %>
+    </div>
+
+    <div class="category-preview">
+      <h3 class="category-heading"><a href="/blog/departments/drinks">Speakeasy</a></h3>
+
+      <%= render 'posts/mini_preview', post: @drink if @drink %>
+    </div>
+
+    <div class="category-preview">
+      <h3 class="category-heading"><a href="/blog/departments/garage">The Garage</a></h3>
+
+      <%= render 'posts/mini_preview', post: @garage if @garage %>
+    </div>
+</main>
+
+<p class="archives-link"><%= link_to 'View the Archives', archives_path %></p>

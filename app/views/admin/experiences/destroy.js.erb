@@ -1,0 +1,5 @@
+<% unless @experience.errors.any? %>
+  $('#admin-suggestions').find('#experience_<%= @experience.id %>').slideUp('fast', function(){
+    $(this).remove();
+  })
+<% end %>

@@ -1,0 +1,315 @@
+#map-view-controls {
+  position: absolute;
+  z-index: 101;
+  top: $baseline * 3.5; right: $baseline * 0.5;
+  
+  @include media($tablet) {
+    display: none;
+  }
+  
+  button {
+    @include btn($dark-gray);
+    font-size: $base-font-size * 1.375;
+  }
+}
+
+
+#map {
+  display: block;
+  position: absolute;
+  background: $black image-url('loading-dark.gif') no-repeat center center;
+  top: $baseline * 3; right: 0; bottom: 0; left: 0;
+  max-width: 100%;
+  padding-left: 0;
+  z-index: 98;
+
+  @include media($tablet) {
+    @include box-sizing(content-box);
+    top: 0;
+    width: 100%;
+  }
+
+  &.visible {
+    margin-left: 0%;
+  }
+
+  @include transition(margin-left 0.25s ease-in-out);
+}
+
+#map-list {
+  display: block;
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: $yellow;
+  padding: $baseline * 0.5;
+  top: $baseline * 3; right: 0; bottom: 0; left: 0;
+  width: 100%;
+  z-index: 99;
+
+  &.hidden {
+    margin-left: 100%;
+  }
+
+  @include transition(margin-left 0.25s ease-in-out);
+
+  @include media($tablet) {
+    -webkit-border-radius: $baseline * 0.25 0 0 $baseline * 0.25;
+    border-radius: $baseline * 0.25 0 0 $baseline * 0.25;
+    top: $baseline * 3.5; right: 0; bottom: $baseline * 3; left: auto;
+    padding-top: $baseline * 0.5;
+    min-width: 320px;
+    max-width: 33%;
+    margin-right: -2px;
+    -webkit-box-shadow:inset 8px 0 12px -2px rgba($black, 0.5);
+    box-shadow:inset 4px 0 12px -2px rgba($black, 0.5);
+  }
+
+  #map-list-sort {
+    display: none;
+    line-height: $baseline * 1.5;
+    height: $baseline * 1.5;
+    font-size: 75%;
+    @include navigational-text;
+
+    button {
+      @include btn($dark-gray);
+      vertical-align: baseline;
+      font-size: $base-font-size * 1.375;
+    }
+  }
+
+  .suggestion {
+    //@include baseline-grid;
+    font-size: 85%;
+    line-height: $baseline * 0.85;
+    display: block;
+    position: relative;
+    padding: $baseline;
+    margin-bottom: $baseline * 0.5;
+    background-color: $white;
+    -webkit-box-shadow: 0 2px 4px 0 rgba($black, 0.5);
+    box-shadow: 0 2px 4px 0 rgba($black, 0.5);
+    
+    h4 { 
+      margin-bottom: $baseline;
+      .map-pin {
+        float: left;
+        margin-right: $baseline * 0.5;
+        margin-bottom: $baseline;
+        font-size: $base-font-size * 0.75;
+      }
+    }
+
+    .why {
+      margin-bottom: 0;
+    }
+
+    .meta {
+      color: $medium-gray;
+      font-size: 85%;
+    }
+
+    .voting {
+      text-align: center;
+
+      .upvote {
+        @include btn($green);
+      }
+
+      span.votes {
+        @include btn($dark-gray);
+        font-size: $base-font-size;
+        &:hover, &:focus {
+          background-color: $dark-gray;
+        }
+      }
+
+      .downvote {
+        @include btn($red);
+      }
+    }
+
+    .sharing {
+      text-align: center;
+      margin-bottom: 0;
+      font-family: $sans-serif;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      a { padding: 0 $base-font-size * 0.25; }
+
+      .facebook { color: $facebook; }
+      .twitter { color: $twitter; }
+      .permalink { color: $medium-gray; }
+    }
+  }
+}
+
+#new-suggestion.suggestion {
+  h4 {
+    margin-bottom: 0;
+  }
+  
+  p:first-child {
+    text-align: right;
+    font-size: 85%;
+    color: $medium-gray;
+  }
+
+  input[type="submit"] {
+    @include btn($yellow)
+  }
+}
+
+.cancel {
+  line-height: $baseline * 1.5;
+  vertical-align: middle;
+  margin-top: $baseline / 4;
+  display: inline-block;
+  padding: 0 0.5em;
+  color: $medium-gray;
+  
+  &:hover, &:focus {
+    color: $red;
+  }
+}
+
+p.social-sign-in {
+  text-align: center;
+  margin-bottom: 0;
+  small { margin-top: $baseline * 0.5; display: inline-block; }
+
+  .facebook, .twitter {
+    .fa-lg { 
+      color: $white;
+      vertical-align: middle;
+      margin-top: -5px;
+    }
+  }
+
+  .facebook {
+    @include btn($facebook)
+  }
+
+  .twitter {
+    @include btn($twitter)
+  }
+}
+
+#show-new-suggestion {
+  @include btn($black)
+}
+
+#map-loading {
+  text-align: center;
+  background-color: $white;
+  z-index: 1000;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -75px;
+  margin-left: -75px;
+  padding: $baseline;
+  @include border-radius(10px);
+  -webkit-box-shadow: 0 4px 10px 0 rgba(000,000,000,0.5);
+  box-shadow: 0 4px 10px 0 rgba(000,000,000,0.5);
+  @include media($tablet) {
+    left: 33%;
+    margin-left: -75px;
+  }
+}
+
+.map-pin {
+  font-family: $sans-serif;
+  font-weight: bold;
+  width: 40px;
+  height: 51px;
+  background: transparent image-url('map-marker.png') no-repeat center center;
+  background-size: 40px 51px;
+  color: $black;
+  text-align: center;
+  position: relative;
+
+  span {
+    display: inline-block;
+    background: $white;
+    line-height: 24px;
+    width: 24px;
+    margin-top: 7px;
+
+    @include border-radius(100px);
+  }
+
+  &.map-pin-done {
+    background-image: image-url('map-marker-done.png');
+    span { display: none; }
+  }
+}
+
+.leaflet-popup-content {
+  padding-top: $baseline !important;
+  h4 {
+    line-height: 0;
+    text-align: center;
+  }
+}
+
+.mark-done {
+  color: $yellow;
+  &:hover, &:focus { color: $black; }
+}
+
+.leaflet-bottom.leaflet-left {
+  bottom: 50%;
+  margin-bottom: -32px;
+}
+
+@include keyframes(pulsate) {
+  0% { 
+    @include transform(scale(0.1, 0.1));
+    opacity: 0.0;
+  }
+  
+  20% { opacity: 1.0; }
+  
+  40% {
+    @include transform(scale(1.2, 1.2));
+    opacity: 0.0;
+  }
+  
+  100% {
+    opacity: 0.0;
+  }
+}
+
+.map-pin-current { 
+  z-index: 2000 !important;
+  .map-pin { background-image: image-url('map-marker-current.png');}
+}
+.pulse {
+  display: block;
+  background: rgba(0,0,0,0.3);
+  border-radius: 50%;
+  height: 14px;
+  width: 14px;
+  position: absolute;
+  top: auto; right: auto; bottom: 0; left: auto;
+  margin: 0 0 -4px 13px;
+  @include transform(rotateX(55deg));
+  z-index: -20;
+  &:after {
+    content: "";
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    margin: -12px 0 0 -13px;
+    @include animation(pulsate 2.5s ease-out);
+    @include animation-iteration-count(infinite);
+    opacity: 0.0;
+    box-shadow: 0 0 1px 4px $blue;
+    @include animation-delay(1s);
+  }
+}
+

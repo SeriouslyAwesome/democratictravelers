@@ -1,0 +1,187 @@
+body.about {
+  text-align: center;
+
+  section {
+    display: block;
+    position: relative;
+    @extend clearfix;
+    padding-bottom: $baseline * 2;
+
+    h2.structural {
+      clear: both;
+      max-width: 1084px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  #intro {
+    @extend main;
+    font-size: $base-font-size * 1.375;
+
+    p {
+      @include media($tablet) {
+        @include span-columns(8);
+        @include shift(2);
+      }
+    }
+  }
+
+  #howitworks {
+    @extend main;
+
+    .step {
+      margin-top: $baseline * 1.5;
+      margin-bottom: $baseline * 2;
+      img {
+        height: $baseline * 4;
+      }
+      @include media($tablet) {
+        @include span-columns(4);
+      }
+    }
+  }
+
+  #family {
+    @extend main;
+
+    #john, #laura {
+      @include media($tablet) {
+        @include span-columns(5);
+        padding-bottom: $baseline;
+      }
+
+      img {
+        max-width: 66%;
+      }
+    }
+
+    #john {
+      @include media($tablet) {
+        @include shift(1);
+      }
+    }
+  }
+
+  #pets {
+    div {
+      h4 {
+        margin-top: $baseline;
+        margin-bottom: $baseline * 0.5;
+      }
+      @include media($tablet) {
+        float: left;
+        width: 33.3333333333%;
+        min-height: 100%;
+        margin: 0;
+        margin-bottom: $baseline * 2;
+        position: relative;
+
+        img {
+          margin: 0;
+          padding: 0;
+        }
+
+        h4 {
+          -webkit-opacity: 0;
+          opacity: 0;
+          @include transition(opacity 0.25s ease-in-out);
+          color: $white;
+          position: absolute;
+          margin: 0;
+          padding: 0;
+          top: 0; right: 0; bottom: 9px; left: 0;
+          padding-top: 70%;
+          width: 100%;
+          background: rgba($black, 0.75);
+
+          &:hover, &:focus { opacity: 1 }
+
+          small {
+            color: $light-gray;
+            display: block;
+            line-height: $baseline;
+          }
+        }
+      }
+    }
+  }
+
+  #rig {
+    #rig-text {
+      @include clearfix;
+      font-size: $base-font-size * 1.375;
+
+      p {
+        @include media($tablet) {
+          @include span-columns(6);
+          @include shift(3);
+        }
+      }
+    }
+
+    #gallery-wrap {
+      @include clearfix;
+      position: relative;
+      min-height: $baseline * 8;
+    }
+    #rig-gallery, #rig-specs {
+      @include media($tablet) {
+        float: left;
+        height: 100%;
+      }
+    }
+
+    #rig-gallery {
+      background: $medium-gray;
+      height: $baseline * 12;
+      @include media($tablet) {
+        display: block;
+        width: 66.6666666667%;
+        min-height: $baseline * 16;
+      }
+    }
+
+    #rig-specs {
+      background: #eee;
+      padding: $baseline;
+      
+      @include media($tablet) {
+        width: 33.3333333333%;
+        
+        text-align: left;
+      }
+    }
+  }
+
+  #press {
+    @extend main;
+    
+    #press-logos { display: inline-block; }
+
+    #natgeo-text {
+      font-size: $base-font-size * 1.375;
+
+      @include media($tablet) {
+        @include span-columns(4);
+        text-align: right;
+      }
+    }
+
+    #natgeo-image {
+      @include media($tablet) {
+        @include span-columns(4);
+        text-align: center;
+        padding-bottom: $baseline * 3;
+      }
+    }
+    #other-press {
+      @include media($tablet) {
+        @include span-columns(4);
+        text-align: left;
+      }
+
+      img { max-width: 50%; }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+/.bundle
+/db/*.sqlite3
+/log/*.log
+/tmp
+.rvmrc*
+.rvmrc
+.powrc
+/public/uploads/*
+.DS_Store
+config/application.yml
+heroku.thor
+*.rdb
+db/seeds.rb

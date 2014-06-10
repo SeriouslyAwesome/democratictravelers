@@ -1,0 +1,18 @@
+<% cache @posts.first do %>
+  <% title 'Blog Archives' %>
+  <% meta_description 'Everything we\'ve ever written.' %>
+
+  <% unless params[:page] %>
+    <%= render 'posts/cover_tease', post: @posts.first %>
+  <% end %>
+
+  <main>
+    <div class="post-list">
+      <%= content_tag(:h3, 'Blog Archives', class: "category-heading") %>
+
+      <%= render 'posts/post_list', posts: @posts %>
+    </div>
+
+    <%= render 'shared/blog_sidebar' %>
+  </main>
+<% end %>

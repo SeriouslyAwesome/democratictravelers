@@ -1,0 +1,31 @@
+<aside id="sidebar">
+  <h4>Departments</h4>
+  <ul class="departments">
+    <% for category in Category.all %>
+      <%= content_tag :li, class: ("active" if request.path == category_path(category)) do %>
+        <%= link_to category.name, category %>
+      <% end %>
+    <% end %>
+
+    <%= content_tag :li, class: ("active" if request.path == archives_path) do %>
+      <%= link_to "Archives", archives_path %>
+    <% end %>
+  </ul>
+
+  <h4>Visual Diary</h4>
+  <%= render 'shared/instagram' %>
+
+  <h4>Show Your Support</h4>
+  <p>Want to help keep us on the road?</p>
+  <p><%= link_to "Donate Gas Money", "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2GYPANR49XD38", target: "_blank", class: "gas-money" %></p>
+  <p>Or, purchase any number of <a href="http://society6.com/democratictravelers" target="_blank">photographic prints</a> from our blog over at our <a href="http://society6.com/democratictravelers" target="_blank">Society6 shop</a>.</p>
+
+  <h4>Advertisements</h4>
+  <p>In lieux of obnoxious banner ads, we'd like to recommend services <strong>we actually use</strong>, and which offer us a commission for your patronage, but only if you use the following links:</p>
+  <ul>
+    <li><a href='https://seriouslyawesomellc.freshbooks.com/refer/www' target="_blank">Freshbooks</a> (Cloud Accounting)</li>
+    <li><a href="http://www.shopify.com/?ref=seriouslyawesome" target="_blank">Shopify</a> (E-Commerce)</li>
+    <li><a href="http://asmallorange.com/webhosting/?a_aid=seriouslyawesome" target="_blank">A Small Orange</a> (Web Hosting)</small></li>
+  </ul>
+  <p>We fully vouch for all of these companies, and if you end up joining them, you'll be helping us stay on the road. Thanks!</p>
+</aside>

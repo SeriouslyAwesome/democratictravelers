@@ -1,0 +1,37 @@
+<%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { id: "sign-up" }, remote: true, format: :json, method: :post do |sign_up| %>
+  <h4 class="structural">Sign Up</h4>
+
+  <% if resource.errors.any? %>
+    <div class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <span><%= resource.errors.to_a.to_sentence %></span>
+    </div>
+  <% end %>
+
+  <%= sign_up.label :name %>
+  <%= sign_up.text_field :name, placeholder: 'John/Jane Doe' %>
+
+  <%= sign_up.label :username %>
+  <%= sign_up.text_field :username, placeholder: 'johndoe123' %>
+  <span class="help-block"><small>(Only numbers, letters, underscores and dashes, please.)</small></span>
+
+  <%= sign_up.label :email %>
+  <%= sign_up.text_field :email, placeholder: 'you@youremail.com' %>
+
+  <%= sign_up.label :password %>
+  <%= sign_up.password_field :password %>
+
+  <%= sign_up.label :password_confirmation, 'Confirm Password' %>
+  <%= sign_up.password_field :password_confirmation %>
+
+  <label class="checkbox">
+    <%= sign_up.check_box :mailing_list, checked: true %> Put me on the mailing list!
+  </label>
+
+  <%= text_field_tag 'comment_body', nil, class: 'honeypot', placeholder: 'Do not fill this in.' %>
+
+  <p>
+    <%= fa_icon 'circle-o-notch', class: 'fa-spin loader' %>
+    <%= sign_up.submit 'Sign Up', id: 'btn-sign-up' %> <a href="#cancel" class="cancel">Cancel</a>
+  </p>
+<% end %>

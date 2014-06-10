@@ -1,0 +1,16 @@
+aside#sidebar {
+  @include media($tablet) { @include span-columns(4) }
+
+  a.gas-money { @include btn($blue) }
+
+  ul.departments {
+    font-family: $sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  li.active a {
+    color: $medium-gray;
+    cursor: default;
+  }
+}

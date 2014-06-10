@@ -1,0 +1,11 @@
+<!-- EXPERIENCE FORM PANE -->
+<div id="pane-experience" class="pane">
+	
+	<%= render 'experiences/form' %>
+			
+	<hr>
+						
+	<p class="clearfix"><a href="#howitworks" id="btn-intro" class="btn btn-info span7">&laquo; How it Works</a> <%= link_to raw("&times; Sign Out"), destroy_user_session_path, :id => "btn-sign-out", :class => "btn span5", :remote => true %></p>
+			
+	<p class="muted">If you have any questions, please email us: <%= email %></p>
+</div>

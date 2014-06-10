@@ -1,0 +1,8 @@
+FACEBOOK = 'http://www.facebook.com/TheDemocraticTravelers'
+TWITTER = 'http://www.twitter.com/DemocraticTRVLR'
+TUMBLR = 'http://democratictravelers.tumblr.com'
+PINTEREST = 'http://www.pinterest.com/democratictrvlr/'
+JOHN_IG = 'http://instagram.com/democratictravelers'
+LAURA_IG = 'http://instagram.com/thedemocratictravelers'
+VIMEO = 'http://www.vimeo.com/democratictravelers/'
+EMAIL = 'yourstruly@thedemocratictravelers.com'

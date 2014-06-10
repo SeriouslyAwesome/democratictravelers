@@ -1,0 +1,12 @@
+<h4>
+  <%= link_to post, class: "post-mini-preview" do %>
+    <%= image_tag post.assets.cover.first.asset.url(:big) if post.assets.any? && post.assets.cover.any? %>
+
+    <div>
+      <%= post.title %>
+      <small><%= post.subtitle %></small>
+    </div>
+  <% end %>
+</h4>
+
+<p class="post-meta"><%= post.published_date %> by <%= post.author %></p>

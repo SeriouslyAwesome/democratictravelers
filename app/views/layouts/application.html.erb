@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<%= meta_description %>">
+    <meta property="fb:app_id" content="448393251865597" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <%= csrf_meta_tags %>
+
+    <%= yield :meta %>
+
+    <%= auto_discovery_link_tag :atom, feed_path(:atom) %>
+    <%= auto_discovery_link_tag :rss, '/feed.rss' %>
+
+    <%= stylesheet_link_tag :application, media: 'all' %>
+    <%= javascript_include_tag :application %>
+
+    <script type="text/javascript" src="//use.typekit.net/lbm4dbw.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+    <% unless Rails.env.development? || admin? %>
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-5828878-11', 'thedemocratictravelers.com');
+        ga('send', 'pageview');
+      </script>
+    <% end -%>
+
+    <%= yield :head %>
+  </head>
+
+  <%= content_tag :body, class: body_class do %>
+    <%= content_tag :header, id: 'site-header', class: site_header_class do %>
+      <nav id="primary-nav">
+        <h1><%= link_to 'The Democratic Travelers', root_path %></h1>
+
+        <button id= "toggle-menu"><%= fa_icon 'navicon', class: 'fa-fw' %></button>
+        <ul>
+          <li><%= link_to 'Map', map_path, class: ('active' if controller.action_name == 'map') %></li>
+          <li><%= link_to 'Blog', blog_path, class: ('active' if ['posts', 'categories'].include? controller.controller_name) %></li>
+          <li><%= link_to 'About', about_path, class: ('active' if controller.action_name == 'about') %></li>
+          <li><%= link_to 'Shop', 'http://www.society6.com/democratictravelers', target: '_blank', class: 'navbar-shop-link' %></li>
+
+          <% if user_signed_in? %>
+            <li class="sign-out"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li class="sign-in"><%= link_to 'Sign In', new_user_session_path, class: ('active' if controller.controller_name == 'sessions') %></li>
+          <% end %>
+
+          <%= render 'layouts/admin/navigation'  %>
+        </ul>
+      </nav>
+    <% end # site-header %>
+
+    <div id="site-content">
+      <%= yield %>
+    </div>
+
+    <footer id="site-footer">
+      <div id="footer">
+        <ul id="footer-social-links" class="ss-icon">
+          <% if Rails.env.production? %><li><div class="fb-like" data-href="http://www.facebook.com/TheDemocraticTravelers" data-width="80" data-layout="button_count" data-show-faces="false" data-send="false" data-colorscheme="dark"></div></li><% end %>
+          <li><%= link_to FACEBOOK, class: 'social', title: 'Facebook', target: '_blank' do %>
+            <%= fa_icon 'facebook-square', class: 'fa-fw' %> <span>Facebook</span>
+          <% end %></li>
+          <li><%= link_to TWITTER, class: 'social', title: 'Twitter', target: '_blank' do %>
+            <%= fa_icon 'twitter', class: 'fa-fw' %> <span>Twitter</span>
+          <% end %></li>
+          <li><%= link_to TUMBLR, class: 'social', title: 'Tumblr', target: '_blank' do %>
+            <%= fa_icon 'tumblr', class: 'fa-fw' %> <span>Tumblr</span>
+          <% end %></li>
+          <li><%= link_to JOHN_IG, class: 'social', title: 'John\'s Instagram', target: '_blank' do %>
+            <%= fa_icon 'instagram', class: 'fa-fw' %> <span>John's Instagram</span>
+          <% end %></li>
+          <li><%= link_to LAURA_IG, class: 'social', title: 'Laura\'s Instagram', target: '_blank' do %>
+            <%= fa_icon 'instagram', class: 'fa-fw' %> <span>Laura's Instagram</span>
+          <% end %></li>
+          <li><%= link_to PINTEREST, class: 'social', title: 'Pinterest', target: '_blank' do %>
+            <%= fa_icon 'pinterest', class: 'fa-fw' %> <span>Pinterest</span>
+          <% end %></li>
+          <li><%= link_to VIMEO, class: 'social', title: 'Vimeo', target: '_blank' do %>
+            <%= fa_icon 'vimeo-square', class: 'fa-fw' %> <span>Vimeo</span>
+          <% end %></li>
+          <li><%= link_to "mailto:#{EMAIL}", class: 'social', title: 'Email Us!', target: '_blank' do %>
+            <%= fa_icon 'envelope', class: 'fa-fw' %> <span>Email</span>
+          <% end %></li>
+        </ul>
+
+        <p id="footer-copyright">&copy; <%= Time.now.strftime("%Y") %> John Ellis &amp; Laura Preston, all rights reserved. <%= link_to "Colophon", colophon_path %>.</p>
+      </div>
+    </footer>
+  <%- end -%>
+</html>

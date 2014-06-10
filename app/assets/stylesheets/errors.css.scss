@@ -1,0 +1,21 @@
+body.errors {
+  color: $white;
+  h1 { color: white; }
+  
+  main {
+    @include media($tablet) {
+      max-width: 50%;
+      position: relative;
+      margin-top: 10%;
+    }
+  }
+}
+body.error_500 {
+  background: $black image-url('blowout.jpg') no-repeat center bottom;
+  @include background-size(cover)
+}
+
+body.error_404 {
+  background: $black image-url('pagenotfound.jpg') no-repeat center bottom;
+  @include background-size(cover)
+}

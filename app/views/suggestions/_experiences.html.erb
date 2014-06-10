@@ -1,0 +1,37 @@
+<% admin_signed_in = admin? %>
+<% if @experiences.any? %>
+  <% for exp in @experiences %>
+    <%= content_tag :div, class: 'suggestion', data: { 'location-id' => exp.location_id } do %>
+      <h4>
+        <%= content_tag :div, class: "map-pin #{'map-pin-done' if exp.done?}" do %>
+          <span><%= exp.votes_cache %></span>
+        <% end %>
+        &lsquo;<%= exp.name %>&rsquo;
+        <small>at <%= exp.venue %> in <%= exp.city %>, <%= exp.state.abbr %></small>
+      </h4>
+      
+      <p class="why"><strong>Why:</strong> <%= exp.description %></p>
+
+      <p class="meta">Suggested by <%= link_to exp.user.short_name, '#' %> on <%= date exp.created_at %></p>
+
+      <p class="voting">
+        <% if exp.done? %>
+          <strong>We did this!</strong><br>
+          <button href="#" class="done" disabled="disabled"><%= fa_icon 'check-circle', class: 'fa-lg' %> Done!</button>
+          <span class="votes"><%= pluralize exp.votes_cache, 'Vote' %></span>
+        <% else %>
+          <strong>Should we do this?</strong><br>
+          <button href="#" class="upvote"><%= fa_icon 'thumbs-up', class: 'fa-lg' %></button>
+          <span class="votes"><%= pluralize exp.votes_cache, 'Vote' %></span>
+          <button href="#" class="downvote"><%= fa_icon 'thumbs-down', class: 'fa-lg' %></button>
+        <% end %>
+      </p>
+      
+      <% if !exp.done? && admin_signed_in %>
+        <p class="centered"><a href="#" class="mark-done"><%= fa_icon 'check-circle', class: 'fa-lg' %> Mark as Done</a></p>
+      <% end %>
+    <% end #.suggestion %>
+  <% end %>
+<% else %>
+  <p>There was a problem. Whoops.</p>
+<% end %>

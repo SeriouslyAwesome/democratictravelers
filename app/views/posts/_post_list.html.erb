@@ -1,0 +1,27 @@
+<% if posts.any? %>
+  <ul>
+    <% for post in posts %>
+      <% unless params[:page].nil? && post == posts.first %>
+        <li class="post-list-item">
+          <%= link_to post do %>
+            <%= image_tag post.cover(:thumb) %>
+          <% end %>
+
+          <h4>
+            <%= link_to post do %>
+              <%= post.title %>
+              <small><%= post.subtitle %></small>
+            <% end %>
+          </h4>
+
+          <p class="post-meta"><%= post.published_date %> by <%= post.author %></p>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <%= paginate posts, theme: nil %>
+<% else %>
+  <h2>Nothing posted yet.</h2>
+  <p>Check back soon and maybe we'll have something up.</p>
+<% end %>

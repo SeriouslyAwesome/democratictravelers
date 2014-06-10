@@ -1,0 +1,14 @@
+// Font-Awesome social
+$facebook: #3b5998 !default;
+$twitter: #00aced !default;
+$tumblr: #32506d !default;
+$instagram: #517fa4 !default;
+$pinterest: #cb2027 !default;
+$vimeo: #aad450 !default;
+
+.fa-facebook, .fa-facebook-square { color: $facebook; }
+.fa-twitter, .fa-twitter-square { color: $twitter; }
+.fa-tumblr, .fa-tumblr-square { color: $tumblr; }
+.fa-pinterest, .fa-pinterest-square { color: $pinterest; }
+.fa-instagram { color: $instagram; }
+.fa-vimeo-square { color: $vimeo; }

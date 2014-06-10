@@ -1,0 +1,11 @@
+Hey <%= @user.short_name %>!
+
+Remember when you told us to go to <%= raw(@experience.city) %>, <%= @experience.state.abbr %> and "<%= raw(@experience.name) %>" at <%= raw(@experience.venue) %>? Well if you didn't get the email from us, we did that.
+
+Not only did we do it, but we wrote a blog post about it! You can read it here: <%= post_url(@experience.posts.first) %>
+
+Thanks again for helping to make our trip awesome!
+
+Cheers and thank you,
+John + Laura
+The Democratic Travelers

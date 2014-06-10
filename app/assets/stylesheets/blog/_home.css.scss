@@ -1,0 +1,26 @@
+#quicktrip {
+  .quicktrip-image {
+    img {
+      display: block;
+      margin-top: $base-line-height;
+      @include border-radius(1000px);
+      @include background-size(cover)
+    }
+  }
+
+  div { margin-top: $base-line-height }
+
+  @include media($tablet) {
+    @include span-columns(8);
+
+    .quicktrip-image { 
+      @include span-columns(3 of 8);
+      img { margin-top: 0; }
+    }
+    div { @include span-columns(5 of 8) }
+  }
+}
+
+#visual-diary {
+  @include media($tablet) { @include span-columns(4) }
+}

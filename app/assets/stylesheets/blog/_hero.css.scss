@@ -1,0 +1,40 @@
+.post-hero {
+  min-height: $baseline * 5;
+  background-color: $black;
+  position: relative;
+  line-height: 1;
+
+  @include media($tablet) { margin-bottom: 3em }
+
+  img { display: block; }
+
+  .hero-chevron {
+    display: block;
+    background: image-url('post-hero-chevron.png') no-repeat center bottom;
+    @include background-size(100% 100%);
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    bottom: -1px;
+    z-index: 100;
+    line-height: 1;
+  }
+}
+
+.cover-title {
+  @include media($tablet) {
+    @include span-columns(6);
+    text-align: right;
+  }
+}
+
+.cover-excerpt {
+  font-size: $base-font-size * 1.375;
+  color: $black;
+  
+  @include media($tablet) { @include span-columns(6) }
+}
+
+body.posts.edit, body.posts.new {
+  .post-hero { background-color: transparent; }
+}

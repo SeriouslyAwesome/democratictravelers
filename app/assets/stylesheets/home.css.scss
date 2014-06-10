@@ -1,0 +1,82 @@
+.home-content {
+  text-align: center;
+  padding: $baseline;
+  max-width: 540px;
+  margin: 0 auto;
+
+  @include media($tablet) {
+  }
+
+  h2, h2 small, p {
+    color: $white;
+    text-shadow: 0 1px 3px #000000;
+  }
+
+  h2 {
+    line-height: $baseline;
+    margin-bottom: $baseline;
+
+    img {
+      max-width: 100%;
+    }
+  }
+}
+
+.home-map-link {
+  @include btn($yellow)
+}
+
+.home-blog-link {
+  @include btn($red)
+}
+
+.home-about-link {
+  @include btn($blue)
+}
+
+.home-map-link,
+.home-blog-link,
+.home-about-link {
+  text-shadow: none;
+  display: block;
+
+  @include media($tablet) {
+    display: inline-block;
+  }
+}
+
+body.home.index {
+  background-color: black;
+
+  @include media($tablet) {
+    max-height: 100%;
+    background: image-url('home-1.jpg') no-repeat;
+    @include background-size(cover);
+    background-position: center bottom;
+  }
+
+  #site-header { display: none; }
+  #site-footer {
+    bottom: 0;
+    ul, p {
+      @include media($tablet) {
+        opacity: 0.5;
+        @include transition (opacity 0.25s ease-in-out);
+      }
+    }
+    
+    &:hover {
+      ul, p {
+        @include media($tablet) { opacity: 1.0; }
+      }
+    }
+  }
+}
+
+.site-credits {
+  @include media($tablet) {
+    @include span-columns(6);
+    @include shift(3);
+  }
+  
+}

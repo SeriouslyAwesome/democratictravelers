@@ -1,0 +1,16 @@
+AllCops:
+  Exclude:
+    - db/**/*.rb
+    - script/*
+    - bin/*
+
+Documentation:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
+
+HasAndBelongsToMany:
+  Enabled: false
+  Include:
+    - app/models/**/*.rb

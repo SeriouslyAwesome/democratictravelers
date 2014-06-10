@@ -1,0 +1,323 @@
+/* ==========================================================================
+   HTML5 Boilerplate styles - h5bp.com (generated via initializr.com)
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+img {
+    vertical-align: middle;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+/* COLORS!------------------
+    Mustard Yellow:  #CE992F
+    Mustard Shadow:  #AC7125
+    Cream/Paper:     #FBE3BD
+    Aquamarine:      #3E9D99
+    Lite Aquamarine: #B2C9AF
+    Vintage Red:     #CF4538
+    Orange:          #DC4921
+    Orange Shadow:   #8B2F16
+    Dull Brown:      #6F5D47
+    Off-Black:       #2B2E23
+--------------------------*/
+
+html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+
+body {
+    font-size: 0.875em;
+    color: #373c49;
+    background: #C6BFAF;
+}
+
+h1#logo {
+    width: 500px;
+    height: 500px;
+    text-align: center;
+    z-index: 1000;
+    background: #F7E8D0 url(../img/democratictravelers-logo.png) no-repeat center center;
+    -webkit-border-radius: 250px;
+    border-radius: 250px;
+    -webkit-box-shadow: 0px 3px 25px 0px rgba(0, 0, 0, .3);
+    box-shadow: 0px 3px 25px 0px rgba(0, 0, 0, .3);
+    text-indent: -9999px;
+    position: relative;
+    left: 50%;
+    margin-left: -250px;
+    margin-bottom: 0;
+}
+
+h2#adventure {
+    width: 485px;
+    height: 95px;
+    background: url(../img/adventure.png) no-repeat top center;
+    z-index: 1000;
+    text-indent: -9999px;
+    position: relative;
+    left: 50%;
+    margin-left: -242px;
+}
+
+div#content {
+    background-color: #F7E8D0;
+    text-align: left;
+    max-width: 260px;
+    position: relative;
+    left: 50%;
+    margin-left: -180px;
+    padding: 10px 50px 100px 50px;
+    box-shadow: 0px 0px 0px 10px #C6BFAF,
+                0px 0px 0px 20px #F7E8D0,
+                0px 0px 0px 30px #C6BFAF,
+                0px 0px 0px 35px #F7E8D0,
+                0px 0px 0px 45px #C6BFAF,
+                0px 0px 0px 47px #F7E8D0;
+                
+}
+
+p {
+    text-align: justify;
+    -webkit-text-align-last: center;
+}
+
+p.quiet {
+    color: #90867d;
+    font-size: 75%;
+    line-height: 1em;
+}
+
+.dropwords {
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+form {
+    display: block;
+}
+
+#mce-EMAIL {
+    width: 240px;
+    padding: 5px 10px;
+    background: inherit;
+    border: none;
+    border-bottom: 1px solid black;
+    outline-style: none;
+    font-size: 1.75em;
+    margin-bottom: 0.5em;
+}
+
+#mc-embedded-subscribe {
+    display: block;
+    text-align: center;
+    width: 100px;
+    margin: 0 auto;
+}
+
+::-webkit-input-placeholder { color: rgba(0,0,0,0.3); }
+:-moz-placeholder { color: rgba(0,0,0,0.3); }
+:-ms-input-placeholder { color: rgba(0,0,0,0.3); }
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 144dpi) {
+
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   Print styles
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow:none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

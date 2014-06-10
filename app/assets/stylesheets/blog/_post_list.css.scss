@@ -1,0 +1,25 @@
+.post-list {
+  @include media($tablet) {
+    @include span-columns(8)
+  }
+  
+  ul {
+    
+    .post-list-item {
+      @include clearfix;
+      margin-bottom: $base-line-height;
+      
+      img {
+        display: block;
+        @include border-radius(100px);
+        width: $base-line-height * 3;
+        height: $base-line-height * 3;
+        margin-right: $base-line-height;
+        float: left;
+      }
+
+      .post-meta { margin-bottom: 0; }
+
+    }
+  }
+}

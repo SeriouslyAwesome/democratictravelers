@@ -1,0 +1,19 @@
+<% cache day_count do %>
+  <% title "A Crowd-sourced Airstream Adventure" %>
+  <% meta_description "Vote on where our roadtrip takes us next." %>
+
+  <div class="home-content">
+    <h2>
+      <%= image_tag 'home-logo.png', alt: 'The Democratic Travelers' %><br>
+      <small>An Airstream adventure with<br>a crowdsourced itinerary</small>
+    </h2>
+
+    <p>For <%= day_count %> days we've been traveling around the United States, making stops based on suggestions on our map from our friends, family, and followers, making our itinerary a democratic one.</p>
+
+    <p class="home-actions">
+      <%= link_to 'View the Map', map_path, class: 'home-map-link' %>
+      <%= link_to 'Read the Blog', blog_path, class: 'home-blog-link' %>
+      <%= link_to 'Learn More', about_path, class: 'home-about-link' %>
+    </p>
+  </div>
+<% end %>

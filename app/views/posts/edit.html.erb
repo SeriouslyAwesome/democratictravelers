@@ -1,0 +1,5 @@
+<main>
+  <h2 class="structural">Editing <small><i><%= @post.title %></i>, created on <%= @post.created_at.strftime('%D') %></small></h2>
+
+  <%= render 'form', post: @post %>
+</main>

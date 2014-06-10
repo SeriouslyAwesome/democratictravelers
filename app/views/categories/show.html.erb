@@ -1,0 +1,22 @@
+<% cache @category do %>
+  <% title @category.name %>
+  <% meta_description @category.description %>
+
+  <% unless params[:page] %>
+    <%= render 'posts/cover_tease', post: @latest %>
+  <% end %>
+
+  <main class="archive">
+    <div class="post-list">
+      <%= content_tag(:h3, "More from #{@category.name}", class: "category-heading") %>
+
+      <% if @posts.length == 1 %>
+        <p class="excerpt"><%= @category.description %></p>
+      <% else %>
+        <%= render 'posts/post_list', posts: @posts %>
+      <% end %>
+    </div>
+
+    <%= render 'shared/blog_sidebar' %>
+  </main>
+<% end %>

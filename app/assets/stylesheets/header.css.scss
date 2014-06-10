@@ -1,0 +1,134 @@
+#site-header {
+  position: relative;
+  background-color: $black;
+  z-index: 105;
+  @include media($tablet) {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: transparent;
+    @include background-image(linear-gradient(rgba($black, 0.4) 0, transparent 100%));
+
+    &.opaque {
+      position: relative;
+      background: $black;
+    }
+  }
+
+  #primary-nav {
+    height: $baseline * 3;
+    padding: $baseline * 0.5;
+    z-index: 202;
+
+    @include media($tablet) {
+      @include outer-container;
+      padding: $baseline;
+      height: $baseline * 4;
+      ul {
+        display: block !important;
+      }
+    }
+    
+    h1 {
+      background: image-url('dt-logo-wide.png') no-repeat center center;
+      @include background-size(contain);
+      max-width: 75%;
+      min-height: $baseline;
+      display: inline-block;
+      position: relative;
+      width: 350px;
+      height: $baseline * 2;
+      
+      a {
+        display: block;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0; right: 0; bottom: 0; left: 0;
+        text-indent: -9999px;
+      }
+      
+      @include media($tablet) {
+        float: left;
+        width: 350px;
+      }
+    }
+
+    #toggle-menu {
+      @include btn(#2a2a26);
+      float: right;
+      font-size: 1.5em;
+
+      @include media($tablet) {
+        display: none;
+      }
+    }
+
+    ul {
+      display: none;
+      text-align: center;
+      margin-bottom: 0;
+      @include navigational-text;
+      color: $white;
+      background: $black;
+      padding: ($baseline * 0.5) 0;
+      margin: 0 -($baseline / 2);
+      overflow: hidden;
+      z-index: 101;
+
+      @include media($tablet) {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        display: block;
+        float: right;
+      }
+
+      li {
+        display: inline-block;
+        margin: 0;
+
+        &.sign-in, &.sign-out { display: none; }
+
+        @include media($tablet) {
+          height: $baseline * 2;
+        }
+      }
+
+      a {
+        display: block;
+        color: $white;
+        padding: 0 $baseline * 0.25;
+        text-shadow: 1px 0 2px rgba($black, 0.75);
+        
+        &:hover, &:focus {
+          color: $yellow;
+        }
+
+        @include media($tablet) {
+          line-height: $baseline * 2;
+        }
+      }
+    }
+  }
+}
+
+body.map,
+body.locations,
+body.users {
+  #site-header {
+    @include media($tablet) {
+      @include background-image(linear-gradient(rgba($black, 0.8) 0, transparent 100%));
+    }
+  }
+}
+
+body.admin.dashboard,
+body.posts.edit,
+body.posts.new,
+body.sessions,
+body.registrations,
+body.colophon,
+body.errors {
+  #site-header { background: $black; position: relative; }
+}

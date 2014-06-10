@@ -1,0 +1,54 @@
+// Typography
+///////////////////////////////////////////////////////////////////////////////
+$sans-serif: "museo-sans-rounded", $helvetica;
+$serif: "adelle", $georgia;
+
+$base-font-family: $serif;
+$header-font-family: $serif;
+
+// Sizes
+///////////////////////////////////////////////////////////////////////////////
+$base-font-size: 16px;
+$base-line-height: 28px;
+$base-border-radius: em(3);
+
+$baseline: $base-line-height;
+
+// Media Query Breakpoints
+///////////////////////////////////////////////////////////////////////////////
+$tablet: 769px;
+
+// Colors
+///////////////////////////////////////////////////////////////////////////////
+
+$blue: #17a6d1;
+$yellow: #FFBF00;
+$red: #cc4c33;
+$green: #58b95b;
+$black: #1D1D1A;
+$white: #FFFFFF;
+$dark-gray: #555;
+$medium-gray: #999;
+$light-gray: #DDD;
+$light-red: #FBE3E4;
+$light-yellow: #FFF6BF;
+$light-green: #E6EFC2;
+
+// Body Color
+$base-body-color: $black;
+
+//  Font Colors
+$base-font-color: $dark-gray;
+$base-accent-color: $yellow;
+
+//  Text Link Colors
+$base-link-color: $red;
+$hover-link-color: $yellow;
+
+// Border color
+$base-border-color: $light-gray;
+
+// Flash Colors
+$error-color: $light-red;
+$notice-color: $light-yellow;
+$success-color: $light-green;

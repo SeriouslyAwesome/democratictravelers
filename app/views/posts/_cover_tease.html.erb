@@ -1,0 +1,27 @@
+<div class="post-hero">
+  <%= image_tag post.cover %>
+  <div class="hero-chevron"></div>
+</div>
+
+<main id="cover-tease">
+  <div class="cover-title">
+    <h1>
+      <%= post.title %><br>
+      <small><%= post.subtitle %></small>
+    </h1>
+
+    <p class="post-meta">
+      <%= post.published_date %> by <%= post.author %> <%= link_to raw('<i class="glyphicon glyphicon-edit"></i> Edit'), edit_post_path(post), class: "btn btn-xs btn-default" if admin? %>
+    </p>
+  </div>
+
+  <div class="cover-excerpt">
+    <%= markdown post.excerpt %>
+
+    <p>
+      <%= link_to post, class: 'read-more' do %>
+        Read More &raquo;
+      <% end %>
+    </p>
+  </div>
+</main>

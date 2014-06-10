@@ -1,0 +1,22 @@
+<div id="pane-intro" class="pane">
+	
+	<h2>How it works</h2>
+	
+	<figure id="suggest">
+		<div class="icon map"></div>
+		<h4>You recommend something for us to see and do on our trip.</h4>
+	</figure>
+	
+	<figure id="vote">
+		<div class="icon ballot"></div>
+		<h4>Everyone votes on the recommendations.</h4>
+	</figure>
+	
+	<figure id="document">
+		<div class="icon magazine"></div>
+		<h4>We travel to the highest-voted destinations and <%= link_to 'document it', posts_path %>.</h4>
+	</figure>
+	<div class="clear">&nbsp;</div>
+	
+	<p class="clearfix"><%= link_to raw('Tell us where to go &raquo;'), experiences_path, id: "btn-get-started", class: "btn btn-large btn-primary span12" %></p>
+</div>

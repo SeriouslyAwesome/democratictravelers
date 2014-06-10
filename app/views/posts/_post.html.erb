@@ -1,0 +1,51 @@
+<article itemscope itemtype="http://schema.org/Article" class="post">
+  <h1>
+    <%= title_tag_for post %>
+    <small><%= post.subtitle %></small>
+  </h1>
+
+  <p class="post-meta">
+    <%= date_tag_for post %> by <%= author_tag_for post %>
+    <%= raw("for #{post.categories.map{ |c| link_to c.name, c }.to_sentence}") if post.categories.any? %>
+
+    <%= link_to raw('<i class="glyphicon glyphicon-edit"></i> Edit'), edit_post_path(post), class: "btn btn-xs btn-default pull-right" if admin? %>
+  </p>
+
+  <div itemprop="articleBody" class="body"><%= markdown(post.body) %></div>
+
+  <% if post.experiences.any? %>
+    <p class="credits">
+      Special thanks to <%= raw(post.experiences.map(&:user).uniq.map{ |u| link_to(u.short_name, user_path(u.username)) + " (who suggested " + raw(post.experiences.where(:user_id => u.id).map{ |e| link_to(e.name, '#') }.to_sentence) + ")" }.to_sentence ) %> for making this blog post possible!
+    </p>
+  <% end -%>
+
+  <div class="social-sharing">
+    <div class="fb-like" data-href="<%= request.url %>" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+    <a href="//www.pinterest.com/pin/create/button/?url=<%=u request.url %>&media=h<%=u post.assets.cover.first.asset.url if post.assets.cover.first %>&description=<%=u post.subtitle %>" data-pin-do="buttonPin" data-pin-config="beside"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+    <a href="http://www.tumblr.com/share/link?url=<%=u request.url %>&name=<%=u post.title %>&description=<%=u post.subtitle %>" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:129px; height:20px; background:url('http://platform.tumblr.com/v1/share_3T.png') top left no-repeat transparent;">Share on Tumblr</a>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="DemocraticTRVLR">Tweet</a>
+  </div>
+
+  <ul class="pager">
+  <% if post.prev %>
+    <li class="previous">
+      <%= link_to post_path(post.prev) do %>
+        &laquo; Previous
+      <% end %>
+    </li>
+  <% end %>
+
+  <% if post.next %>
+    <li class="next">
+      <%= link_to post_path(post.next) do %>
+        Next &raquo;
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
+
+  <h2 class="page-header">Comments</h2>
+  <div id="disqus_thread"></div>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</article>	

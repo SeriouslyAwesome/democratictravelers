@@ -1,0 +1,54 @@
+<% content_for :head do %>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
+  <meta name="api-key" content="<%= current_or_guest_user.authentication_token %>">
+  <meta name="user-id" content="<%= current_or_guest_user.uuid %>">
+<% end %>
+
+<div id="map-view-controls">
+  <button id="show-list" style="display: none;"><%= fa_icon 'list-ul', class: 'fa-fw' %></button>
+  <button id="show-map"><%= fa_icon 'globe', class: 'fa-fw' %></button>
+</div>
+
+<div id="map-loading">
+  <h5 class="centered structural">Loading</h5>
+  <%= image_tag 'loading.gif' %>
+</div>
+
+<% cache Location.current do %>
+  <%= content_tag :div, nil, id: 'map', data: {
+  'current-latitude' => Location.current.lat, 
+  'current-longitude' => Location.current.long } %>
+<% end %>
+
+<div id="map-list">
+  <p id="map-list-sort">
+    Sort:
+
+    <button id="sort-closest"><%= fa_icon 'dot-circle-o', class: 'fa-fw' %></button>
+    <button id="sort-popular"><%= fa_icon 'thumbs-up', class: 'fa-fw' %></button>
+    <button id="sort-recent"><%= fa_icon 'calendar', class: 'fa-fw' %></button>
+  </p>
+
+  <p>
+    <%= link_to '#new-suggestion', id: 'show-new-suggestion', class: 'toggler' do %>
+      <%= fa_icon 'plus-circle', class: 'fa-lg' %> Add a Suggestion
+    <% end %>
+  </p>
+
+  <div id="new-suggestion" class="suggestion">
+    <p id="suggestion-authentication">
+      <% if current_user %>
+        Hey <%= current_user.first_name %>! Welcome back! <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+      <% else %>
+        Have an account? <a id="show-sign-in" class="toggler" href="#sign-in">Sign in</a> or <a id="show-sign-up" class="toggler" href="#sign-up">Sign up</a>
+      <% end %>
+    </p>
+    <%= render 'devise/sessions/form' %>
+    <%= render 'devise/registrations/form' %>
+
+    <%= render 'suggestions/form' %>
+  </div>
+</div>
+  

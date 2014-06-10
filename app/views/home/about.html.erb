@@ -1,0 +1,137 @@
+<% cache Experience.count do %>
+  <div class="post-hero">
+    <%= image_tag "hero-about.jpg" %>
+    <div class="hero-chevron"></div>
+  </div>
+
+  <section id="intro">
+    <p><strong>The Democratic Travelers</strong> is an experiement in social media, travel, and alternative (without being weird) lifestyles. For <%= day_count %> days, we've been living (and working) on the road full-time, exploring the United States of America based on the suggestions and votes of strangers on the internet. So far we've been to <%= state_count %> states and tackled <%= completed_count %> of the <%= Experience.count %> suggestions on <%= link_to 'our map', map_path %>.</p>
+
+    <p>Our <a href="#rig" title="Our Rig">34-foot Airstream Excella</a> serves as our apartment and home-office on wheels, and houses the two of us, our two dogs and one cat.</p>
+  </section>
+
+  <section id="howitworks">
+    <h2 class="structural">How it Works</h2>
+
+    <div id="suggest" class="step">
+      <%= image_tag 'icon-map.png' %>
+      <h4>On our map, suggest something you think we should see or do.</h4>
+
+      <p>Use the search bar to find the place you think we should go. Once you've found it, tell us what we should do there and why.</p>
+    </div>
+
+    <div id="vote" class="step">
+      <%= image_tag 'icon-vote.png' %>
+      <h4>Vote 'yay' or 'nay' on the submitted suggestions.</h4>
+
+      <p>All of the submitted suggestions are up for voting. Vote up or down on suggestions that you think sound neat (or not so neat). You can vote on each suggestion one time.</p>
+    </div>
+
+    <div id="document" class="step">
+      <%= image_tag 'icon-magazine.png' %>
+      <h4>We visit the highest-voted places and document them.</h4>
+
+      <p>When it's time for us to move to the next place, we'll check the map and head towards the closest place with the most votes and blog about it.</p>
+    </div>
+  </section>
+
+  <section id="family">
+    <h2 class="structural">Meet the Crew</h2>
+
+    <div>
+      <div id="john">
+        <%= image_tag 'about/john.jpg', class: 'circle' %>
+        <h3>John Ellis</h3>
+        <p>A <%= link_to 'web designer/developer', 'http://www.seriouslyawesome.com' %> and photographer by day, and an amateur guitarist, cosmologist, handyman, diesel truck mechanic, electrician, plumber, and dog-whisperer the rest of the time.</p>
+      </div>
+
+      <div id="laura">
+        <%= image_tag 'about/laura.jpg', class: 'circle' %>
+        <h3>Laura Preston</h3>
+        <p>A virtual executive/personal assistant by day, and a quilter, hardcore foodie, and chef extraordinaire by night. She's also the more sensible of the two, and a much better navigator.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pets">
+    <div>
+      <h4>Bulleit <small>(yes, like the bourbon)</small></h4>
+      <%= image_tag 'about/bulleit.jpg' %>
+    </div>
+
+    <div>
+      <h4>Marlow <small>(a.ka. Frankenweenie)</small></h4>
+      <%= image_tag 'about/marlow.jpg' %>
+    </div>
+
+    <div>
+      <h4>Papa <small>(New Guinea)</small></h4>
+      <%= image_tag 'about/papa.jpg' %>
+    </div>
+  </section>
+
+  <section id="rig">
+    <div id="rig-text">
+      <h2 class="structural">The Rig</h2>
+      <p>We live and work in this 1986 34-foot Airstream Excella &mdash; a triple-axle aluminum tube that has all the comforts of home, including a a full kitchen, a shower, and a queen-sized bed.</p>
+    </div>
+
+    <div id="gallery-wrap">
+      <div id="rig-gallery"></div>
+      <script type="text/javascript">
+        var data = [
+          { image: '<%= asset_path 'about/rig/rig-1.jpg' %>' },
+          { image: '<%= asset_path 'about/rig/rig-2.jpg' %>' },
+          { image: '<%= asset_path 'about/rig/rig-3.jpg' %>' },
+          { image: '<%= asset_path 'about/rig/rig-4.jpg' %>' },
+          { image: '<%= asset_path 'about/rig/rig-5.jpg' %>' },
+          { image: '<%= asset_path 'about/rig/rig-6.jpg' %>' },
+          { image: '<%= asset_path 'about/rig/rig-7.jpg' %>' },
+          { image: '<%= asset_path 'about/rig/rig-8.jpg' %>' },
+          { image: '<%= asset_path 'about/rig/rig-9.jpg' %>' },
+          { image: '<%= asset_path 'about/rig/rig-10.jpg' %>' },
+          { image: '<%= asset_path 'about/rig/rig-11.jpg' %>' },
+          { image: '<%= asset_path 'about/rig/rig-12.jpg' %>' }
+        ];
+
+        $(document).ready(function(){
+          Galleria.configure({
+            dataSource: data,
+            transition: 'fade',
+            imageCrop: true,
+            thumbnails: false,
+            autoplay: 3000
+          });
+          Galleria.run('#rig-gallery');
+        });
+      </script>
+
+      <div id="rig-specs">
+        <h4 class="structural">Loretta<br><small>1986 Airstream Excella 34</small></h4>
+        <ul>
+          <li><strong>Length:</strong> 34 feet</li>
+          <li><strong>Max Weight:</strong> 8,900 lbs.</li>
+          <li><strong>Wheels:</strong> 6</li>
+        </ul>
+
+        <h4 class="structural">B.B.<br><small>1996 Ford F-350 XLT</small></h4>
+        <ul>
+          <li><strong>Engine:</strong> 7.3L Turbo Diesel V8</li>
+          <li><strong>Transmission:</strong> 4-speed Automatic</li>
+          <li><strong>Fuel Efficiency:</strong> 12MPG avg.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="press">
+    <h2 class="structural">Press &amp; Media</h2>
+    <%= image_tag('press/press.png', id: "press-logos") %>
+
+      <p id="natgeo-text">We were honored to be selected as two of <%= link_to 'National Geographic\'s Travelers of the Year', 'http://travel.nationalgeographic.com/travel/travelers-of-the-year-2013/john-ellis-and-laura-preston/', class: 'external', target: '_blank' %> in 2013.</p>
+
+      <p id="natgeo-image"><%= link_to image_tag('press/toy-2013.gif'), 'http://travel.nationalgeographic.com/travel/travelers-of-the-year-2013/john-ellis-and-laura-preston/', target: '_blank' %></p>
+
+      <p id="other-press">We've also had the good fortune to be featured on <%= link_to 'Mashable', 'http://mashable.com/2013/05/24/crowdsourced-road-trip/', class: 'external', target: '_blank' %>, <%= link_to 'Hypeness', 'http://www.hypeness.com.br/2013/06/casal-viaja-seguindo-sugestoes-de-roteiros-dadas-por-desconhecidos/', class: 'external', target: '_blank' %> (a Brazilian site), <%= link_to 'The Dallas Morning News', 'http://www.dallasnews.com/news/community-news/white-rock-east-dallas/headlines/20130415-couple-embarks-upon-cross-country-trip-across-america.ece', class: 'external', target: '_blank' %>, <%= link_to 'The Daily Mail Blog', 'http://www.dailymail.co.uk/femail/article-2309979/Crowd-sourced-adventure-The-couple-cross-country-road-trip-letting-readers-travel-blog-decide-next.html', class: 'external', target: '_blank' %>, <%= link_to 'Right This Minute TV', 'http://www.rightthisminute.com/video/democratic-travelers-let-you-decide-where-they-go', class: 'external', target: '_blank' %>, <%= link_to 'The Sun Sentinel', 'http://www.sun-sentinel.com/fl-country-road-trip-social-media-20130426,0,3843665.story', class: 'external', target: '_blank' %>, and on the podcasts <%= link_to 'The Candid Frame', '', class: 'external', target: '_blank' %> and <%= link_to 'Extra Pack of Peanuts', '', class: 'external', target: '_blank' %>.</p>
+  </section>
+<% end %>

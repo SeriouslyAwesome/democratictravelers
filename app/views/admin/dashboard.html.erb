@@ -1,0 +1,121 @@
+<% content_for :head do %>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true&libraries=places"></script>
+<% end %>
+
+<main>
+  <h2 class="structural">
+    What up, <%= current_user.first_name %>
+    <small>
+      <% if Location.current %>
+        You are currently in <%= Location.current.city %>, <%= Location.current.state.abbr %>
+      <% else %>
+        WTF, bro? You don't have a current location.
+      <% end %>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+    </small>
+  </h2>
+
+  <div id="admin-actions">
+    <%= link_to new_post_path do %>
+      <%= fa_icon 'pencil', class: 'fa-lg' %> Write a Blog Post
+    <% end %>
+  </div>
+
+  <div id="admin-location">
+    <%= form_for [:admin, Location.new] do |f| %>
+      <input type="text" id="admin-location-search" placeholder="Where you at?">
+      <%= f.hidden_field :name %>
+      <%= f.hidden_field :lat %>
+      <%= f.hidden_field :long %>
+      <%= f.hidden_field :formatted_address %>
+      <%= f.hidden_field :address1 %>
+      <%= f.hidden_field :city %>
+      <%= hidden_field_tag :state %>
+      <%= f.hidden_field :current, value: true %>
+      
+      <%= f.submit 'Set' %>
+    <% end %>
+  </div>
+</main>
+
+<main>
+  <div id="admin-suggestions">
+    <h3 class="structural">Suggestions</h3>
+    <% if Experience.closest.any? %>
+      <table>
+        <colgroup>
+           <col span="1" style="width: 80%;">
+           <col span="1" style="width: 10%;">
+           <col span="1" style="width: 10%;">
+        </colgroup>
+        <% for exp in Experience.closest.limit(30) %>
+          <%= content_tag_for :tr, exp do %>
+            <td>
+              <h5>
+                <%= exp.name %><br>
+                <small>
+                  at <%= exp.venue %> in <%= exp.city %>, <%= exp.state.abbr %><br>
+                  (<%= exp.distance.to_i %> miles away)
+                </small>
+              </h5>
+              
+              <p><%= exp.description %></p>
+            </td>
+            <td class="admin-controls">
+              <%= check_box_tag "experience_#{exp.id}", exp.id, exp.done? %>
+            </td>
+            <td class="admin-controls">
+              <%= link_to admin_experience_path(exp), class: 'delete' do %>
+                <%= fa_icon 'trash-o', class: 'fa-fw fa-lg' %>
+              <% end %>
+            </td>
+          <% end %>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+
+  <div id="admin-users">
+    <h3 class="structural">Users</h3>
+    
+    <% if User.registered.any? %>
+      <table>
+        <colgroup>
+           <col span="1" style="width: 80%;">
+           <col span="1" style="width: 10%;">
+        </colgroup>
+        <% for user in User.registered.limit(50) %>
+          <tr>
+            <td>
+              <h5>
+                <%= user.name %><br>
+                <small>
+                  <%= user.try(:email) %>
+                </small>
+              </h5>
+              
+              <p>Joined on <%= date(user.created_at) %></p>
+            </td>
+            <td class="admin-controls">
+              <%= link_to admin_user_path(user), class: 'delete' do %>
+                <%= fa_icon 'trash-o', class: 'fa-fw fa-lg' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+
+  <div id="admin-states">
+    <h3 class="structural">States</h3>
+    <p><span><%= State.done.count %></span> down, <%= State.all.count - State.done.count - 1 %> to go!</p>
+    <% if State.all.any? %>
+      <ul>
+      <% for state in State.all %>
+        <li><%= check_box_tag "state_#{state.id}", state.id, state.done? %> <%= state.name %></li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
+</main>

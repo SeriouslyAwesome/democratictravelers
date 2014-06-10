@@ -1,0 +1,7 @@
+<% if @location.errors.any? %>
+	$(".alert span").html("<%=j @location.errors.to_a.to_sentence %>");
+	$(".alert").addClass("alert-danger").slideFadeToggle('fast');
+<% else %>
+	$(".alert span").html("Updated!");
+	$(".alert").addClass("alert-success").slideFadeToggle('fast');
+<% end %>
