@@ -4,7 +4,7 @@ body.about {
   section {
     display: block;
     position: relative;
-    @extend clearfix;
+    @include clearfix;
     padding-bottom: $baseline * 2;
 
     h2.structural {
@@ -64,7 +64,6 @@ body.about {
   }
 
   #pets {
-    @include clearfix;
     div {
       h4 {
         margin-top: $baseline;
