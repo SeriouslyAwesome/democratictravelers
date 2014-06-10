@@ -69,10 +69,6 @@ class Experience < ActiveRecord::Base
     "#{name} (at #{venue} in #{city}, #{state.abbr})"
   end
 
-  def date_to_i
-    created_at.to_i
-  end
-
   def voted_up?(user)
     check_vote_status(user, 1)
   end
