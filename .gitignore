@@ -11,3 +11,4 @@ config/application.yml
 heroku.thor
 *.rdb
 db/seeds.rb
+spec/vcr/*
