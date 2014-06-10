@@ -12,7 +12,7 @@ Rails.application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
 
   # ActionMailer Config
   config.action_mailer
@@ -51,8 +51,6 @@ Rails.application.configure do
   # Do not compress assets
   config.assets.compress = true
 
-  config.assets.css_compressor = :sass
-  config.assets.js_compressor = :uglifier
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.

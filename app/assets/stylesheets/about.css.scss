@@ -64,6 +64,7 @@ body.about {
   }
 
   #pets {
+    @include clearfix;
     div {
       h4 {
         margin-top: $baseline;
@@ -72,9 +73,7 @@ body.about {
       @include media($tablet) {
         float: left;
         width: 33.3333333333%;
-        min-height: 100%;
         margin: 0;
-        margin-bottom: $baseline * 2;
         position: relative;
 
         img {
