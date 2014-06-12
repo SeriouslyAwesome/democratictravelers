@@ -54,3 +54,8 @@ article {
     }
   }
 }
+
+.post-delete {
+  @include btn($red);
+  float: right;
+}

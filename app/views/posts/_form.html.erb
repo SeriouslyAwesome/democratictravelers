@@ -2,7 +2,6 @@
   <%= render 'assets', post: post %>
 </div>
 
-
 <%= form_for post, html: { class: "form-post" } do |f| %>
   <article>
     <%= f.label :title %>
@@ -28,6 +27,7 @@
       <%= f.submit "Post This Bitch!" %>
       <label class="user-notification"><%= check_box_tag :notify_contributors %> Notify related users of this post?</label>
     </p>
+
   </article>
 
   <aside id="sidebar">

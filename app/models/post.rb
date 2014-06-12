@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   # ASSOCIATIONS
   belongs_to :user
   has_many :assets, as: :assetable
-  has_many :categorizations, dependent: :destroy
+  has_many :categorizations
   has_many :categories, through: :categorizations
   has_and_belongs_to_many :experiences
 
