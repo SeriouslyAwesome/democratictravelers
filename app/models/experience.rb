@@ -60,8 +60,11 @@ class Experience < ActiveRecord::Base
   end
 
   def mark_done
-    update_attributes done: true
-    location.update_attributes done: true
+    ActiveRecord::Base.transaction do
+      update_attributes done: true
+      location.update_attributes done: true
+    end
+
     ExperienceMailer.delay.we_did_this(id) if user.email.present?
   end
 
