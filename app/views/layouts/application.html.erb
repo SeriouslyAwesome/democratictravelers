@@ -52,7 +52,7 @@
             <li class="sign-in"><%= link_to 'Sign In', new_user_session_path, class: ('active' if controller.controller_name == 'sessions') %></li>
           <% end %>
 
-          <%= render 'layouts/admin/navigation'  %>
+          <%= render 'layouts/admin/navigation' if admin? %>
         </ul>
       </nav>
     <% end # site-header %>

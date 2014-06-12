@@ -47,10 +47,12 @@
         Have an account? <a id="show-sign-in" class="toggler" href="#sign-in">Sign in</a> or <a id="show-sign-up" class="toggler" href="#sign-up">Sign up</a>
       <% end %>
     </p>
-    <%= render 'devise/sessions/form' %>
-    <%= render 'devise/registrations/form' %>
+      <% unless user_signed_in? %>
+        <%= render 'devise/sessions/form' %>
+        <%= render 'devise/registrations/form' %>
+      <% end %>
 
-    <%= render 'suggestions/form' %>
+      <%= render 'suggestions/form' %>
   </div>
 </div>
   
