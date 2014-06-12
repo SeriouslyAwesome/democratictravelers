@@ -31,6 +31,9 @@
   </article>
 
   <aside id="sidebar">
+    <h4>URL</h4>
+    <%= f.text_field :slug %>
+
     <% if Category.any? %>
       <h4>Categories</h4>
       <ul class="post-categories">

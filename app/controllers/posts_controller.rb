@@ -70,7 +70,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
-      :title, :subtitle, :excerpt, :body, :user_id, :published_at,
+      :title, :subtitle, :excerpt, :body, :slug, :user_id, :published_at,
       category_ids: [], asset_ids: [], experience_ids: []
     )
   end
