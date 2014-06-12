@@ -25,7 +25,9 @@
 
     <p>
       <%= f.submit "Post This Bitch!" %>
-      <label class="user-notification"><%= check_box_tag :notify_contributors %> Notify related users of this post?</label>
+
+      <label class="post-publish checkbox"><%= f.check_box :published %> Publish?</label>
+      <label class="user-notification checkbox"><%= check_box_tag :notify_contributors %> Notify related users of this post?</label>
     </p>
 
   </article>

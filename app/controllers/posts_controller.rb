@@ -6,14 +6,18 @@ class PostsController < ApplicationController
 
   # PUBLIC ACTIONS
   def index
-    @posts = Post.published.page(params[:page]).per_page(19)
-    @first = Post.published.first
+    if admin?
+      @posts = Post.order('published_at DESC').page(params[:page]).per_page(19)
+      @first = Post.first
+    else
+      @posts = Post.published.page(params[:page]).per_page(19)
+      @first = Post.published.first
+    end
     respond_with(@posts)
   end
 
   def show
-    @post = Post.includes(:assets, :categories, experiences: [:state, :user])
-      .published.friendly.find(params[:id])
+    # Nothin' to do! Hooray!
   end
 
   def feed
@@ -71,12 +75,16 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(
       :title, :subtitle, :excerpt, :body, :slug, :user_id, :published_at,
-      category_ids: [], asset_ids: [], experience_ids: []
+      :published, category_ids: [], asset_ids: [], experience_ids: []
     )
   end
 
   def find_post
-    @post = Post.friendly.find(params[:id])
+    if admin?
+      @post = Post.friendly.find(params[:id])
+    else
+      @post = Post.published.friendly.find(params[:id])
+    end
   end
 
   def find_experiences

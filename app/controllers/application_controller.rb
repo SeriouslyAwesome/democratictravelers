@@ -93,4 +93,8 @@ class ApplicationController < ActionController::Base
   def check_honeypot
     head 401 unless params[:comment_body].blank?
   end
+
+  def admin?
+    user_signed_in? && current_user.admin?
+  end
 end

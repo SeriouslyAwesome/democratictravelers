@@ -1,4 +1,5 @@
 <% if @post %>
+  <% cache @post do %>
     <% title @post.title %>
     <% meta_description @post.excerpt %>
 
@@ -18,6 +19,7 @@
         <%= render 'shared/blog_sidebar' %>
       </aside>
     </div>
+  <% end %>
 <% else %>
 
   <div id="posts">

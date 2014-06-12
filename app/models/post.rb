@@ -1,7 +1,8 @@
 class Post < ActiveRecord::Base
   # SCOPES
   scope :published,
-        -> { where('published_at < ?', Time.now).order('published_at DESC') }
+        -> { where('published_at < ? AND published = ?', Time.now, true)
+              .order('published_at DESC') }
 
   # ASSOCIATIONS
   belongs_to :user
@@ -33,7 +34,7 @@ class Post < ActiveRecord::Base
   def published?
     if published_at > Time.now
       return false
-    elsif published_at <= Time.now
+    elsif published == true && published_at <= Time.now
       return true
     end
   end

@@ -11,7 +11,7 @@
     </h1>
 
     <p class="post-meta">
-      <%= post.published_date %> by <%= post.author %> <%= link_to raw('<i class="glyphicon glyphicon-edit"></i> Edit'), edit_post_path(post), class: "btn btn-xs btn-default" if admin? %>
+      <%= '(Draft)' unless post.published? %> <%= post.published_date %> by <%= post.author %> <%= link_to raw('<i class="glyphicon glyphicon-edit"></i> Edit'), edit_post_path(post), class: "btn btn-xs btn-default" if admin? %>
     </p>
   </div>
 

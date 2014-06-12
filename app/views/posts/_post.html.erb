@@ -5,10 +5,14 @@
   </h1>
 
   <p class="post-meta">
-    <%= date_tag_for post %> by <%= author_tag_for post %>
+    <%= '(Draft)' unless post.published? %> <%= date_tag_for post %> by <%= author_tag_for post %>
     <%= raw("for #{post.categories.map{ |c| link_to c.name, c }.to_sentence}") if post.categories.any? %>
 
-    <%= link_to raw('<i class="glyphicon glyphicon-edit"></i> Edit'), edit_post_path(post), class: "btn btn-xs btn-default pull-right" if admin? %>
+    <% if admin? %>
+      <%= link_to edit_post_path(post), class: "post-edit pull-right" do %>
+        <%= fa_icon 'edit' %> Edit
+      <% end %>
+    <% end %>
   </p>
 
   <div itemprop="articleBody" class="body"><%= markdown(post.body) %></div>

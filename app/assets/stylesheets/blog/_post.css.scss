@@ -60,7 +60,17 @@ article {
   }
 }
 
+.post-publish {
+  display: inline-block;
+}
+
 .post-delete {
   @include btn($red);
   float: right;
+}
+
+.post-edit {
+  @include btn($light-gray);
+  float: right;
+  margin-top: -($baseline * 0.25);
 }
