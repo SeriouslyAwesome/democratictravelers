@@ -6,4 +6,17 @@ namespace :users do
       user.update_attribute(:username, user.uuid) if user.username.blank?
     end
   end
+
+  desc 'Delete guest users who have been active for 14 days.'
+  task :clean_out_inactive_guests => :environment do
+    puts 'Removing guests who haven\'t signed in for two weeks...'
+
+    User.guests.inactive.find_each do |u|
+      puts "Deleting #{u.email}..."
+      u.destroy
+      puts "...done."
+    end
+
+    puts 'Cleanup complete!'
+  end
 end

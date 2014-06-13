@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   # SCOPES
   scope :registered, -> { where(guest: false).order('created_at DESC') }
+  scope :guests, -> { where(guest: true) }
+  scope :inactive, -> { where('updated_at < ?', 14.days.ago) }
 
   # ASSOCIATIONS
   has_many :experiences, dependent: :destroy
