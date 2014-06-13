@@ -1,25 +1,23 @@
 <% if @post %>
-  <% cache @post do %>
-    <% title @post.title %>
-    <% meta_description @post.excerpt %>
+  <% title @post.title %>
+  <% meta_description @post.excerpt %>
 
-    <% content_for :meta do %>
-      <meta property="og:image" content="<%= @post.assets.cover.first.asset.url if @post.assets.cover.first %>"/>
-      <meta property="og:title" content="<%= @post.title %>"/>
-      <meta property="og:url" content="<%= post_url(@post) %>"/>
-      <meta property="og:site_name" content="The Democratic Travelers"/>
-    <% end %>
-
-    <%= hero_image_tag_for @post %>
-
-    <div class="post row">
-      <%= render 'post', :post => @post %>
-
-      <aside>
-        <%= render 'shared/blog_sidebar' %>
-      </aside>
-    </div>
+  <% content_for :meta do %>
+    <meta property="og:image" content="<%= @post.assets.cover.first.asset.url if @post.assets.cover.first %>"/>
+    <meta property="og:title" content="<%= @post.title %>"/>
+    <meta property="og:url" content="<%= post_url(@post) %>"/>
+    <meta property="og:site_name" content="The Democratic Travelers"/>
   <% end %>
+
+  <%= hero_image_tag_for @post %>
+
+  <div class="post row">
+    <%= render 'post', :post => @post %>
+
+    <aside>
+      <%= render 'shared/blog_sidebar' %>
+    </aside>
+  </div>
 <% else %>
 
   <div id="posts">

@@ -47,7 +47,7 @@
       </ul>
     <% end %>
 
-    <% if @experiences.any? %>
+    <% if @experiences && @experiences.any? %>
       <h4>Related Experiences</h4>
       <%= select_tag "state-select", options_from_collection_for_select(State.done, :abbr, :name), class: "form-control"  %>
 
