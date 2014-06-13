@@ -57,5 +57,11 @@
         <% end %>
       </ul>
     <% end %>
+    
+    <% if post.assets.any? %>
+      <% post.assets.each do |asset| %>
+        <%= hidden_field_tag 'post[asset_ids][]', asset.id, id: "post-asset-id-#{asset.id}" %>
+      <% end %>
+    <% end %>
   </aside>
 <% end %>
