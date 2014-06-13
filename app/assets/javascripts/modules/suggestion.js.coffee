@@ -7,8 +7,8 @@ DemocraticTravelers.Suggestion =
 
   create: (data) ->
     # AJAX call to SuggestionsController#create
-    apiKey = $('meta[name=api-key]').attr('content')
-    userId = $('meta[name=user-id]').attr('content')
+    apiKey = $("meta[name='application-name']").attr('data-api-key')
+    userId = $("meta[name='application-name']").attr('data-user-id')
     
     $.ajax "#{DemocraticTravelers.API.Base}/suggestions",
       dataType: 'json'
@@ -23,6 +23,11 @@ DemocraticTravelers.Suggestion =
           DemocraticTravelers.Map.searchLayer.clearLayers()
           $('#new-suggestion').slideUp('fast')
           @render(data)
+          
+          # Google Analytics
+          exp = data.experiences[0]
+          label = "#{exp.name} at #{exp.venue} in #{exp.city}, #{exp.state}"
+          ga('send', 'event', 'Suggestion', 'Submit', label);
       error: (e) ->
         console.log(e)
         # TODO: Display apology.

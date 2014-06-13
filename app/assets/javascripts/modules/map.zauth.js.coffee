@@ -12,6 +12,9 @@ DemocraticTravelers.Map.Auth =
         $('p#suggestion-authentication').empty().html(data.greeting)
         $(this).slideUp 'fast', ->
           $('#sign-up, #sign-in').remove()
+
+        # Google Analytics
+        ga('send', 'event', 'User', 'Sign In', {'nonInteraction': 1});
       else 
         $(this).find('label').first()
           .before("<p class=\"error\">#{data.errors}</p>")
@@ -31,6 +34,9 @@ DemocraticTravelers.Map.Auth =
         $('p#suggestion-authentication').empty().html(data.greeting)
         $(this).slideUp 'fast', ->
           $('#sign-up, #sign-in').remove()
+
+        # Google Analytics
+        ga('send', 'event', 'User', 'Sign Up', {'nonInteraction': 1});
       else 
         $(this).find('label').first()
           .before("<p class=\"error\">#{data.errors}</p>")

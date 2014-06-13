@@ -1,6 +1,5 @@
 class API::V1::SuggestionsController < ApplicationController
   before_action :authenticate_user_from_token!
-  before_action :authenticate_user!
   before_action :check_honeypot, only: :create
 
   def create

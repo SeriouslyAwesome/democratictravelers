@@ -57,6 +57,10 @@ module ApplicationHelper
   def date(date)
     date.strftime('%B %d, %Y')
   end
+  
+  def ga_id
+    Rails.env.development? ? 'UA-5828878-12' : 'UA-5828878-11'
+  end
 
   # Devise form helpers
   def resource_name

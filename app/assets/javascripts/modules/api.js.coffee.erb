@@ -48,9 +48,18 @@ DemocraticTravelers.API =
         $(btn).find('i').attr('class', 'fa fa-circle-o-notch fa-spin fa-lg')
         $(btn).attr('disabled', 'disabled')
       success: (data, callback) ->
-        html = DemocraticTravelers.Experience.render(data.experiences[0])
+        exp = data.experiences[0]
+        html = DemocraticTravelers.Experience.render(exp)
         target = $("[data-experience-id=#{id}]")
         $("[data-experience-id=#{id}]").replaceWith(html)
+
+        # Google Analytics
+        label = "#{exp.name} at #{exp.venue} in #{exp.city}, #{exp.state}"
+        if btnClass == 'fa fa-thumbs-up fa-lg'
+          ga('send', 'event', 'Suggestion', 'Upvote', label)
+        else if btnClass == 'fa fa-thumbs-down fa-lg'
+          ga('send', 'event', 'Suggestion', 'Downvote', label)
+
       error: (e) ->
         console.log(e)
         $(btn).removeAttr('disabled')
