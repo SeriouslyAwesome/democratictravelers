@@ -1,0 +1,69 @@
+DemocraticTravelers.Map.Experiences =
+  filter: (key, value) ->
+    # Some fancy shit here
+
+  render: (experience) ->
+    HandlebarsTemplates['experience'](experience)
+
+  renderAll: (experiences) ->
+    html = ''
+    for experience in experiences
+      html += @render experience
+
+    $('#map-list').append(html)
+
+    # Cache the jQuery selection of list items for later filtering performance
+    DemocraticTravelers.Map.experienceList = $('#map-list')
+      .find('.suggestion').not('#new-suggestion')
+
+    $('#map-list').on 'click', 'button.upvote', (e) ->
+      id = $(this).data('id')
+      endpoint = "experiences/#{id}/upvote"
+      DemocraticTravelers.Map.Experiences.vote(this, endpoint)
+
+    $('#map-list').on 'click', 'button.downvote', (e) ->
+      id = $(this).data('id')
+      endpoint = "experiences/#{id}/downvote"
+      DemocraticTravelers.Map.Experiences.vote(this, endpoint)
+
+  vote: (btn, endpoint) ->
+    base = "<%= Rails.env.production? ? 'http://api.thedemocratictravelers.com/v1/' : 'http://api.democratictravelers.dev/v1/' %>"
+    url = "#{base}#{endpoint}"
+    apiKey = $("meta[name='application-name']").attr('data-api-key')
+    userId = $("meta[name='application-name']").attr('data-user-id')
+    btnClass = $(btn).find('i').attr('class')
+    id = $(btn).data('id')
+
+    $.ajax url,
+      dataType: 'json'
+      type: 'POST'
+      beforeSend: (xhr) ->
+        xhr.setRequestHeader('X-API-KEY', apiKey)
+        xhr.setRequestHeader('X-USER-ID', userId)
+
+        $(btn).find('i').attr('class', 'fa fa-circle-o-notch fa-spin fa-lg')
+        $(btn).attr('disabled', 'disabled')
+      success: (data, callback) ->
+        exp = data.experiences[0]
+        html = DemocraticTravelers.Map.Experiences.render(exp)
+        target = $("[data-experience-id=#{id}]")
+        $("[data-experience-id=#{id}]").replaceWith(html)
+
+        # Google Analytics
+        label = "#{exp.name} at #{exp.venue} in #{exp.city}, #{exp.state}"
+        if btnClass == 'fa fa-thumbs-up fa-lg'
+          ga('send', 'event', 'Suggestion', 'Upvote', label)
+        else if btnClass == 'fa fa-thumbs-down fa-lg'
+          ga('send', 'event', 'Suggestion', 'Downvote', label)
+
+      error: (e) ->
+        console.log(e)
+        $(btn).removeAttr('disabled')
+        $(btn).find('i').attr('class', btnClass)
+      statusCode:
+        401: ->
+          console.log('Login is required.')
+        403: ->
+          console.log('Not authorized.')
+        404: ->
+          console.log('Dead link.')

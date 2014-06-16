@@ -1,4 +1,4 @@
-dtr = DemocraticTravelers.Router
+dtr = DemocraticTravelers.Map.Router
 api = DemocraticTravelers.API
 
 dtr.route '/map', ->

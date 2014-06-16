@@ -17,7 +17,7 @@
 #map {
   display: block;
   position: absolute;
-  background: $black image-url('loading-dark.gif') no-repeat center center;
+  background: $black image-url('loading-dark.gif') no-repeat 33% center;
   top: $baseline * 3; right: 0; bottom: 0; left: 0;
   max-width: 100%;
   padding-left: 0;

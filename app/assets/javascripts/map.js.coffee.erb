@@ -1,0 +1,67 @@
+DemocraticTravelers.Map =
+  Router: new Router()
+  Search: {}
+  Marker: {}
+  Auth: {}
+  CurrentLocation: {}
+  Suggestions: {}
+  mapObject: null
+  searchLayer: null
+  locationsLayer: null
+  
+  init: ->
+    # Initialize Map
+    @mapObject = L.mapbox.map 'map', 'seriouslyawesome.i675cgi9',
+      center: [37.09024, -95.71289100000001]
+      zoom: 4
+      minZoom: 4
+      maxZoom: 12
+  
+    offset = @mapObject.getSize().x * 0.15
+    @mapObject.panBy new L.Point(offset, 0), { animate: false }
+    @mapObject.zoomControl.setPosition 'bottomleft'
+
+    # Initialize Markers
+    @locationsLayer = L.layerGroup().addTo(@mapObject)
+    @CurrentLocation.init()
+    @Suggestions.initialize()
+    @Suggestions.fetch()
+    @Search.initialize(@mapObject)
+    @Auth.initialize()
+
+    # Setup Map/List view toggler
+    @initDragFiltering()
+    $('#show-map, #show-list').click ->
+      DemocraticTravelers.Map.toggleView this
+      
+    # Initalize Router
+    DemocraticTravelers.Router.start()
+
+  toggleView: (button) ->
+    $(button).hide()
+    $(button).siblings().show()
+    $('#map-list').slideToggle('fast')
+
+  toggleForm: ->
+    $('#new-suggestion').slideToggle('fast').reset()
+
+  renderMarkers: (locations) ->
+    for location in locations
+      @Marker.render(location)
+      
+  initDragFiltering: ->
+    # Initialize list filtering on map move
+    @experienceList = $('.suggestion').not('#new-suggestion')
+    @mapObject.on 'moveend', =>
+      inBounds = []
+      bounds = @mapObject.getBounds()
+
+      @locationsLayer.eachLayer (marker) ->
+        if bounds.contains marker.getLatLng()
+          inBounds.push marker.options.id
+
+      @experienceList.hide()
+      for id in inBounds
+        @experienceList.filter("[data-location-id=#{id}]").show()
+
+      
