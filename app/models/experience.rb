@@ -17,7 +17,6 @@ class Experience < ActiveRecord::Base
   # VALIDATIONS
   validates :name, presence: true
   validates :location, presence: true
-  validates :user, presence: true
 
   # CALLBACKS
   before_save :set_distance
