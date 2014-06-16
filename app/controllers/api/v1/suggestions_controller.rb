@@ -33,7 +33,7 @@ class API::V1::SuggestionsController < ApplicationController
   def suggestion_params
     params.require(:suggestion).permit(
       :location_name, :latitude, :longitude, :address, :formatted_address,
-      :city, :state, :experience_name, :description
+      :city, :state, :zip, :experience_name, :description
     )
   end
 end

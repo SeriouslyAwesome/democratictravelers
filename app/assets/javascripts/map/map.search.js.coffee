@@ -41,6 +41,9 @@ DemocraticTravelers.Map.Search =
 
     $('#suggestion_state').val('').val(address.administrative_area_level_1)
 
+    if (typeof address.postal_code != 'undefined')
+      $('#suggestion_zip').val('').val(address.postal_code)
+
     if (typeof address.street_number != 'undefined')
       streetAddress = address.street_number + ' ' + address.route
       $('#suggestion_address').val('').val(streetAddress)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612220728) do
+ActiveRecord::Schema.define(version: 20140616225334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,28 +124,24 @@ ActiveRecord::Schema.define(version: 20140612220728) do
   add_index "experiences_posts", ["post_id"], name: "index_experiences_posts_on_post_id", using: :btree
 
   create_table "locations", force: true do |t|
-    t.float    "lat"
-    t.float    "long"
-    t.string   "factual_id"
+    t.float    "lat",                               null: false
+    t.float    "long",                              null: false
     t.string   "name"
-    t.string   "address1"
-    t.string   "address2"
+    t.string   "address"
     t.string   "city"
     t.integer  "state_id"
     t.integer  "zip"
-    t.text     "description"
     t.integer  "country_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.boolean  "done"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "done",              default: false, null: false
     t.string   "formatted_address"
-    t.boolean  "current"
+    t.boolean  "current",           default: false, null: false
     t.integer  "experiences_count", default: 0
-    t.integer  "votes_cache",       default: 0, null: false
+    t.integer  "votes_cache",       default: 0,     null: false
   end
 
   add_index "locations", ["country_id"], name: "index_locations_on_country_id", using: :btree
-  add_index "locations", ["factual_id"], name: "index_locations_on_venue_id", using: :btree
   add_index "locations", ["state_id"], name: "index_locations_on_state_id", using: :btree
 
   create_table "posts", force: true do |t|

@@ -74,7 +74,7 @@ jQuery ->
 
       if (typeof address.street_number != 'undefined')
         streetAddress = address.street_number + ' ' + address.route
-        $('#location_address1').val('').val(streetAddress)
+        $('#location_address').val('').val(streetAddress)
 
     $('#admin-location form').on 'submit', (e) ->
       e.preventDefault()

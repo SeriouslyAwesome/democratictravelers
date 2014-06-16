@@ -10,6 +10,7 @@ class Suggestion
     :formatted_address,
     :city,
     :state,
+    :zip,
     :experience,
     :experience_name,
     :description,
@@ -43,9 +44,10 @@ class Suggestion
     @location = Location.find_or_initialize_by(
       name: location_name, lat: latitude, long: longitude
     )
-    @location.address1 = address
+    @location.address = address
     @location.city = city
     @location.state_id = @state.id
+    @location.zip = zip
     @location.formatted_address = formatted_address
     @location.save!
   end
