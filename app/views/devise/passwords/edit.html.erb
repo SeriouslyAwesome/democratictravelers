@@ -1,0 +1,21 @@
+<div id="change-password">
+  <h2 class="structural">New Password</h2>
+  <p>Forgot your password, huh? No biggie. Put in your new password (twice, just to make sure it's right) and you'll be all set.</p>
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :reset_password_token %>
+
+    <div>
+      <%= f.label :password, "New Password" %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+    </div>
+
+    <div>
+      <%= f.label :password_confirmation, "Confirm New Password" %>
+      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    </div>
+
+    <p><%= f.submit "Change my password" %></p>
+  <% end %>
+</div>

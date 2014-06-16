@@ -1,0 +1,15 @@
+<div id="password-reset">
+  <h2 class="structural">Reset Password</h2>
+  <p> If you forgot your password, enter the email address you used to sign up, and we'll email you with instructions on how to reset it.</p>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div>
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+
+    <p><%= f.submit "Send Instructions" %></p>
+    <p><%= link_to 'Sign In', new_user_session_path %> or <%= link_to 'Sign Up', new_user_session_path %></p>
+  <% end %>
+</div>

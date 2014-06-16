@@ -19,13 +19,13 @@ Rails.application.configure do
     .default_url_options = { host: 'www.democratictravelers.dev' }
   config.action_mailer.delivery_method = :smtp
   # change to true to allow email to be sent during development
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default charset: 'utf-8'
 
   config.action_mailer.smtp_settings = {
     address: 'smtp.mandrillapp.com',
-    port: 25,
+    port: 587,
     enable_starttls_auto: true,
     authentication: 'login',
     domain: 'thedemocratictravelers.com',

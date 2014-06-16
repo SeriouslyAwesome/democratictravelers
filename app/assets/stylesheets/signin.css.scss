@@ -13,3 +13,13 @@ body.sessions, body.registrations {
     }
   }
 }
+
+body.passwords {
+  #password-reset, #change-password {
+    @include media($tablet) {
+      margin-top: $baseline;
+      @include span-columns(4);
+      @include shift(4);
+    }
+  }
+}

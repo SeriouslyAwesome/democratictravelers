@@ -38,6 +38,18 @@ label {
   abbr {
     display: none;
   }
+
+  small {
+    color: $medium-gray;
+    font-weight: normal;
+
+    a { 
+      color: $medium-gray;
+      &:hover {
+        color: $red;
+      }
+    }
+  }
 }
 
 span.checkbox {

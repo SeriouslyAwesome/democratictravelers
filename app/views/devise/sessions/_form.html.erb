@@ -18,7 +18,9 @@
   <%= sign_in.label :email %>
   <%= sign_in.text_field :email, placeholder: 'you@youremail.com' %>
 
-  <%= sign_in.label :password %>
+  <%= label_tag :password do %>
+    Password <small>(<%= link_to "Forgot it?", new_user_password_path %>)</small>
+  <% end %>
   <%= sign_in.password_field :password %>
 
   <p>
