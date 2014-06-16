@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616230608) do
+ActiveRecord::Schema.define(version: 20140616231200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -143,14 +143,14 @@ ActiveRecord::Schema.define(version: 20140616230608) do
   add_index "locations", ["state_id"], name: "index_locations_on_state_id", using: :btree
 
   create_table "posts", force: true do |t|
-    t.string   "title"
-    t.integer  "user_id"
+    t.string   "title",                        null: false
+    t.integer  "user_id",      default: 1,     null: false
     t.text     "body"
     t.string   "subtitle"
     t.datetime "published_at"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
-    t.string   "slug"
+    t.string   "slug",                         null: false
     t.text     "excerpt"
     t.boolean  "published",    default: false, null: false
   end
