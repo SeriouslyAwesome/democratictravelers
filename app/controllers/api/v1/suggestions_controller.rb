@@ -2,6 +2,10 @@ class API::V1::SuggestionsController < ApplicationController
   before_action :authenticate_user_from_token!
   before_action :check_honeypot, only: :create
 
+  def index
+    @experiences = Experience.full_list
+  end
+
   def create
     @suggestion = Suggestion.new(suggestion_params)
     @suggestion.user_id = @user.id

@@ -6,7 +6,7 @@ DemocraticTravelers.Map.Suggestions =
       @create(data)
 
   fetch: ->
-    url = "<%= Rails.env.production? ? 'http://api.thedemocratictravelers.com/v1/experiences' : 'http://api.democratictravelers.dev/v1/experiences' %>"
+    url = "<%= Rails.env.production? ? 'http://api.thedemocratictravelers.com/v1/suggestions' : 'http://api.democratictravelers.dev/v1/suggestions' %>"
     apiKey = $("meta[name='application-name']").attr('data-api-key')
     userId = $("meta[name='application-name']").attr('data-user-id')
     $.ajax url,
