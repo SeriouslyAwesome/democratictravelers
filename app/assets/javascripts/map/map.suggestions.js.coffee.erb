@@ -1,16 +1,48 @@
-DemocraticTravelers.Suggestion =
+DemocraticTravelers.Map.Suggestions =
   initialize: ->
     $('form#suggestion').on 'submit', (e) =>
       e.preventDefault()
       data = $('form#suggestion').serialize()
       @create(data)
 
+  fetch: ->
+    url = "<%= Rails.env.production? ? 'http://api.thedemocratictravelers.com/v1/experiences' : 'http://api.democratictravelers.dev/v1/experiences' %>"
+    apiKey = $("meta[name='application-name']").attr('data-api-key')
+    userId = $("meta[name='application-name']").attr('data-user-id')
+    $.ajax url,
+      dataType: 'json'
+      beforeSend: (xhr) ->
+        xhr.setRequestHeader('X-API-KEY', apiKey)
+        xhr.setRequestHeader('X-USER-ID', userId)
+
+        DemocraticTravelers.Map.locationsLayer.clearLayers()
+        $('.suggestion').not('#new-suggestion').remove()
+        $('#map-loading:hidden').fadeIn('fast')
+      success: (data, callback) ->
+        DemocraticTravelers.Map.renderMarkers data.locations
+        DemocraticTravelers.Map.Experiences.renderAll data.experiences
+        # Initalize Router
+        DemocraticTravelers.Map.Router.start()
+      error: (e) ->
+        console.log(e)
+        return true
+      complete: ->
+        $('#map-loading:visible').fadeOut('fast')
+      statusCode:
+        401: ->
+          console.log('Login is required.')
+        403: ->
+          console.log('Not authorized.')
+        404: ->
+          console.log('Dead link.')
+
   create: (data) ->
+    url = "<%= Rails.env.production? ? 'http://api.thedemocratictravelers.com/v1/suggestions' : 'http://api.democratictravelers.dev/v1/suggestions' %>"
     # AJAX call to SuggestionsController#create
     apiKey = $("meta[name='application-name']").attr('data-api-key')
     userId = $("meta[name='application-name']").attr('data-user-id')
     
-    $.ajax "#{DemocraticTravelers.API.Base}/suggestions",
+    $.ajax url,
       dataType: 'json'
       type: 'POST'
       data: data
@@ -44,7 +76,7 @@ DemocraticTravelers.Suggestion =
 
   render: (data) ->
     DemocraticTravelers.Map.Marker.render(data.locations[0])
-    html = DemocraticTravelers.Experience.render(data.experiences[0])
+    html = DemocraticTravelers.Map.Experiences.render(data.experiences[0])
     $(html).insertAfter('#new-suggestion').hide().slideDown('fast')
     if data.notice
       notice = "<div class=\"notice\">#{data.notice}</div>"
@@ -54,3 +86,4 @@ DemocraticTravelers.Suggestion =
         $('#sign-up, #sign-in').remove()
         $(this).closest('.notice').slideUp('fast').html('Shazaam! You rock.')
           .slideDown('fast')
+  

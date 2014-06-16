@@ -7,10 +7,6 @@
 #= require waitForImages
 #= require history
 #= require router
-#= require home
-#= require blog
-#= require about
-#= require admin
 #= require instafeed
 #= require instagram
 #= require social
@@ -21,17 +17,18 @@
 #= require democratic.travelers
 #= require handlebars.runtime
 #= require_tree ./templates
-#= require_tree ./modules
+#= require home
+#= require map
+#= require_tree ./map
+#= require blog
+#= require about
+#= require admin
 #= require_self
 
 jQuery ->	
   # Responsive Menu
   $('#toggle-menu').click ->
     $('#primary-nav ul').slideToggle(150)
-
-  # Initialize Map
-  if $('#map').length
-    DemocraticTravelers.Map.initialize()
 
   # Universal Form Handlers
   $('.toggler').click (e) ->
@@ -50,3 +47,5 @@ jQuery ->
 
   $('form').on 'ajax:complete', ->
     $(this).find('.loader').hide()
+
+  DemocraticTravelers.Blog.initialize()

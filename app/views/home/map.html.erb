@@ -1,11 +1,19 @@
 <% content_for :head do %>
-  <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true&amp;libraries=places"></script>
   <meta name="application-name" content="The Democratic Travelers"
     data-api-key="<%= current_or_guest_user.authentication_token %>"
     data-user-id="<%= current_or_guest_user.uuid %>"
   />
+<% end %>
+
+<% content_for :scripts do %>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true&amp;libraries=places"></script>
+  <script>
+    $(document).ready(function(){
+      DemocraticTravelers.Map.init();
+    })
+  </script>
 <% end %>
 
 <div id="map-view-controls">
@@ -39,7 +47,7 @@
     <% end %>
   </p>
 
-  <div id="new-suggestion" class="suggestion">
+  <div id="new-suggestion" class="suggestion" style="display: none;">
     <p id="suggestion-authentication">
       <% if current_user %>
         Hey <%= current_user.first_name %>! Welcome back! <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
