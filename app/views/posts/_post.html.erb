@@ -19,7 +19,7 @@
 
     <% if post.experiences.any? %>
       <p class="credits">
-        Special thanks to <%= raw(post.experiences.map(&:user).uniq.map{ |u| link_to(u.short_name, user_path(u.username)) + " (who suggested " + raw(post.experiences.where(:user_id => u.id).map{ |e| link_to(e.name, '#') }.to_sentence) + ")" }.to_sentence ) %> for making this blog post possible!
+        Special thanks to <%= raw(post.experiences.map(&:user).uniq.map{ |u| link_to(u.short_name, user_path(u.username)) + " (who suggested " + raw(post.experiences.where(:user_id => u.id).map{ |e| link_to(e.name, experience_path(e)) }.to_sentence) + ")" }.to_sentence ) %> for making this blog post possible!
       </p>
     <% end -%>
 

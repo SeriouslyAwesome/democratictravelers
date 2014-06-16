@@ -8,6 +8,7 @@ DemocraticTravelers.Map =
   mapObject: null
   searchLayer: null
   locationsLayer: null
+  markers: []
   
   init: ->
     # Initialize Map
@@ -33,9 +34,6 @@ DemocraticTravelers.Map =
     @initDragFiltering()
     $('#show-map, #show-list').click ->
       DemocraticTravelers.Map.toggleView this
-      
-    # Initalize Router
-    DemocraticTravelers.Router.start()
 
   toggleView: (button) ->
     $(button).hide()
@@ -51,17 +49,7 @@ DemocraticTravelers.Map =
       
   initDragFiltering: ->
     # Initialize list filtering on map move
-    @experienceList = $('.suggestion').not('#new-suggestion')
     @mapObject.on 'moveend', =>
-      inBounds = []
-      bounds = @mapObject.getBounds()
-
-      @locationsLayer.eachLayer (marker) ->
-        if bounds.contains marker.getLatLng()
-          inBounds.push marker.options.id
-
-      @experienceList.hide()
-      for id in inBounds
-        @experienceList.filter("[data-location-id=#{id}]").show()
+      DemocraticTravelers.Map.Experiences.filterList()
 
       

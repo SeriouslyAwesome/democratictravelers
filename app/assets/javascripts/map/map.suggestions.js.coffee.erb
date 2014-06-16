@@ -21,6 +21,8 @@ DemocraticTravelers.Map.Suggestions =
       success: (data, callback) ->
         DemocraticTravelers.Map.renderMarkers data.locations
         DemocraticTravelers.Map.Experiences.renderAll data.experiences
+        # Initalize Router
+        DemocraticTravelers.Map.Router.start()
       error: (e) ->
         console.log(e)
         return true

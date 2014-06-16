@@ -1,6 +1,18 @@
 DemocraticTravelers.Map.Experiences =
-  filter: (key, value) ->
-    # Some fancy shit here
+  filterList: (key, value) ->
+    if key && value
+      # do something with the key and value
+    else
+      inBounds = []
+      bounds = DemocraticTravelers.Map.mapObject.getBounds()
+
+      DemocraticTravelers.Map.locationsLayer.eachLayer (marker) ->
+        if bounds.contains marker.getLatLng()
+          inBounds.push marker.options.id
+
+      @List.hide()
+      for id in inBounds
+        @List.filter("[data-location-id=#{id}]").show()
 
   render: (experience) ->
     HandlebarsTemplates['experience'](experience)
@@ -13,7 +25,7 @@ DemocraticTravelers.Map.Experiences =
     $('#map-list').append(html)
 
     # Cache the jQuery selection of list items for later filtering performance
-    DemocraticTravelers.Map.experienceList = $('#map-list')
+    @List = $('#map-list')
       .find('.suggestion').not('#new-suggestion')
 
     $('#map-list').on 'click', 'button.upvote', (e) ->

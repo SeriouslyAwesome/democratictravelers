@@ -18,16 +18,17 @@ DemocraticTravelers.Map.Marker =
         iconAnchor: [20,46]
 
     marker.addTo(DemocraticTravelers.Map.locationsLayer)
-
+    DemocraticTravelers.Map.markers.push(marker)
     # Bind popup to marker
     popupContent = "<h4>#{loc.name}<br><small>#{loc.city}, #{loc.state}</small></h4>"
 
-    marker.bindPopup popupContent,
-      offset: [0,-36]
+    marker.bindPopup popupContent, { offset: [0,-36] }
     marker.on 'mouseover', ->
-      @openPopup()
+      # @openPopup()
     marker.on 'mouseout', ->
-      @closePopup()
+      # @closePopup()
     marker.on 'click', ->
       @openPopup()
-      DemocraticTravelers.Router.navigate("/map/locations/#{this.options.id}")
+      DemocraticTravelers.Map.Router.navigate("/map/locations/#{this.options.id}")
+    marker.on 'popupclose', ->
+      DemocraticTravelers.Map.Router.navigate("/map")

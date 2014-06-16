@@ -17,7 +17,6 @@
 #= require democratic.travelers
 #= require handlebars.runtime
 #= require_tree ./templates
-#= require_tree ./modules
 #= require home
 #= require map
 #= require_tree ./map
@@ -48,3 +47,5 @@ jQuery ->
 
   $('form').on 'ajax:complete', ->
     $(this).find('.loader').hide()
+
+  DemocraticTravelers.Blog.initialize()
