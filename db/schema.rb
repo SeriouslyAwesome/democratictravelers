@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140616231200) do
+ActiveRecord::Schema.define(version: 20140616234331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,24 +70,6 @@ ActiveRecord::Schema.define(version: 20140616231200) do
   add_index "category_connections", ["category_id"], name: "index_category_connections_on_category_id", using: :btree
   add_index "category_connections", ["connectable_id", "connectable_type"], name: "category_connection", using: :btree
 
-  create_table "comments", force: true do |t|
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.string   "title"
-    t.text     "body"
-    t.string   "subject"
-    t.integer  "user_id"
-    t.integer  "parent_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
-  add_index "comments", ["commentable_id", "commentable_type"], name: "comment_connection", using: :btree
-  add_index "comments", ["parent_id"], name: "index_comments_on_parent_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
-
   create_table "countries", force: true do |t|
     t.string   "name"
     t.string   "code"
@@ -111,6 +93,7 @@ ActiveRecord::Schema.define(version: 20140616231200) do
   end
 
   add_index "experiences", ["location_id"], name: "index_experiences_on_location_id", using: :btree
+  add_index "experiences", ["slug"], name: "index_experiences_on_slug", using: :btree
   add_index "experiences", ["user_id"], name: "index_experiences_on_user_id", using: :btree
 
   create_table "experiences_posts", id: false, force: true do |t|
@@ -155,6 +138,7 @@ ActiveRecord::Schema.define(version: 20140616231200) do
     t.boolean  "published",    default: false, null: false
   end
 
+  add_index "posts", ["published_at", "published"], name: "index_posts_on_published_at_and_published", using: :btree
   add_index "posts", ["slug"], name: "index_posts_on_slug", unique: true, using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
@@ -238,9 +222,6 @@ ActiveRecord::Schema.define(version: 20140616231200) do
     t.datetime "updated_at",                             null: false
     t.string   "uid"
     t.string   "location"
-    t.float    "lat"
-    t.float    "lng"
-    t.string   "url"
     t.string   "username"
     t.integer  "timezone"
     t.boolean  "mailing_list"
