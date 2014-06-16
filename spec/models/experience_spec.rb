@@ -10,10 +10,6 @@ describe Experience do
     it 'requires a location' do
       expect(build(:experience, location: nil)).to be_invalid
     end
-
-    it 'requires a user' do
-      expect(build(:experience, user: nil)).to be_invalid
-    end
   end
 
   describe 'callbacks' do
