@@ -14,15 +14,15 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true,
                        format: { with: /\A^[a-z0-9\-_]+$\z/i, multiline: true }
 
-  with_options unless: :from_social? do |user|
-    user.validates :password, presence: true, length: { in: 4..100 }
-    user.validates :password_confirmation, presence: true
-    user.validates :email, presence: true, uniqueness: true
+  with_options unless: :from_social? do |u|
+    u.validates :password, presence: true, length: { in: 4..100 }
+    u.validates :password_confirmation, presence: true
+    u.validates :email, presence: true, uniqueness: true
   end
 
   # CALLBACKS
   before_validation :generate_uuid
-  before_save :ensure_authentication_token
+  before_save :ensure_auth_token
   after_create { add_role :user }
   after_create :subscribe, if: proc { |u| u.email && u.mailing_list? }
 
@@ -30,8 +30,8 @@ class User < ActiveRecord::Base
 
   # MACROS
   rolify
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :omniauthable, :marketable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
+         :trackable, :omniauthable, :marketable
   has_reputation :votes, source: { reputation: :votes, of: :experiences },
                          aggregated_by: :sum
 
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     self.username = uuid unless username.present?
   end
 
-  def ensure_authentication_token
+  def ensure_auth_token
     self.authentication_token = generate_auth_token unless authentication_token
   end
 
