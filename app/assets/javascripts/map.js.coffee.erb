@@ -34,6 +34,11 @@ DemocraticTravelers.Map =
     @initDragFiltering()
     $('#show-map, #show-list').click ->
       DemocraticTravelers.Map.toggleView this
+      
+    $('#map-list').on 'click', '.map-user-link', (e)->
+      console.log this
+      e.preventDefault();
+      DemocraticTravelers.Map.Router.navigate($(this).attr('href'), "#{$(this).html()}'s Suggestions | The Democratic Travelers")
 
   toggleView: (button) ->
     $(button).hide()

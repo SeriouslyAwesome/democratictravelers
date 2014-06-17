@@ -1,7 +1,10 @@
 DemocraticTravelers.Map.Experiences =
-  filterList: (key, value) ->
-    if key && value
-      # do something with the key and value
+  filterList: (selector) ->
+    if typeof selector != 'undefined'
+      @List.detach()
+      showables = []
+      showables.push(@List.filter(selector))
+      $('#map-list').append(showables)
     else
       inBounds = []
       bounds = DemocraticTravelers.Map.mapObject.getBounds()
@@ -10,9 +13,12 @@ DemocraticTravelers.Map.Experiences =
         if bounds.contains marker.getLatLng()
           inBounds.push marker.options.id
 
-      @List.hide()
+      @List.detach()
+      showables = []
       for id in inBounds
-        @List.filter("[data-location-id=#{id}]").show()
+        showables.push(@List.filter("[data-location-id=#{id}]"))
+        
+      $('#map-list').append(showables)
 
   render: (experience) ->
     HandlebarsTemplates['experience'](experience)

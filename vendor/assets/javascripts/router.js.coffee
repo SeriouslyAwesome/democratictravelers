@@ -28,12 +28,14 @@ class window.Router
           callback.apply(window, regex.exec(url).slice(1))
     @trigger = true
 
-  navigate: (url=window.location.pathname, trigger=true, replace=false, name=null) ->
+  navigate : (url, title, data, trigger=true, replace=true)->
+    data or (data = {})
+
     @trigger = trigger
     if replace 
-      History.replaceState {'url' : url}, name, url
+      History.replaceState data, title, url
     else
-      History.pushState {'url' : url}, name, url
+      History.pushState data, title, url
 
   start: (url=window.location.pathname) ->
     return @checkRoutes History.getState url

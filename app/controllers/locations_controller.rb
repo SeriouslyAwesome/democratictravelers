@@ -6,6 +6,7 @@ class LocationsController < ApplicationController
   end
 
   def show
+    @location = Location.find(params[:id])
     render 'home/map'
   end
 end

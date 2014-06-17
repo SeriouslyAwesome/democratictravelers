@@ -21,14 +21,11 @@ DemocraticTravelers.Map.Marker =
     DemocraticTravelers.Map.markers.push(marker)
     # Bind popup to marker
     popupContent = "<h4>#{loc.name}<br><small>#{loc.city}, #{loc.state}</small></h4>"
+    titleContent = "What to do at #{loc.name} in #{loc.city}, #{loc.state} | The Democratic Travelers"
 
     marker.bindPopup popupContent, { offset: [0,-36] }
-    marker.on 'mouseover', ->
-      # @openPopup()
-    marker.on 'mouseout', ->
-      # @closePopup()
     marker.on 'click', ->
       @openPopup()
-      DemocraticTravelers.Map.Router.navigate("/map/locations/#{this.options.id}")
+      DemocraticTravelers.Map.Router.navigate("/map/locations/#{this.options.id}", titleContent)
     marker.on 'popupclose', ->
-      DemocraticTravelers.Map.Router.navigate("/map")
+      DemocraticTravelers.Map.Router.navigate("/map", "The Map | The Democratic Travelers")
