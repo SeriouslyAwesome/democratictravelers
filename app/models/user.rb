@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   validates :uuid, uniqueness: true
   validates :username, uniqueness: true,
                        format: { with: /\A^[a-z0-9\-_]+$\z/i, multiline: true }
+
   with_options unless: :from_social? do |user|
     user.validates :password, presence: true, length: { in: 4..100 }
     user.validates :password_confirmation, presence: true
@@ -23,10 +24,7 @@ class User < ActiveRecord::Base
   before_validation :generate_uuid
   before_save :ensure_authentication_token
   after_create { add_role :user }
-  after_create(
-    :add_to_mailing_list,
-    if: proc { |u| u.email && u.mailing_list? }
-  )
+  after_create :subscribe, if: proc { |u| u.email && u.mailing_list? }
 
   # DELEGATIONS
 
@@ -44,12 +42,10 @@ class User < ActiveRecord::Base
   end
 
   def ensure_authentication_token
-    if authentication_token.blank?
-      self.authentication_token = generate_authentication_token
-    end
+    self.authentication_token = generate_auth_token unless authentication_token
   end
 
-  def add_to_mailing_list
+  def subscribe
     Gibbon::API.lists.subscribe id: '32d72a73df', email: { email: email }
   end
 
@@ -120,7 +116,7 @@ class User < ActiveRecord::Base
 
   private
 
-  def generate_authentication_token
+  def generate_auth_token
     loop do
       token = Devise.friendly_token
       break token unless User.where(authentication_token: token).first

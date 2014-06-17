@@ -5,6 +5,23 @@ describe User do
     build(:user).should be_valid
   end
 
+  it 'is given basic user role on creation' do
+    user = create(:user)
+    expect(user.has_role? :user).to be_true
+  end
+
+  it 'does not have admin priveleges by default' do
+    user = create(:user)
+    expect(user.has_role? :admin).to be_false
+  end
+
+  describe '.authentication_token' do
+    it 'is generated if not present' do
+      user = create(:user)
+      expect(user.authentication_token).to_not be_nil
+    end
+  end
+
   describe '.email' do
     it 'requires an email address' do
       build(:user, email: '').should_not be_valid
