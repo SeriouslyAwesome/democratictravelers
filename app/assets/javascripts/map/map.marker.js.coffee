@@ -29,3 +29,4 @@ DemocraticTravelers.Map.Marker =
       DemocraticTravelers.Map.Router.navigate("/map/locations/#{this.options.id}", titleContent)
     marker.on 'popupclose', ->
       DemocraticTravelers.Map.Router.navigate("/map", "The Map | The Democratic Travelers")
+      DemocraticTravelers.Map.Experiences.filterList()

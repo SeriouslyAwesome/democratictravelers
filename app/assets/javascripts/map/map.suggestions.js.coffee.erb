@@ -20,9 +20,7 @@ DemocraticTravelers.Map.Suggestions =
         $('#map-loading:hidden').fadeIn('fast')
       success: (data, callback) ->
         DemocraticTravelers.Map.renderMarkers data.locations
-        DemocraticTravelers.Map.Experiences.renderAll data.experiences
-        # Initalize Router
-        DemocraticTravelers.Map.Router.start()
+        DemocraticTravelers.Map.Experiences.renderAll data
       error: (e) ->
         console.log(e)
         return true

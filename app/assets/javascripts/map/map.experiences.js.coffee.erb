@@ -21,13 +21,10 @@ DemocraticTravelers.Map.Experiences =
       $('#map-list').append(showables)
 
   render: (experience) ->
-    HandlebarsTemplates['experience'](experience)
+    HandlebarsTemplates['experiences'](experience)
 
-  renderAll: (experiences) ->
-    html = ''
-    for experience in experiences
-      html += @render experience
-
+  renderAll: (data) ->
+    html = HandlebarsTemplates['experiences'](data)
     $('#map-list').append(html)
 
     # Cache the jQuery selection of list items for later filtering performance
@@ -43,6 +40,9 @@ DemocraticTravelers.Map.Experiences =
       id = $(this).data('id')
       endpoint = "experiences/#{id}/downvote"
       DemocraticTravelers.Map.Experiences.vote(this, endpoint)
+
+    # Initalize Router
+    DemocraticTravelers.Map.Router.start()
 
   vote: (btn, endpoint) ->
     base = "<%= Rails.env.production? ? 'http://api.thedemocratictravelers.com/v1/' : 'http://api.democratictravelers.dev/v1/' %>"
