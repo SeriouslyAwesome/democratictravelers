@@ -1,3 +1,17 @@
+<% content_for :scripts do %>
+  <script>
+    $(document).ready(function(){
+      Galleria.configure({
+        dataSource: data,
+        transition: 'fade',
+        imageCrop: true,
+        thumbnails: false,
+        autoplay: 3000
+      });
+      Galleria.run('#rig-gallery');
+    });
+  </script>
+<% end %>
 <% cache Experience.count do %>
   <div class="post-hero">
     <%= image_tag "hero-about.jpg" %>
@@ -93,17 +107,6 @@
           { image: '<%= asset_path 'about/rig/rig-11.jpg' %>' },
           { image: '<%= asset_path 'about/rig/rig-12.jpg' %>' }
         ];
-
-        $(document).ready(function(){
-          Galleria.configure({
-            dataSource: data,
-            transition: 'fade',
-            imageCrop: true,
-            thumbnails: false,
-            autoplay: 3000
-          });
-          Galleria.run('#rig-gallery');
-        });
       </script>
 
       <div id="rig-specs">
