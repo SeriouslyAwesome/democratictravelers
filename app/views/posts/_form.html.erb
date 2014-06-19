@@ -33,8 +33,10 @@
   </article>
 
   <aside id="sidebar">
-    <h4>URL</h4>
-    <%= f.text_field :slug %>
+    <% if post.persisted? %>
+      <h4>URL</h4>
+      <%= f.text_field :slug %>
+    <% end %>
 
     <% if Category.any? %>
       <h4>Categories</h4>
