@@ -48,9 +48,11 @@ class Post < ActiveRecord::Base
   end
 
   def cover(size = nil)
-    if assets.any?
+    if assets.any? && assets.cover.first.present?
       asset = assets.cover.first.asset || assets.first.asset
       size ? asset.url(size) : asset.url
+    else
+      ActionController::Base.helpers.asset_path 'missing-image.gif'
     end
   end
 end
