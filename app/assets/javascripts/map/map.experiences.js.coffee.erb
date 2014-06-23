@@ -21,7 +21,7 @@ DemocraticTravelers.Map.Experiences =
       $('#map-list').append(showables)
 
   render: (experience) ->
-    HandlebarsTemplates['experiences'](experience)
+    HandlebarsTemplates['experience'](experience)
 
   renderAll: (data) ->
     html = HandlebarsTemplates['experiences'](data)
@@ -65,7 +65,7 @@ DemocraticTravelers.Map.Experiences =
         exp = data.experiences[0]
         html = DemocraticTravelers.Map.Experiences.render(exp)
         target = $("[data-experience-id=#{id}]")
-        $("[data-experience-id=#{id}]").replaceWith(html)
+        target.replaceWith(html)
 
         # Google Analytics
         label = "#{exp.name} at #{exp.venue} in #{exp.city}, #{exp.state}"

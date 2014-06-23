@@ -2,7 +2,6 @@ dtr = DemocraticTravelers.Map.Router
 api = DemocraticTravelers.API
 
 dtr.route '/map', ->
-  console.log 'YO'
   DemocraticTravelers.Map.Experiences.filterList()
 
 dtr.route '/map/ambassadors/:id', (id) ->
