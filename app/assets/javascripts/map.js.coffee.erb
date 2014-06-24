@@ -24,7 +24,7 @@ DemocraticTravelers.Map =
 
     # Initialize Markers
     @locationsLayer = L.layerGroup().addTo(@mapObject)
-    @CurrentLocation.init()
+    @CurrentLocation.init(@mapObject)
     @Suggestions.initialize()
     @Suggestions.fetch()
     @Search.initialize(@mapObject)

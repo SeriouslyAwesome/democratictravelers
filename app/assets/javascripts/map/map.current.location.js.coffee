@@ -1,5 +1,5 @@
 DemocraticTravelers.Map.CurrentLocation =
-  init: ->
+  init: (map) ->
     # Add "current location" marker
     currentLat = $('#map').data('current-latitude')
     currentLong = $('#map').data('current-longitude')
@@ -11,4 +11,4 @@ DemocraticTravelers.Map.CurrentLocation =
         iconSize: [40,51]
         iconAnchor: [20,46]
 
-    currentMarker.addTo(DemocraticTravelers.Map.mapObject)
+    currentMarker.addTo(map)

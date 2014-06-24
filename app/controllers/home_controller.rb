@@ -2,7 +2,7 @@
 class HomeController < ApplicationController
   respond_to :html, :xml
   def index
-    # Nothin' to do! Hooray
+    @post = Post.published.first
   end
 
   def map
