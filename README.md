@@ -1,7 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers.png)](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers)
 
-<iframe src="https://rpm.newrelic.com/public/charts/glUOSokfT85" width="728" height="300" scrolling="no" frameborder="no"></iframe>
-
 #The Democratic Travelers v4.0
 
 This is the official code repository for [TheDemocraticTravelers.com](http://www.thedemocratictravelers.com), a travel blog where visitors submit their suggestions of places/events for John and Laura to visit (and for [Shane](https://github.com/shiftshane) to visit them while they're visiting things), and others vote on the suggestions.
