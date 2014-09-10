@@ -21,19 +21,19 @@
       <p>For <%= day_count %> days we've been traveling around the United States, making stops based on suggestions on our map from our friends, family, and followers, making our itinerary a democratic one. <%= link_to raw('Learn More &raquo;'), about_path %></p>
     </div>
 
-    <% cache Location.current do %>
+    <% cache @current do %>
       <div id="home-map-wrap">
         <%= image_tag 'home-map-circle.png' %>
 
         <%= content_tag :div, nil, id: 'home-map-object', data: {
-        'current-latitude' => Location.current.lat, 
-        'current-longitude' => Location.current.long } %>
+        'current-latitude' => @current.lat, 
+        'current-longitude' => @current.long } %>
       </div>
 
       <div id="home-current-location">
         <h3>
           Current Location:<br>
-          <small>Dallas, Texas</small>
+          <small><%= "#{@current.city}, #{@current.state.name}" %></small>
         </h3>
 
         <p><%= link_to 'View the Map', map_path, class: 'home-map-link' %></p>
