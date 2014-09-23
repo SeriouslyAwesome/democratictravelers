@@ -36,7 +36,6 @@ DemocraticTravelers.Map =
       DemocraticTravelers.Map.toggleView this
       
     $('#map-list').on 'click', '.map-user-link', (e)->
-      console.log this
       e.preventDefault();
       DemocraticTravelers.Map.Router.navigate($(this).attr('href'), "#{$(this).html()}'s Suggestions | The Democratic Travelers")
 

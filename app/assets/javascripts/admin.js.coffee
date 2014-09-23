@@ -53,7 +53,7 @@ jQuery ->
 
     google.maps.event.addListener autocomplete, 'place_changed', ->
       place = autocomplete.getPlace()
-      coordinates = [place.geometry.location.k, place.geometry.location.A]
+      coordinates = [place.geometry.location.k, place.geometry.location.B]
       address = {}
 
       jQuery.each place.address_components, (k,v1) ->
