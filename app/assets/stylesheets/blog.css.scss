@@ -10,9 +10,10 @@
   height: 20%;
   padding: 0;
   background: image-url('loading.gif') no-repeat center center;
+  line-height: 0;
 
   a {
-    display: inline-block; 
+    display: inline-block;
     width: 25%;
     img { width: 100%; }
   }
