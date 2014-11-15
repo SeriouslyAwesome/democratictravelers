@@ -42,7 +42,9 @@ fetchInstagrams = (limit) ->
 
       # Create HTML strings out of the JSON and join them into one long string
       $.each joinedFeeds, (i, obj) ->
-        thumbnails += "<a href='#{obj.link}' class='social' alt='View on Instagram' target='_blank'><img src='#{obj.images.low_resolution.url}' title='#{obj.caption.text}' style='display:none;'></a>"
+        caption = ''
+        caption = obj.caption.text if obj.caption
+        thumbnails += "<a href='#{obj.link}' class='social' alt='View on Instagram' target='_blank'><img src='#{obj.images.low_resolution.url}' title='#{caption}' style='display:none;'></a>"
 
       # Append the HTML string to the document
       $("#instagrams").html(thumbnails)
