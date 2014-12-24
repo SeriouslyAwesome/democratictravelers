@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
+ruby '2.1.5'
 #ruby-gemset=democratictravelers
 
 # RAILS CORE
@@ -31,7 +31,7 @@ gem 'heroku_rails_deflate', group: :production
 
 # FUNCTIONALITY
 gem 'friendly_id'
-gem 'activerecord-reputation-system', '~> 2.0', 
+gem 'activerecord-reputation-system', '~> 2.0',
                                       git: 'git://github.com/NARKOZ/activerecord-reputation-system.git',
                                       branch: 'rails4'
 gem 'geocoder'
