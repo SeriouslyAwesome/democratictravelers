@@ -1,3 +1,4 @@
+[![Circle CI](https://circleci.com/gh/SeriouslyAwesome/democratictravelers.svg?style=svg)](https://circleci.com/gh/SeriouslyAwesome/democratictravelers)
 [![Code Climate](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers.png)](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers)
 
 #The Democratic Travelers v4.0
