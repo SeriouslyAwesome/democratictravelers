@@ -1,4 +1,4 @@
-showPostExperiences = -> 
+showPostExperiences = ->
   selectedState = $('#state-select').find('option:selected').val()
   $('.post-experiences').find('li').hide()
   $('.post-experiences').find('.state-' + selectedState).show()
@@ -53,7 +53,8 @@ jQuery ->
 
     google.maps.event.addListener autocomplete, 'place_changed', ->
       place = autocomplete.getPlace()
-      coordinates = [place.geometry.location.k, place.geometry.location.B]
+      console.log(place)
+      coordinates = [place.geometry.location.k, place.geometry.location.D]
       address = {}
 
       jQuery.each place.address_components, (k,v1) ->

@@ -17,7 +17,7 @@ DemocraticTravelers.Map.Search =
 
   selectPlace: (place) ->
     # Stash the location information from Google's wonky attribtutes
-    coordinates = [place.geometry.location.k, place.geometry.location.B]
+    coordinates = [place.geometry.location.k, place.geometry.location.D]
     address = {}
 
     jQuery.each place.address_components, (k,v1) ->
