@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20140616234331) do
     t.integer  "bit_rate"
     t.integer  "assetable_id"
     t.string   "assetable_type"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "position"
     t.boolean  "cover"
     t.string   "title"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(version: 20140616234331) do
     t.string   "name"
     t.text     "description"
     t.integer  "post_count"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "slug"
     t.integer  "position",    default: 0, null: false
   end
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20140616234331) do
     t.integer  "category_id"
     t.integer  "connectable_id"
     t.string   "connectable_type"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "category_connections", ["category_id"], name: "index_category_connections_on_category_id", using: :btree
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 20140616234331) do
   create_table "countries", force: true do |t|
     t.string   "name"
     t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "countries", ["code"], name: "index_countries_on_code", using: :btree
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 20140616234331) do
     t.integer  "location_id",                 null: false
     t.string   "name",                        null: false
     t.text     "description"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.float    "distance"
     t.integer  "votes_cache", default: 0,     null: false
@@ -113,8 +113,8 @@ ActiveRecord::Schema.define(version: 20140616234331) do
     t.integer  "state_id"
     t.integer  "zip"
     t.integer  "country_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "done",              default: false, null: false
     t.string   "formatted_address"
     t.boolean  "current",           default: false, null: false
@@ -131,8 +131,8 @@ ActiveRecord::Schema.define(version: 20140616234331) do
     t.text     "body"
     t.string   "subtitle"
     t.datetime "published_at"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "slug",                         null: false
     t.text     "excerpt"
     t.boolean  "published",    default: false, null: false
@@ -146,8 +146,8 @@ ActiveRecord::Schema.define(version: 20140616234331) do
     t.string   "name"
     t.integer  "resource_id"
     t.string   "resource_type"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id", using: :btree
@@ -160,8 +160,8 @@ ActiveRecord::Schema.define(version: 20140616234331) do
     t.integer  "target_id"
     t.string   "target_type"
     t.float    "value",           default: 0.0
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "rs_evaluations", ["reputation_name", "source_id", "source_type", "target_id", "target_type"], name: "index_rs_evaluations_on_reputation_name_and_source_and_target", unique: true, using: :btree
@@ -174,8 +174,8 @@ ActiveRecord::Schema.define(version: 20140616234331) do
     t.string   "sender_type"
     t.integer  "receiver_id"
     t.float    "weight",      default: 1.0
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "rs_reputation_messages", ["receiver_id", "sender_id", "sender_type"], name: "index_rs_reputation_messages_on_receiver_id_and_sender", unique: true, using: :btree
@@ -189,8 +189,8 @@ ActiveRecord::Schema.define(version: 20140616234331) do
     t.integer  "target_id"
     t.string   "target_type"
     t.boolean  "active",          default: true
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "rs_reputations", ["reputation_name", "target_id", "target_type"], name: "index_rs_reputations_on_reputation_name_and_target", unique: true, using: :btree
@@ -200,14 +200,12 @@ ActiveRecord::Schema.define(version: 20140616234331) do
   create_table "states", force: true do |t|
     t.string   "name"
     t.string   "abbr"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "done"
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "provider"
     t.string   "email",                  default: ""
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
@@ -218,8 +216,10 @@ ActiveRecord::Schema.define(version: 20140616234331) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "provider"
     t.string   "uid"
     t.string   "location"
     t.string   "username"

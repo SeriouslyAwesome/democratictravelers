@@ -19,6 +19,10 @@ module HomeHelper
     (Time.now.to_date - Date.new(2013, 02, 1)).to_i
   end
 
+  def traveling_for
+    @traveling_for ||= distance_of_time_in_words(Date.new(2013, 02, 01), Date.today)
+  end
+
   def state_count
     State.where(done: true).count
   end
