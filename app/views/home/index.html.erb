@@ -18,26 +18,28 @@
 
   <section id="home-summary" class="row">
     <div id="home-intro">
-      <p>For <%= day_count %> days we've been traveling around the United States, making stops based on suggestions on our map from our friends, family, and followers, making our itinerary a democratic one. <%= link_to raw('Learn More &raquo;'), about_path %></p>
+      <p>For <%= traveling_for %> we've been traveling around the United States, making stops based on suggestions on our map from our friends, family, and followers, making our itinerary a democratic one. <%= link_to raw('Learn More &raquo;'), about_path %></p>
     </div>
 
-    <% cache @current do %>
-      <div id="home-map-wrap">
-        <%= image_tag 'home-map-circle.png' %>
+    <% if @current.present? %>
+      <% cache @current do %>
+        <div id="home-map-wrap">
+          <%= image_tag 'home-map-circle.png' %>
 
-        <%= content_tag :div, nil, id: 'home-map-object', data: {
-        'current-latitude' => @current.lat, 
-        'current-longitude' => @current.long } %>
-      </div>
+          <%= content_tag :div, nil, id: 'home-map-object', data: {
+            'current-latitude' => @current.lat,
+            'current-longitude' => @current.long } %>
+        </div>
 
-      <div id="home-current-location">
-        <h3>
-          Current Location:<br>
-          <small><%= "#{@current.city}, #{@current.state.name}" %></small>
-        </h3>
+        <div id="home-current-location">
+          <h3>
+            Current Location:<br>
+            <small><%= "#{@current.city}, #{@current.state.name}" %></small>
+          </h3>
 
-        <p><%= link_to 'View the Map', map_path, class: 'home-map-link' %></p>
-      </div>
+          <p><%= link_to 'View the Map', map_path, class: 'home-map-link' %></p>
+        </div>
+      <% end %>
     <% end %>
   </section>
 
@@ -83,7 +85,7 @@
       </div>
     </section>
   <% end %>
-  
+
   <section id="home-quote" class="row">
     <blockquote>
       <h2>A journey is like marriage. The certain way to be wrong is to think you control it.</h2>

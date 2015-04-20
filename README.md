@@ -8,19 +8,14 @@ This is the official code repository for [TheDemocraticTravelers.com](http://www
 ##Overview
 It's a [Ruby on Rails](http://rubyonrails.org) (4.1) application on the back-end, with [Mapbox](https://www.mapbox.com/) & the Google Places API powering the suggestion map. Styling is done with a glass of [Bourbon](http://bourbon.io), [Neat](http://neat.bourbon.io), with a dash of [Bitters](http://bitters.bourbon.io).
 
-##The Stack
+##Prerequisites
+1. You'll need Redis installed: `brew install redis`
+2. You'll need PostgreSQL installed too.
 
-* **Ruby 2.1**
-* **Rails 4.1**
-* **PostgreSQL**
-* **Heroku** single dyno with multiple Unicorn processes.
-* **Sidekiq, Redis, and HireFire.io** to handle jobs like image uploads and emails on worker dynos with minimal cost.
+##Getting Started
+Running `bundle install` and `rake db:migrate` should get your gems and DB setup. Then make sure Redis is running (`redis-server`) and fire up Sidekiq with `bundle exec sidekiq`.
 
-##Other Major Components
-* **Devise + OmniAuth + Rolify** for authentication/authorization
-* **Carrierwave + AWS S3** for uploads and storage
-* **RSpec + FactoryGirl** for testing
-* **JBuilder + Yajl** for API responses
+Guard is implemented, and can be fired up with `bundle exec guard`, which will automatically run relevant specs, as well as Rubocop. If you don't like that, you can always `bundle exec rspec`.
 
 ##Notes
 This is a labor of love and always a work-in-progress. If you see something wrong or that could be better, please feel free to open an issue or a pull request.
