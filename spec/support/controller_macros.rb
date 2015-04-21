@@ -13,8 +13,4 @@ module ControllerMacros
     # Only necessary if you are using the confirmable module
     sign_in @user
   end
-
-  def json
-    @json ||= JSON.parse(response.body)
-  end
 end

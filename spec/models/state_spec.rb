@@ -5,7 +5,7 @@ describe State do
     expect(build(:state)).to be_valid
   end
 
-  describe '.name' do
+  describe '#name' do
     it 'is required' do
       expect(build(:state, name: '')).to be_invalid
     end
@@ -18,7 +18,7 @@ describe State do
     end
   end
 
-  describe '.abbr (abbreviation)' do
+  describe '#abbr (abbreviation)' do
     it 'requires an abbreviation' do
       expect(build(:state, abbr: '')).to be_invalid
     end
@@ -35,6 +35,26 @@ describe State do
       abbrs.each do |abbr|
         expect(build(:state, abbr: abbr)).to be_invalid
       end
+    end
+  end
+
+  describe '#done?' do
+    it 'returns true when #done is set to true' do
+      state = build(:state, done: true)
+
+      expect(state.done?).to eq(true)
+    end
+
+    it 'returns false when #done is set to false' do
+      state = build(:state, done: false)
+
+      expect(state.done?).to eq(false)
+    end
+
+    it 'returns false when #done is not set' do
+      state = build(:state, done: nil)
+
+      expect(state.done?).to eq(false)
     end
   end
 end

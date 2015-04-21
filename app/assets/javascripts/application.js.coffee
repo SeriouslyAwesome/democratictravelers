@@ -12,8 +12,8 @@
 #= require social
 #= require jquery-fileupload
 #= require jquery.caret
-#= require jquery.ui.draggable
-#= require jquery.ui.droppable
+#= require jquery-ui/draggable
+#= require jquery-ui/droppable
 #= require democratic.travelers
 #= require handlebars.runtime
 #= require_tree ./templates
@@ -25,7 +25,7 @@
 #= require admin
 #= require_self
 
-jQuery ->	
+jQuery ->
   # Responsive Menu
   $('#toggle-menu').click ->
     $('#primary-nav ul').slideToggle(150)

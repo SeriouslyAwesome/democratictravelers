@@ -39,6 +39,10 @@ describe 'Suggestions API' do
       it 'returns the new Experience' do
         expect(assigns(:experience)).to eq(Experience.first)
       end
+
+      it 'returns a success notice via JSON' do
+        expect(json['success']).to eq(true)
+      end
     end
   end
 end
