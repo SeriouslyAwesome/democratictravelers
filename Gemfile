@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
-ruby '2.1.5'
-#ruby-gemset=democratictravelers
+ruby '2.1.6'
 
 # RAILS CORE
-gem 'rails', '~>4.1.1'
+gem 'rails', '~>4.2'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
@@ -88,7 +87,6 @@ group :development, :test do
   # Guard
   gem 'guard'
   gem 'guard-rspec'
-  gem 'guard-livereload'
   gem 'guard-rubocop' # Check each file upon save
   # gem 'rb-fsevent', require: false if `uname` =~ /Darwin/
 
@@ -98,5 +96,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
+  gem 'capybara-email'
   gem 'poltergeist'
+  gem 'shoulda-matchers', require: false
+  gem 'simplecov', '~> 0.9.0', require: false
 end

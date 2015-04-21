@@ -23,10 +23,10 @@ group :red_green_refactor, halt_on_fail: true do
     watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
   end
 
-  guard :rubocop, all_on_start: false, cmd: ['--format', 'clang', '--rails'] do
-    watch(%r{.+\.rb$}) { |m| File.dirname(m[0]) }
-    watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
-  end
+  # guard :rubocop, all_on_start: false, cmd: ['--format', 'clang', '--rails'] do
+  #   watch(%r{.+\.rb$}) { |m| File.dirname(m[0]) }
+  #   watch(%r{(?:.+/)?\.rubocop\.yml$}) { |m| File.dirname(m[0]) }
+  # end
 end
 
 
