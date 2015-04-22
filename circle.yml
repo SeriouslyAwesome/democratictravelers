@@ -1,6 +1,9 @@
+test:
+  override:
+    - CODECLIMATE_REPO_TOKEN=ENV['CODECLIMATE_REPO_TOKEN'] bundle exec rake
 deployment:
-    production:
-      branch: master
-      commands:
-        - git push git@heroku.com:democratictravelers.git $CIRCLE_SHA1:master
-        - heroku run rake db:migrate --app democratictravelers
+  production:
+    branch: master
+    commands:
+      - git push git@heroku.com:democratictravelers.git $CIRCLE_SHA1:master
+      - heroku run rake db:migrate --app democratictravelers
