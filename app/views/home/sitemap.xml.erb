@@ -2,13 +2,13 @@
 <% base_url = "http://#{request.host_with_port}" %>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-	<% @pages.each do |page| %>
-   <url>
+  <% @pages.each do |page| %>
+    <url>
       <loc><%= base_url + page[:url] %></loc>
       <lastmod><%= page[:updated_at] %></lastmod>
       <changefreq><%= page[:changefreq] %></changefreq>
       <priority><%= page[:priority] %></priority>
-   </url>
-	 <% end %>
+    </url>
+  <% end %>
 
-</urlset> 
+</urlset>

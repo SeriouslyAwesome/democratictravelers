@@ -19,17 +19,6 @@ class API::V1::SuggestionsController < ApplicationController
 
   private
 
-  def notice
-    if @experience.user.guest?
-      'Sweet! Thanks! We\'d love to give credit where credit is due, though.
-        If you give us your name and email, we\'ll set you up with an account
-        and we\'ll be able to email you if/when we take you up on the
-        suggestion and likewise when we write about it on the blog.'
-    else
-      'Awesome! Thanks for the tip!'
-    end
-  end
-
   def suggestion_params
     params.require(:suggestion).permit(
       :location_name, :latitude, :longitude, :address, :formatted_address,

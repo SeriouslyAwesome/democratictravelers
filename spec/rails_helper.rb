@@ -69,8 +69,13 @@ RSpec.configure do |config|
   config.include FeatureMacros, type: :feature
   config.include ControllerMacros, type: :controller
   config.include RequestMacros, type: :request
+  config.include OmniAuthTestHelper, type: :request
+
+  OmniAuth.config.test_mode = true
 
   config.before(:each) do |example|
+    OmniAuth.config.mock_auth[:twitter] = nil
+    OmniAuth.config.mock_auth[:facebook] = nil
     DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
     DatabaseCleaner.start
   end

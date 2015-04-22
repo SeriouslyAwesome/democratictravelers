@@ -5,7 +5,7 @@ FactoryGirl.define do
     caption 'The short caption.'
 
     factory :image do
-      asset File.open(File.join(Rails.root, '/spec/files/test.jpg'))
+      asset File.open(File.join(Rails.root, '/spec/files/test_image.jpg'))
     end
   end
 end
