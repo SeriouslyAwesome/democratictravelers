@@ -1,6 +1,6 @@
 test:
   override:
-    - CODECLIMATE_REPO_TOKEN=<%= ENV['CODECLIMATE_REPO_TOKEN'] %> bundle exec rspec
+    - CODECLIMATE_REPO_TOKEN=<%= ENV['CODECLIMATE_REPO_TOKEN'] %> bundle exec rake
 deployment:
   production:
     branch: master
