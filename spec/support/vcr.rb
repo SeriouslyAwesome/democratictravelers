@@ -5,6 +5,7 @@ VCR.configure do |c|
   c.filter_sensitive_data('<WSDL>') do
     'http://www.webservicex.net:80/uszip.asmx?WSDL'
   end
+  config.ignore_hosts 'codeclimate.com'
 end
 
 RSpec.configure do |c|
