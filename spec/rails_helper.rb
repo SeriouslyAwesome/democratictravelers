@@ -1,8 +1,8 @@
 require "codeclimate-test-reporter"
 require 'simplecov'
 
-CodeClimate::TestReporter.start
-SimpleCov.start
+CodeClimate::TestReporter.start if ENV['CODECLIMATE_REPO_TOKEN']
+SimpleCov.start 'rails'
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
