@@ -1,7 +1,10 @@
-require "codeclimate-test-reporter"
+require 'codeclimate-test-reporter'
 require 'simplecov'
 
-CodeClimate::TestReporter.start if ENV['CODECLIMATE_REPO_TOKEN']
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter,
+  CodeClimate::TestReporter::Formatter
+]
 SimpleCov.start 'rails'
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
