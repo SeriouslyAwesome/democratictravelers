@@ -24,10 +24,10 @@
     </ul>
 
     <p class="clearfix centered">
-      <span class="add-images-btn">
-        <span><%= fa_icon 'plus-circle', class: 'fa-lg' %> Add images...</span>
+      <%= a.label :asset, class: 'add-images-btn' do %>
+        <span>Add images...</span>
         <%= a.file_field :asset, multiple: true, name: 'asset[asset]' %>
-      </span>
+      <% end %>
     </p>
   <% end %>
 </div>

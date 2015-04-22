@@ -12,6 +12,7 @@ require 'capybara/email/rspec'
 require 'sidekiq/testing'
 Sidekiq::Testing.inline!
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'capybara/poltergeist'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -62,6 +63,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include FactoryGirl::Syntax:: Methods
   config.include Devise::TestHelpers, type: :controller
+  config.include FeatureMacros, type: :feature
   config.include ControllerMacros, type: :controller
   config.include RequestMacros, type: :request
 
@@ -72,11 +74,24 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+    ActionMailer::Base.deliveries = []
   end
 
   config.after(:suite) do
     FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
   end
 
-  Capybara.javascript_driver = :webkit
+  Capybara.javascript_driver = :selenium
+  Capybara.asset_host = "http://localhost:5000"
+
+  # config.before :each, :js, type: :feature do |example|
+  #   # Everything is terrible. js: true in config.before will run if the js tag
+  #   # is present in the spec declaration, regardless of the value.
+  #   if example.metadata[:js]
+  #     page.driver.block_unknown_urls
+  #     page.driver.allow_url("a.tiles.mapbox.com")
+  #     page.driver.allow_url("b.tiles.mapbox.com")
+  #     page.driver.allow_url("api.democratictravelers.dev")
+  #   end
+  # end
 end

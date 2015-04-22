@@ -32,7 +32,7 @@
       <%= f.hidden_field :city %>
       <%= hidden_field_tag :state %>
       <%= f.hidden_field :current, value: true %>
-      
+
       <%= f.submit 'Set' %>
     <% end %>
   </div>
@@ -55,10 +55,10 @@
                 <%= exp.name %><br>
                 <small>
                   at <%= exp.venue %> in <%= exp.city %>, <%= exp.state.abbr %><br>
-                  (<%= exp.distance.to_i %> miles away)
+                  (<%= exp.distance %> miles away)
                 </small>
               </h5>
-              
+
               <p><%= exp.description %></p>
             </td>
             <td class="admin-controls">
@@ -77,7 +77,7 @@
 
   <div id="admin-users">
     <h3 class="structural">Users</h3>
-    
+
     <% if User.registered.any? %>
       <table>
         <colgroup>
@@ -93,7 +93,7 @@
                   <%= user.try(:email) %>
                 </small>
               </h5>
-              
+
               <p>Joined on <%= date(user.created_at) %></p>
             </td>
             <td class="admin-controls">

@@ -33,9 +33,11 @@ class Post < ActiveRecord::Base
   # INSTANCE METHODS
   def published?
     if published_at > Time.now
-      return false
+      false
+    elsif published == false
+      false
     elsif published == true && published_at <= Time.now
-      return true
+      true
     end
   end
 

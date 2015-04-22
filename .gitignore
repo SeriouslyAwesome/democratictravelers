@@ -12,3 +12,6 @@ heroku.thor
 *.rdb
 db/seeds.rb
 spec/vcr/*
+coverage/*
+
+.env

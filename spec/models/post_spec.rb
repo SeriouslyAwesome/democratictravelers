@@ -17,7 +17,7 @@ describe Post do
     end
 
     it 'must be unique' do
-      post1 = create(:post)
+      post1 = create(:post, id: 1)
       post2 = create(:post, id: 2)
       expect(post1.slug).to_not eq(post2.slug)
     end
@@ -25,5 +25,32 @@ describe Post do
 
   it 'must have a user' do
     expect(build(:post, user_id: nil)).to be_invalid
+  end
+
+  describe '#published?' do
+    it 'returns true when #published is set to true and published_at is in the past' do
+      post = build(:post, published_at: 3.days.ago, published: true)
+      expect(post.published?).to eq(true)
+    end
+
+    it 'returns false when #published is set to false' do
+      post = build(:post, published_at: 3.days.ago, published: false)
+      expect(post.published?).to eq(false)
+    end
+
+    it 'returns true when #published is set to true and published_at is in the future' do
+      post = build(:post, published_at: 3.days.from_now, published: true)
+      expect(post.published?).to eq(false)
+    end
+  end
+
+  describe '#cover' do
+    it 'returns an asset url', vcr: true, record: :new_episodes do
+      asset = create(:image, cover: true)
+      post = create(:post)
+      post.assets << asset
+
+      expect(post.cover).to eq asset.asset.url
+    end
   end
 end

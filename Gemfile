@@ -74,12 +74,13 @@ group :development do
   gem 'thor' # Used for Heroku DB cloning
   gem 'rubocop' # Keeping the streets clean of Ruby crimes
   gem 'rails_best_practices' # Like rubocop, but for rails
-  gem 'guard-rails_best_practices'
   gem 'quiet_assets' # Shut the hell up, assets
 end
 
 # TESTING
 group :development, :test do
+  gem 'dotenv'
+  gem 'dotenv-rails'
   gem 'spring-commands-rspec'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
@@ -91,13 +92,15 @@ group :development, :test do
   # gem 'rb-fsevent', require: false if `uname` =~ /Darwin/
 
   # Other testing helpers
-  gem 'fakeweb'
+  gem 'webmock'
   gem 'vcr'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
   gem 'capybara-email'
+  gem 'capybara-webkit', '~>1.4.0'
   gem 'poltergeist'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', '~> 0.9.0', require: false
 end
