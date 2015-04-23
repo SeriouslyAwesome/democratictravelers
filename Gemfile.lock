@@ -457,7 +457,6 @@ DEPENDENCIES
   database_cleaner
   devise
   devise_marketable
-  dotenv
   dotenv-rails
   factory_girl_rails
   figaro

@@ -1,107 +1,84 @@
 source 'https://rubygems.org'
-ruby '2.1.6'
+ruby '2.2.2'
 
-# RAILS CORE
-gem 'rails', '~>4.2'
-gem 'sass-rails'
-gem 'uglifier'
-gem 'coffee-rails'
-gem 'jquery-rails'
-gem 'jbuilder'
-
-# SERVER/MONITORING
-gem 'pg'
-gem 'unicorn'
-gem 'sidekiq'
-gem 'sinatra', '>= 1.3.0', :require => nil
-gem 'rack-cors', require: 'rack/cors' # For cross-domain Ajax requests
-gem 'hirefire-resource'
-
-# ASSETS
-gem 'bourbon'
-gem 'neat'
-gem 'bitters'
-gem 'yui-compressor'
-gem 'font-awesome-rails'
-gem 'handlebars_assets'
-gem 'jquery-ui-rails'
-gem 'yajl-ruby', require: 'yajl'
-gem 'heroku_rails_deflate', group: :production
-
-# FUNCTIONALITY
-gem 'friendly_id'
 gem 'activerecord-reputation-system', '~> 2.0',
-                                      git: 'git://github.com/NARKOZ/activerecord-reputation-system.git',
-                                      branch: 'rails4'
-gem 'geocoder'
-
-# INTERFACE
-gem 'nested_form'
-gem 'will_paginate'
-gem 'socialization'
-gem 'redcarpet'
-gem 'kaminari'
-gem 'jquery-fileupload-rails'
-
-# AUTHENTICATION / AUTHORIZATION
+  git: 'git://github.com/NARKOZ/activerecord-reputation-system.git',
+  branch: 'rails4'
+gem 'bitters'
+gem 'bourbon'
+gem 'carrierwave'
+gem 'carrierwave-aws'
+gem 'coffee-rails'
 gem 'devise'
-gem 'rolify'
+gem 'devise_marketable'
+gem 'font-awesome-rails'
+gem 'friendly_id'
+gem 'geocoder'
+gem 'gibbon' # Mailchimp
+gem 'handlebars_assets'
+gem 'hirefire-resource'
+gem 'jbuilder'
+gem 'jquery-fileupload-rails'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'kaminari'
+gem 'mini_magick'
+gem 'neat'
+gem 'nested_form'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'devise_marketable'
-
-# FILE HANDLING
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'carrierwave-aws'
-
-# EXTERNAL APIs
-gem 'gibbon' # Mailchimp
+gem 'pg'
+gem 'rack-cors', require: 'rack/cors' # For cross-domain Ajax requests
+gem 'rails', '~>4.2'
+gem 'redcarpet'
+gem 'rolify'
+gem 'sass-rails'
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'socialization'
+gem 'uglifier'
+gem 'unicorn'
+gem 'will_paginate'
+gem 'yajl-ruby', require: 'yajl'
+gem 'yui-compressor'
 
 group :production do
-  gem 'rails_12factor'
+  gem 'heroku_rails_deflate'
   gem 'newrelic_rpm'
+  gem 'rails_12factor'
 end
 
-# DEVELOPMENT
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'spring'
   gem 'figaro' # ENV variables made easier
   gem 'powder' # Local server sugar
-  gem 'rack-mini-profiler' # Query metrics
-  gem 'thor' # Used for Heroku DB cloning
-  gem 'rubocop' # Keeping the streets clean of Ruby crimes
-  gem 'rails_best_practices' # Like rubocop, but for rails
   gem 'quiet_assets' # Shut the hell up, assets
+  gem 'rack-mini-profiler' # Query metrics
+  gem 'rails_best_practices' # Like rubocop, but for rails
+  gem 'rubocop' # Keeping the streets clean of Ruby crimes
+  gem 'spring'
+  gem 'thor' # Used for Heroku DB cloning
 end
 
-# TESTING
 group :development, :test do
-  gem 'dotenv'
-  gem 'dotenv-rails'
-  gem 'spring-commands-rspec'
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-
-  # Guard
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-rubocop' # Check each file upon save
-  # gem 'rb-fsevent', require: false if `uname` =~ /Darwin/
-
-  # Other testing helpers
-  gem 'webmock'
-  gem 'vcr'
-  gem 'database_cleaner'
-  gem 'launchy'
   gem 'capybara'
   gem 'capybara-email'
   gem 'capybara-webkit', '~>1.4.0'
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'database_cleaner'
+  gem 'dotenv-rails'
+  gem 'factory_girl_rails'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-rubocop'
+  gem 'launchy'
   gem 'poltergeist'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', '~> 0.9.0', require: false
-  gem "codeclimate-test-reporter", require: nil
+  gem 'spring-commands-rspec'
+  gem 'vcr'
+  gem 'webmock'
 end
