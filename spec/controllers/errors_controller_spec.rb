@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe ErrorsController do
+  render_views
+
   describe '#error_404' do
     it 'renders the 404 error template' do
       get :error_404

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe PostsController do
+  render_views
+
   shared_examples('public access to posts:') do
     describe 'GET #index' do
       it 'does not require authentication' do

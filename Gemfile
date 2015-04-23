@@ -80,5 +80,8 @@ group :development, :test do
   gem 'simplecov', '~> 0.9.0', require: false
   gem 'spring-commands-rspec'
   gem 'vcr'
+end
+
+group :test do
   gem 'webmock'
 end

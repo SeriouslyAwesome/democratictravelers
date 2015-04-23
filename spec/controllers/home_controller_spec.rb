@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe HomeController do
+  render_views
+
+  let!(:current) { create(:location, current: true) }
 
   describe 'GET #index' do
     it 'renders home/index template' do
