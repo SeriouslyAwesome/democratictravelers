@@ -74,6 +74,7 @@ group :development, :test do
   gem 'guard-rubocop'
   gem 'launchy'
   gem 'poltergeist'
+  gem 'pry'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', require: false

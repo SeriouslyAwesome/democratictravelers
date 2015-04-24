@@ -23,7 +23,7 @@
 
   <div id="admin-location">
     <%= form_for [:admin, Location.new] do |f| %>
-      <input type="text" id="admin-location-search" placeholder="Where you at?">
+      <input type="text" id="admin-location-search" name="admin-location-search" placeholder="Where you at?">
       <%= f.hidden_field :name %>
       <%= f.hidden_field :lat %>
       <%= f.hidden_field :long %>

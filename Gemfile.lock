@@ -485,6 +485,7 @@ DEPENDENCIES
   pg
   poltergeist
   powder
+  pry
   quiet_assets
   rack-cors
   rack-mini-profiler
