@@ -9,7 +9,8 @@ body.admin.edit {
       input {
         position: absolute;
         bottom: 0;
-        visibility: hidden;
+        visibility: visible;
+        opacity: 0;
       }
     }
     .thumbnails {

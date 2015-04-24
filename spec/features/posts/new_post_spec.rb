@@ -35,16 +35,18 @@ feature 'New blog post' do
     end
   end
 
-  skip 'allows for image uploads' do
-    attach_file('Add Images...', File.absolute_path('./spec/files/test.jpg'))
+  scenario 'allows for image uploads', vcr: true, js: true, record: :new_episodes do
+    attach_file('asset[asset]', File.absolute_path('./spec/files/test_image.jpg'), visible: false)
     fill_in 'post[title]', with: 'title'
     fill_in 'post[excerpt]', with: 'stuff'
     fill_in 'post[body]', with: 'more stuff'
 
-    save_and_open_page
+    asset = Asset.last
+    within "#asset_#{asset.id}" do
+      find('.asset-toggle-cover').click
+    end
 
     click_button 'Post This Bitch!'
-
     post = Post.last
 
     expect(post.assets.count).to eq(1)

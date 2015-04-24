@@ -45,7 +45,7 @@ describe Post do
   end
 
   describe '#cover' do
-    it 'returns an asset url', vcr: true, record: :new_episodes do
+    it 'returns an asset url' do
       asset = create(:image, cover: true)
       post = create(:post)
       post.assets << asset

@@ -1,8 +1,7 @@
 module ControllerMacros
   def login_admin
     @request.env['devise.mapping'] = Devise.mappings[:admin]
-    @admin = create(:user)
-    @admin.add_role(:admin)
+    @admin = create(:admin)
     sign_in @admin # Using factory girl as an example
   end
 

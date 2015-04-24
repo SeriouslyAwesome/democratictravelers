@@ -3,11 +3,11 @@ DemocraticTravelers.Blog =
     baseline = 28
 
     $('.caption').each ->
-      $(this).waitForImages -> 
+      $(this).waitForImages ->
         $(this).baseline(baseline)
 
     $('.post-mini-preview').each ->
-      $(this).waitForImages -> 
+      $(this).waitForImages ->
         $(this).find('img').baseline(baseline)
 
     # Add Disqus
@@ -58,6 +58,7 @@ DemocraticTravelers.Blog =
           success: (data) ->
             if data.success
               $(".thumbnail[data-asset-id=#{id}]").remove()
+              $("#post-asset-id-#{id}").remove()
     .on 'click', '.asset-copy-to-clipboard', (e) ->
       e.preventDefault()
       text = $(this).closest('li').attr('data-markdown')

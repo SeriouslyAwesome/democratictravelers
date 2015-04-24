@@ -3,7 +3,7 @@
 
     <ul class="thumbnails files row">
       <% post.assets.each do |asset| %>
-        <li class="thumbnail asset-<%= asset.id %> <%= 'cover' if asset.cover? %>" data-asset-id="<%= asset.id %>" data-markdown="<div class='caption'><img src='<%= asset.asset.url %>' alt='<%= asset.alt_name %>' /><p>CAPTION</p></div>">
+        <li id="asset_<%= asset.id %>" class="thumbnail asset-<%= asset.id %> <%= 'cover' if asset.cover? %>" data-asset-id="<%= asset.id %>" data-markdown="<div class='caption'><img src='<%= asset.asset.url %>' alt='<%= asset.alt_name %>' /><p>CAPTION</p></div>">
           <%= image_tag asset.asset.thumb %>
 
           <p class="thumbnail-controls">
@@ -56,7 +56,7 @@
   <!-- The template to display files available for download -->
   <script id="template-download" type="text/x-tmpl">
     {% for (var i=0, file; file=o.files[i]; i++) { %}
-      <li class="thumbnail asset-{%=file.id%}" data-asset-id="{%=file.id%}" data-markdown="<div class='caption'><img src='{%=file.url%}' alt='{%=file.alt%}' /><p>CAPTION</p></div>">
+      <li id="asset_{%=file.id%}" class="thumbnail asset-{%=file.id%}" data-asset-id="{%=file.id%}" data-markdown="<div class='caption'><img src='{%=file.url%}' alt='{%=file.alt%}' /><p>CAPTION</p></div>">
         <img src="{%=file.thumbnail_url%}" alt="{%=file.name%}" />
 
         <p class="thumbnail-controls">

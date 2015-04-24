@@ -1,7 +1,6 @@
 module FeatureMacros
   def login_admin
-    @admin = create(:user)
-    @admin.add_role(:admin)
+    @admin = create(:admin)
 
     visit new_user_session_path
 
