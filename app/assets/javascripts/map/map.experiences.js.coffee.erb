@@ -17,7 +17,7 @@ DemocraticTravelers.Map.Experiences =
       showables = []
       for id in inBounds
         showables.push(@List.filter("[data-location-id=#{id}]"))
-        
+
       $('#map-list').append(showables)
 
   render: (experience) ->

@@ -15,7 +15,7 @@ gem 'font-awesome-rails'
 gem 'friendly_id'
 gem 'geocoder'
 gem 'gibbon' # Mailchimp
-gem 'handlebars_assets'
+gem 'handlebars_assets', '~> 0.16.0'
 gem 'hirefire-resource'
 gem 'jbuilder'
 gem 'jquery-fileupload-rails'
