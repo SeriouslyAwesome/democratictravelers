@@ -1,7 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Experiences API' do
   let(:user) { create(:user) }
+  let!(:alt_user) { create(:user) }
 
   describe 'GET /v1/experiences' do
     it 'returns array of all Experiences' do
@@ -34,20 +35,35 @@ describe 'Experiences API' do
   describe 'PATCH /v1/experiences/:id' do
     it 'requires authentication' do
       patch api_v1_experience_url(experience),
-            experience: attributes_for(:experience, name: 'New')
+          experience: attributes_for(:experience, name: 'New')
 
       expect(response.status).to be(401)
     end
 
-    context 'when authenticated' do
-      it 'returns the updated experience' do
-        patch api_v1_experience_url(experience),
-              { experience: attributes_for(:experience, name: 'New',
-                                                        user: user) },
-              authentication_headers(user)
+    context '(when authenticated)' do
+      context '(and attributes are valid)' do
+        it 'returns the updated experience' do
+          patch api_v1_experience_url(experience),
+              { experience: attributes_for(
+                  :experience, name: 'New', user: user
+                )
+              }, authentication_headers(user)
 
-        expect(response.status).to be(200)
-        expect(json['name']).to eq('New')
+          expect(response.status).to eq(200)
+          expect(json['name']).to eq('New')
+        end
+      end
+
+      context '(as a different user)' do
+        it 'returns status 403' do
+          patch api_v1_experience_url(experience),
+              { experience: attributes_for(
+                  :experience, name: nil, user_id: 5
+                )
+              }, authentication_headers(alt_user)
+
+          expect(response.status).to eq(403)
+        end
       end
     end
   end
@@ -60,16 +76,30 @@ describe 'Experiences API' do
       expect(response.status).to be(401)
     end
 
-    context 'when authenticated' do
-      it 'returns the updated experience' do
-        put api_v1_experience_url(experience),
-            { experience: attributes_for(
-                :experience, name: 'New', user: user
-              )
-            }, authentication_headers(user)
+    context '(when authenticated)' do
+      context '(and attributes are valid)' do
+        it 'returns the updated experience' do
+          put api_v1_experience_url(experience),
+              { experience: attributes_for(
+                  :experience, name: 'New', user: user
+                )
+              }, authentication_headers(user)
 
-        expect(response.status).to be(200)
-        expect(json['name']).to eq('New')
+          expect(response.status).to eq(200)
+          expect(json['name']).to eq('New')
+        end
+      end
+
+      context '(as a different user)' do
+        it 'returns status 403' do
+          put api_v1_experience_url(experience),
+              { experience: attributes_for(
+                  :experience, name: nil, user_id: 5
+                )
+              }, authentication_headers(alt_user)
+
+          expect(response.status).to eq(403)
+        end
       end
     end
   end

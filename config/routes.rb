@@ -56,7 +56,6 @@ DemocraticTravelers::Application.routes.draw do
   get '/map' => 'home#map'
   scope '/map' do
     resources :experiences, only: :show, path: ''
-    resources :locations, only: :show
     resources :users, only: :show, path: 'ambassadors',
                       constraints: { id: /[^\/]+/ }
   end

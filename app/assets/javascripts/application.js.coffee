@@ -1,21 +1,10 @@
 #= require jquery
 #= require jquery_ujs
-#= require galleria-1.3.5
-#= require galleria.classic
-#= require handlebars
-#= require baseline
-#= require waitForImages
-#= require history
-#= require router
-#= require instafeed
-#= require instagram
-#= require social
 #= require jquery-fileupload
-#= require jquery.caret
-#= require jquery.ui.draggable
-#= require jquery.ui.droppable
+#= require jquery-ui/draggable
+#= require jquery-ui/droppable
+#= require_tree ./vendor
 #= require democratic.travelers
-#= require handlebars.runtime
 #= require_tree ./templates
 #= require home
 #= require map
@@ -25,7 +14,7 @@
 #= require admin
 #= require_self
 
-jQuery ->	
+jQuery ->
   # Responsive Menu
   $('#toggle-menu').click ->
     $('#primary-nav ul').slideToggle(150)

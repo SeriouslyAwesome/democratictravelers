@@ -10,10 +10,6 @@ class Asset < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 
   # INSTANCE METHODS
-  def cover?
-    cover == true
-  end
-
   def alt_name
     asset.file.filename.split('.').first.gsub(/[_,-]/, ' ')
   end

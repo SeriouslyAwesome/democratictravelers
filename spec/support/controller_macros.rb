@@ -1,8 +1,7 @@
 module ControllerMacros
   def login_admin
     @request.env['devise.mapping'] = Devise.mappings[:admin]
-    @admin = create(:user)
-    @admin.add_role(:admin)
+    @admin = create(:admin)
     sign_in @admin # Using factory girl as an example
   end
 
@@ -12,9 +11,5 @@ module ControllerMacros
     # user.confirm! # or set a confirmed_at inside the factory.
     # Only necessary if you are using the confirmable module
     sign_in @user
-  end
-
-  def json
-    @json ||= JSON.parse(response.body)
   end
 end

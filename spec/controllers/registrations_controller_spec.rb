@@ -1,6 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe RegistrationsController do
+  render_views
+
   describe 'POST #create' do
     it 'creates a new user' do
       @request.env['devise.mapping'] = Devise.mappings[:user]

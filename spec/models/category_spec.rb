@@ -1,11 +1,11 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Category do
   it 'is created when all attributes are valid' do
-    build(:category).should be_valid
+    expect(build(:category)).to be_valid
   end
 
   it 'requires a title' do
-    build(:category, name: '').should be_invalid
+    expect(build(:category, name: '')).to be_invalid
   end
 end

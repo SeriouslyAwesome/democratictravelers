@@ -55,11 +55,15 @@
 
       <ul class="post-experiences">
         <% for exp in @experiences %>
-          <li class="state-<%= exp.state.abbr %>"><%= check_box_tag "post[experience_ids][]", exp.id, !!@post.experiences.include?(exp) %> <%= exp.name_for_checkboxes %></li>
+          <li class="state-<%= exp.state.abbr %>">
+            <label>
+            <%= check_box_tag "post[experience_ids][]", exp.id, !!@post.experiences.include?(exp) %> <%= exp.name_for_checkboxes %>
+            </label>
+          </li>
         <% end %>
       </ul>
     <% end %>
-    
+
     <% if post.assets.any? %>
       <% post.assets.each do |asset| %>
         <%= hidden_field_tag 'post[asset_ids][]', asset.id, id: "post-asset-id-#{asset.id}" %>

@@ -3,14 +3,14 @@
   <% meta_description 'Everything we\'ve ever written.' %>
 
   <% unless params[:page] %>
-    <%= render 'posts/cover_tease', post: @posts.first %>
+    <%= render 'posts/cover_tease', post: @posts.first if @posts.any? %>
   <% end %>
 
   <div class="row">
     <div class="post-list">
       <%= content_tag(:h3, 'Blog Archives', class: "category-heading") %>
 
-      <%= render 'posts/post_list', posts: @posts %>
+      <%= render 'posts/post_list', posts: @posts if @posts.any? %>
     </div>
 
     <%= render 'shared/blog_sidebar' %>

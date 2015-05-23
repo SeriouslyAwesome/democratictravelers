@@ -1,9 +1,8 @@
 module RequestMacros
   def login_admin
-    @request.env['devise.mapping'] = Devise.mappings[:admin]
-    @admin = create(:user)
-    @admin.add_role(:admin)
-    sign_in @admin # Using factory girl as an example
+    # @request.env['devise.mapping'] = Devise.mappings[:admin]
+    @admin = create(:admin)
+    post user_session_path, email: @admin.email, password: @admin.password
   end
 
   def login_user

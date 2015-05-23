@@ -23,7 +23,7 @@ class Admin::LocationsController < AdminController
 
   def find_state
     # Find the state ID from the form data
-    State.find_by_abbr(params[:state]) || State.find_by_name(params[:state])
+    State.find_by(abbr: params[:state]) || State.find_by(name: params[:state])
   end
 
   def reset_non_current_locations(location)

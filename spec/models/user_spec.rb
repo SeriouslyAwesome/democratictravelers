@@ -1,18 +1,18 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe User do
   it 'is created when all attributes are valid' do
-    build(:user).should be_valid
+    expect(build(:user)).to be_valid
   end
 
   it 'is given basic user role on creation' do
     user = create(:user)
-    expect(user.has_role? :user).to be_true
+    expect(user.reload.has_role? :user).to eq(true)
   end
 
   it 'does not have admin priveleges by default' do
     user = create(:user)
-    expect(user.has_role? :admin).to be_false
+    expect(user.reload.has_role? :admin).to eq(false)
   end
 
   describe '.authentication_token' do
@@ -24,77 +24,77 @@ describe User do
 
   describe '.email' do
     it 'requires an email address' do
-      build(:user, email: '').should_not be_valid
+      expect(build(:user, email: '')).to_not be_valid
     end
 
     it 'accepts valid email addresses' do
       addresses = ['user@foo.com', 'THE_USER@foo.bar.org', 'first.last@foo.jp']
       addresses.each do |address|
-        build(:user, email: address).should be_valid
+        expect(build(:user, email: address)).to be_valid
       end
     end
 
     it 'rejects duplicate email addresses' do
       create(:user, email: 'example@seriouslyawesome.com')
-      build(:user, email: 'example@seriouslyawesome.com').should_not be_valid
+      expect(build(:user, email: 'example@seriouslyawesome.com')).to_not be_valid
     end
     it 'rejects duplicate emails regardless of capitalization' do
       create(:user, email: 'example@seriouslyawesome.com')
-      build(:user, email: 'EXAMPLE@SeriouslyAwesome.com').should_not be_valid
+      expect(build(:user, email: 'EXAMPLE@SeriouslyAwesome.com')).to_not be_valid
     end
   end
 
   describe '.password' do
     it 'is required' do
-      build(:user).should respond_to(:password)
-      build(:user, password: '').should_not be_valid
+      expect(build(:user)).to respond_to(:password)
+      expect(build(:user, password: '')).to_not be_valid
     end
 
     it 'requires confirmation' do
-      build(:user).should respond_to(:password_confirmation)
-      build(:user, password_confirmation: '').should_not be_valid
+      expect(build(:user)).to respond_to(:password_confirmation)
+      expect(build(:user, password_confirmation: '')).to_not be_valid
     end
 
     it 'rejects short passwords' do
-      build(:user, password: 'F', password_confirmation: 'F')
-        .should_not be_valid
+      expect(build(:user, password: 'F', password_confirmation: 'F')
+        ).to_not be_valid
     end
 
     it 'requires encryption' do
-      create(:user).encrypted_password.should_not be_blank
+      expect(create(:user).encrypted_password).to_not be_blank
     end
   end
 
   describe '.name' do
     it 'requires a name' do
-      build(:user, name: nil).should_not be_valid
+      expect(build(:user, name: nil)).to_not be_valid
     end
   end
 
   it 'must have a default role on create' do
     user = create(:user)
-    user.has_role?(:user).should be_true
+    expect(user.has_role?(:user)).to eq(true)
   end
 
   it 'responds to .first_name' do
     names = ['John Doe', 'John', 'John  Doe', 'John Awesome Doe']
     names.each do |name|
-      build(:user, name: name).first_name.should eq('John')
+      expect(build(:user, name: name).first_name).to eq('John')
     end
   end
 
   it 'responds to .last_name' do
     names = ['John Doe', 'Doe', 'John  Doe', 'John Awesome Doe']
     names.each do |name|
-      build(:user, name: name).last_name.should eq('Doe')
+      expect(build(:user, name: name).last_name).to eq('Doe')
     end
   end
 
   it 'responds to .short_name' do
     names = ['John Doe', 'John  Doe', 'John Awesome Doe']
     names.each do |name|
-      build(:user, name: name).short_name.should eq('John D.')
+      expect(build(:user, name: name).short_name).to eq('John D.')
     end
-    build(:user, name: 'John').short_name.should eq('John')
+    expect(build(:user, name: 'John').short_name).to eq('John')
   end
 end

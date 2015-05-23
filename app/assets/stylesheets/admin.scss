@@ -5,11 +5,12 @@ body.admin.edit {
     .add-images-btn {
       @include btn($yellow);
       cursor: pointer;
-      
+
       input {
         position: absolute;
         bottom: 0;
-        visibility: hidden;
+        visibility: visible;
+        opacity: 0;
       }
     }
     .thumbnails {
@@ -22,19 +23,19 @@ body.admin.edit {
       margin: ($baseline) ($baseline * 0.5);
       margin-top: 0;
       padding: 0;
-      
+
       .thumbnail-controls {
         line-height: $baseline;
         text-align: right;
-        a { 
+        a {
           color: $medium-gray;
-          
+
           &:hover, &:focus { color: $black; }
         }
       }
-      
+
       .thumbnail-loading { padding: 26px; }
-      
+
       &.cover {
         img {
           -webkit-box-shadow: 0 0 5px 2px $green;
@@ -43,26 +44,26 @@ body.admin.edit {
       }
     }
   }
-  
+
   .form-post {
     label {
       display: none;
     }
-    
+
     input[type="text"], textarea {
       border: 0;
       padding: 0;
       @include border-radius(0);
-      @include box-shadow(none);
+      box-shadow: none;
       @include placeholder {
         color: $light-gray;
       }
     }
-    
+
     .form-post-meta {
       & select { display: inline; }
     }
-    
+
     .user-notification, .post-publish {
       display: inline-block;
       margin-left: 0.5em;
@@ -70,23 +71,23 @@ body.admin.edit {
       margin-top: $baseline / 4;
     }
   }
-  
+
   #post_title {
     @extend h1;
     height: $baseline * 2;
     font-weight: bold;
   }
-  
+
   #post_subtitle {
     @extend h3;
     color: $medium-gray;
   }
-  
+
   #post_excerpt {
     font-size: $base-font-size * 1.375;
     line-height: $baseline;
   }
-  
+
   #post_body {
     color: $dark-gray;
     line-height: $baseline;
@@ -110,7 +111,7 @@ body.admin.edit {
 }
 
 #admin-location {
-  #admin-location-search { 
+  #admin-location-search {
     display: inline-block;
     width: auto;
     vertical-align: middle;
@@ -127,10 +128,10 @@ body.admin.edit {
   @include media($tablet) {
     @include span-columns(5);
   }
-  
+
   .admin-controls {
     text-align: right;
-    
+
     .fa-check-circle {
       color: $green;
       &:hover { color: $yellow; }

@@ -19,14 +19,11 @@ class Experience < ActiveRecord::Base
   validates :location, presence: true
 
   # CALLBACKS
-  before_save :set_distance
-  before_save :cache_vote_count
+  before_save :set_distance, :cache_vote_count
   after_create :auto_upvote
 
   # DELEGATIONS
-  delegate :city, to: :location
-  delegate :state, to: :location
-  delegate :venue, to: :location
+  delegate :city, :state, :venue, to: :location
 
   # MACROS
   extend FriendlyId

@@ -1,6 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PostsController do
+  render_views
+
   shared_examples('public access to posts:') do
     describe 'GET #index' do
       it 'does not require authentication' do
@@ -13,7 +15,7 @@ describe PostsController do
         create(:post, published_at: DateTime.now + 1.month)
 
         get :index
-        assigns(:posts).count.should eq(3)
+        expect(assigns(:posts).count).to eq(3)
       end
 
       it 'renders the posts/index template' do
@@ -32,7 +34,7 @@ describe PostsController do
       it 'fetches the correct post' do
         @post = create(:post, title: 'Correct')
         get :show, id: @post.id
-        @post.title.should == 'Correct'
+        expect(@post.title).to eq 'Correct'
       end
 
       it 'raises a RecordNotFound error if post is unpublished' do

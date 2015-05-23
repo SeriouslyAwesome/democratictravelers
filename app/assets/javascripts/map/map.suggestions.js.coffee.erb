@@ -39,7 +39,7 @@ DemocraticTravelers.Map.Suggestions =
     # AJAX call to SuggestionsController#create
     apiKey = $("meta[name='application-name']").attr('data-api-key')
     userId = $("meta[name='application-name']").attr('data-user-id')
-    
+
     $.ajax url,
       dataType: 'json'
       type: 'POST'
@@ -53,7 +53,7 @@ DemocraticTravelers.Map.Suggestions =
           DemocraticTravelers.Map.searchLayer.clearLayers()
           $('#new-suggestion').slideUp('fast')
           @render(data)
-          
+
           # Google Analytics
           exp = data.experiences[0]
           label = "#{exp.name} at #{exp.venue} in #{exp.city}, #{exp.state}"
@@ -84,4 +84,4 @@ DemocraticTravelers.Map.Suggestions =
         $('#sign-up, #sign-in').remove()
         $(this).closest('.notice').slideUp('fast').html('Shazaam! You rock.')
           .slideDown('fast')
-  
+
