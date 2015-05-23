@@ -9,6 +9,7 @@ feature 'Admin area', js: true, vcr: true do
 
   scenario 'allows me to cross off a state' do
     check "state_#{state.id}"
+    sleep 1
     expect(state.reload.done).to eq(true)
   end
 
@@ -21,7 +22,7 @@ feature 'Admin area', js: true, vcr: true do
     end
 
     click_button 'Set'
-    sleep 5
+    sleep 3
     expect(Location.last.current).to eq(true)
   end
 end
