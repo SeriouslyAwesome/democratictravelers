@@ -54,6 +54,5 @@ fetchInstagrams = (limit) ->
         $(this).load ->
           $(this).fadeIn('fast');
 
-
   #Start the whole process.
   johnsFeed.run()

@@ -509,3 +509,6 @@ DEPENDENCIES
   will_paginate
   yajl-ruby
   yui-compressor
+
+BUNDLED WITH
+   1.10.2

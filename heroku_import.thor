@@ -14,9 +14,9 @@ module HerokuImport
       Bundler.with_clean_env {
         puts "Cloning production database to local environment. This might take a few minutes\n"
         puts "(1/4) capturing production database snapshot..."
-        puts `heroku pgbackups:capture --expire --remote #{options[:remote]} --app democratictravelers`
+        puts `heroku pg:backups capture --remote #{options[:remote]} --app democratictravelers`
         puts "(2/4) downloading snapshot..."
-        puts `curl -o #{options[:dump]} \`heroku pgbackups:url --remote #{options[:remote]} --app democratictravelers\``
+        puts `curl -o #{options[:dump]} \`heroku pg:backups public-url --remote #{options[:remote]} --app democratictravelers\``
         puts "(3/4) restoring snapshot..."
         puts `pg_restore --verbose --clean --no-acl --no-owner -h #{options[:host]} -U #{options[:user]} -d #{options[:dbname] || dbname} #{options[:dump]}`
         if options[:keep]
