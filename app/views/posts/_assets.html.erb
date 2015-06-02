@@ -8,15 +8,15 @@
 
           <p class="thumbnail-controls">
             <a href="#" class="asset-copy-to-clipboard">
-              <%= fa_icon 'cut' %>
+              <%= icon 'cut' %>
             </a>
 
             <%= link_to admin_asset_toggle_cover_path(asset), class: 'asset-toggle-cover' do %>
-              <%= fa_icon 'picture-o' %>
+              <%= icon 'picture-o' %>
             <% end %>
 
             <%= link_to admin_asset_path(asset), class: 'asset-delete' do %>
-              <%= fa_icon 'trash-o' %>
+              <%= icon 'trash-o' %>
             <% end %>
           </p>
         </li>
@@ -61,15 +61,15 @@
 
         <p class="thumbnail-controls">
           <a href="#" class="asset-copy-to-clipboard">
-            <%= fa_icon 'cut' %>
+            <%= icon 'cut' %>
           </a>
 
           <a href="{%=file.cover_url%}" class="asset-toggle-cover">
-            <%= fa_icon 'picture-o' %>
+            <%= icon 'picture-o' %>
           </a>
 
           <a href="{%=file.delete_url%}" class="asset-delete">
-            <%= fa_icon 'trash-o' %>
+            <%= icon 'trash-o' %>
           </a>
         </p>
       </li>

@@ -19,8 +19,8 @@
 <% end %>
 
 <div id="map-view-controls">
-  <button id="show-list" style="display: none;"><%= fa_icon 'list-ul', class: 'fa-fw' %></button>
-  <button id="show-map"><%= fa_icon 'globe', class: 'fa-fw' %></button>
+  <button id="show-list" style="display: none;"><%= icon 'list-ul', class: 'fa-fw' %></button>
+  <button id="show-map"><%= icon 'globe', class: 'fa-fw' %></button>
 </div>
 
 <div id="map-loading">
@@ -30,7 +30,7 @@
 
 <% cache Location.current do %>
   <%= content_tag :div, nil, id: 'map', data: {
-  'current-latitude' => Location.current.lat, 
+  'current-latitude' => Location.current.lat,
   'current-longitude' => Location.current.long } %>
 <% end %>
 
@@ -38,14 +38,14 @@
   <p id="map-list-sort">
     Sort:
 
-    <button id="sort-closest"><%= fa_icon 'dot-circle-o', class: 'fa-fw' %></button>
-    <button id="sort-popular"><%= fa_icon 'thumbs-up', class: 'fa-fw' %></button>
-    <button id="sort-recent"><%= fa_icon 'calendar', class: 'fa-fw' %></button>
+    <button id="sort-closest"><%= icon 'dot-circle-o', class: 'fa-fw' %></button>
+    <button id="sort-popular"><%= icon 'thumbs-up', class: 'fa-fw' %></button>
+    <button id="sort-recent"><%= icon 'calendar', class: 'fa-fw' %></button>
   </p>
 
   <p>
     <%= link_to '#new-suggestion', id: 'show-new-suggestion', class: 'toggler' do %>
-      <%= fa_icon 'plus-circle', class: 'fa-lg' %> Add a Suggestion
+      <%= icon 'plus-circle', class: 'fa-lg' %> Add a Suggestion
     <% end %>
   </p>
 
@@ -65,4 +65,4 @@
       <%= render 'suggestions/form' %>
   </div>
 </div>
-  
+

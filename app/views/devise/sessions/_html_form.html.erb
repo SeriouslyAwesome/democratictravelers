@@ -3,11 +3,11 @@
 
   <p class="social-sign-in">
     <%= link_to omniauth_authorize_path(:user, 'facebook'), class: 'facebook' do %>
-      <%= fa_icon 'facebook-square', class: 'fa-fw fa-lg' %> Sign in with Facebook
+      <%= icon 'facebook-square', class: 'fa-fw fa-lg' %> Sign in with Facebook
     <% end %>
     <br>
     <%= link_to omniauth_authorize_path(:user, 'twitter'), class: 'twitter' do %>
-      <%= fa_icon 'twitter', class: 'fa-fw fa-lg' %> Sign in with Twitter
+      <%= icon 'twitter', class: 'fa-fw fa-lg' %> Sign in with Twitter
     <% end %>
     <br>
     <small>&mdash; OR &mdash;</small>
@@ -28,7 +28,7 @@
   <%= sign_in.password_field :password %>
 
   <p>
-    <%= fa_icon 'circle-o-notch', class: 'fa-spin loader' %>
+    <%= icon 'circle-o-notch', class: 'fa-spin loader' %>
     <%= sign_in.submit 'Sign In', id: 'btn-sign-in', class: 'btn btn-primary' %> <a href="#cancel" class="cancel">Cancel</a>
   </p>
 <% end %>

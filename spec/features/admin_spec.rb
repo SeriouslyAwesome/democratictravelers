@@ -22,7 +22,7 @@ feature 'Admin area', js: true, vcr: true do
     end
 
     click_button 'Set'
-    sleep 3
+    sleep 5
     expect(Location.last.current).to eq(true)
   end
 end
