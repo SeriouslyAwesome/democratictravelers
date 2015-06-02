@@ -12,6 +12,7 @@
 #= require blog
 #= require about
 #= require admin
+#= require instagram
 #= require_self
 
 jQuery ->
