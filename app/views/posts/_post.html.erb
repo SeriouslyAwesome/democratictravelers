@@ -10,7 +10,7 @@
 
     <% if admin? %>
       <%= link_to edit_post_path(post), class: "post-edit pull-right" do %>
-        <%= fa_icon 'edit' %> Edit
+        <%= icon 'edit' %> Edit
       <% end %>
     <% end %>
   </p>
@@ -53,4 +53,4 @@
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
   <% end # cache %>
-</article>	
+</article>

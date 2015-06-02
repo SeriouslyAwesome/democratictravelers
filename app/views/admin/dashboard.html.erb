@@ -17,7 +17,7 @@
 
   <div id="admin-actions">
     <%= link_to new_post_path do %>
-      <%= fa_icon 'pencil', class: 'fa-lg' %> Write a Blog Post
+      <%= icon 'pencil', class: 'fa-lg' %> Write a Blog Post
     <% end %>
   </div>
 
@@ -66,7 +66,7 @@
             </td>
             <td class="admin-controls">
               <%= link_to admin_experience_path(exp), class: 'delete' do %>
-                <%= fa_icon 'trash-o', class: 'fa-fw fa-lg' %>
+                <%= icon 'trash-o', class: 'fa-fw fa-lg' %>
               <% end %>
             </td>
           <% end %>
@@ -98,7 +98,7 @@
             </td>
             <td class="admin-controls">
               <%= link_to admin_user_path(user), class: 'delete' do %>
-                <%= fa_icon 'trash-o', class: 'fa-fw fa-lg' %>
+                <%= icon 'trash-o', class: 'fa-fw fa-lg' %>
               <% end %>
             </td>
           </tr>

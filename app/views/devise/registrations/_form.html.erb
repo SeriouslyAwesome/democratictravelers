@@ -32,7 +32,7 @@
   <%= text_field_tag 'comment_body', nil, id: 'sign-up-comment', class: 'honeypot', placeholder: 'Do not fill this in.' %>
 
   <p>
-    <%= fa_icon 'circle-o-notch', class: 'fa-spin loader' %>
+    <%= icon 'circle-o-notch', class: 'fa-spin loader' %>
     <%= sign_up.submit 'Sign Up', id: 'btn-sign-up' %> <a href="#cancel" class="cancel">Cancel</a>
   </p>
 <% end %>

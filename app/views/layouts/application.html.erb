@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title><%= title %></title>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<%= meta_description %>">
     <meta property="fb:app_id" content="448393251865597" />
@@ -27,7 +27,7 @@
       <nav id="primary-nav">
         <h1><%= link_to 'The Democratic Travelers', root_path %></h1>
 
-        <button id= "toggle-menu"><%= fa_icon 'navicon', class: 'fa-fw' %></button>
+        <button id= "toggle-menu"><%= icon 'navicon', class: 'fa-fw' %></button>
         <ul>
           <li><%= link_to 'Map', map_path, class: ('active' if controller.action_name == 'map') %></li>
           <li><%= link_to 'Blog', blog_path, class: ('active' if ['posts', 'categories'].include? controller.controller_name) %></li>
@@ -54,28 +54,28 @@
         <ul id="footer-social-links" class="ss-icon">
           <% if Rails.env.production? %><li><div class="fb-like" data-href="http://www.facebook.com/TheDemocraticTravelers" data-width="80" data-layout="button_count" data-show-faces="false" data-send="false" data-colorscheme="dark"></div></li><% end %>
           <li><%= link_to FACEBOOK, class: 'social', title: 'Facebook', target: '_blank' do %>
-            <%= fa_icon 'facebook-square', class: 'fa-fw' %> <span>Facebook</span>
+            <%= icon 'facebook-square', class: 'fa-fw' %> <span>Facebook</span>
           <% end %></li>
           <li><%= link_to TWITTER, class: 'social', title: 'Twitter', target: '_blank' do %>
-            <%= fa_icon 'twitter', class: 'fa-fw' %> <span>Twitter</span>
+            <%= icon 'twitter', class: 'fa-fw' %> <span>Twitter</span>
           <% end %></li>
           <li><%= link_to TUMBLR, class: 'social', title: 'Tumblr', target: '_blank' do %>
-            <%= fa_icon 'tumblr', class: 'fa-fw' %> <span>Tumblr</span>
+            <%= icon 'tumblr', class: 'fa-fw' %> <span>Tumblr</span>
           <% end %></li>
           <li><%= link_to JOHN_IG, class: 'social', title: 'John\'s Instagram', target: '_blank' do %>
-            <%= fa_icon 'instagram', class: 'fa-fw' %> <span>John's Instagram</span>
+            <%= icon 'instagram', class: 'fa-fw' %> <span>John's Instagram</span>
           <% end %></li>
           <li><%= link_to LAURA_IG, class: 'social', title: 'Laura\'s Instagram', target: '_blank' do %>
-            <%= fa_icon 'instagram', class: 'fa-fw' %> <span>Laura's Instagram</span>
+            <%= icon 'instagram', class: 'fa-fw' %> <span>Laura's Instagram</span>
           <% end %></li>
           <li><%= link_to PINTEREST, class: 'social', title: 'Pinterest', target: '_blank' do %>
-            <%= fa_icon 'pinterest', class: 'fa-fw' %> <span>Pinterest</span>
+            <%= icon 'pinterest', class: 'fa-fw' %> <span>Pinterest</span>
           <% end %></li>
           <li><%= link_to VIMEO, class: 'social', title: 'Vimeo', target: '_blank' do %>
-            <%= fa_icon 'vimeo-square', class: 'fa-fw' %> <span>Vimeo</span>
+            <%= icon 'vimeo-square', class: 'fa-fw' %> <span>Vimeo</span>
           <% end %></li>
           <li><%= link_to "mailto:#{EMAIL}", class: 'social', title: 'Email Us!', target: '_blank' do %>
-            <%= fa_icon 'envelope', class: 'fa-fw' %> <span>Email</span>
+            <%= icon 'envelope', class: 'fa-fw' %> <span>Email</span>
           <% end %></li>
         </ul>
 

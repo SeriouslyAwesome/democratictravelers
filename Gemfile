@@ -11,7 +11,7 @@ gem 'carrierwave-aws'
 gem 'coffee-rails'
 gem 'devise'
 gem 'devise_marketable'
-gem 'font-awesome-rails'
+gem 'font-awesome-sass', '~> 4.3.0'
 gem 'friendly_id'
 gem 'geocoder'
 gem 'gibbon' # Mailchimp
