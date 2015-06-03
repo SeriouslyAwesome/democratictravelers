@@ -1,7 +1,7 @@
 <% map_meta %>
 
 <% content_for :head do %>
-  <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
+  <link href='//api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css' rel='stylesheet' />
   <meta name="application-name" content="The Democratic Travelers"
     data-api-key="<%= current_or_guest_user.authentication_token %>"
     data-user-id="<%= current_or_guest_user.uuid %>"
@@ -9,8 +9,8 @@
 <% end %>
 
 <% content_for :scripts do %>
-  <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true&amp;libraries=places"></script>
+  <script src='//api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.js'></script>
+  <script src="//maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true&amp;libraries=places"></script>
   <script>
     $(document).ready(function(){
       DemocraticTravelers.Map.init();

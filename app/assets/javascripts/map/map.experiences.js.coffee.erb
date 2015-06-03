@@ -45,7 +45,7 @@ DemocraticTravelers.Map.Experiences =
     DemocraticTravelers.Map.Router.start()
 
   vote: (btn, endpoint) ->
-    base = "<%= Rails.env.production? ? 'http://api.thedemocratictravelers.com/v1/' : 'http://api.democratictravelers.dev/v1/' %>"
+    base = "<%= Rails.application.secrets.api_base %>"
     url = "#{base}#{endpoint}"
     apiKey = $("meta[name='application-name']").attr('data-api-key')
     userId = $("meta[name='application-name']").attr('data-user-id')

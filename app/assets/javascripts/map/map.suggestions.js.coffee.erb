@@ -6,7 +6,7 @@ DemocraticTravelers.Map.Suggestions =
       @create(data)
 
   fetch: ->
-    url = "<%= Rails.env.production? ? 'http://api.thedemocratictravelers.com/v1/suggestions' : 'http://api.democratictravelers.dev/v1/suggestions' %>"
+    url = "<%= Rails.application.secrets.api_base %>suggestions/"
     apiKey = $("meta[name='application-name']").attr('data-api-key')
     userId = $("meta[name='application-name']").attr('data-user-id')
     $.ajax url,
@@ -35,7 +35,7 @@ DemocraticTravelers.Map.Suggestions =
           console.log('Dead link.')
 
   create: (data) ->
-    url = "<%= Rails.env.production? ? 'http://api.thedemocratictravelers.com/v1/suggestions' : 'http://api.democratictravelers.dev/v1/suggestions' %>"
+    url = "<%= Rails.application.secrets.api_base %>suggestions/"
     # AJAX call to SuggestionsController#create
     apiKey = $("meta[name='application-name']").attr('data-api-key')
     userId = $("meta[name='application-name']").attr('data-user-id')
