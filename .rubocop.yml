@@ -3,6 +3,7 @@ AllCops:
     - db/**/*.rb
     - script/*
     - bin/*
+    - heroku_import.thor
 
 Documentation:
   Enabled: false
