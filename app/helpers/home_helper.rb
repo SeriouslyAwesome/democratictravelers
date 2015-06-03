@@ -3,9 +3,6 @@ module HomeHelper
     if @user
       title "#{@user.short_name}'s Suggestions"
       meta_description "Check out where #{@user.first_name} thinks we should go. Vote for the best ideas."
-    elsif @location
-      title "What to do at #{@location.name} in #{@location.city}, #{@location.state.name}"
-      meta_description "Should we go here? Cast your vote."
     elsif @experience
       title "#{@experience.name}"
       meta_description "Should we do this? Cast your vote."
