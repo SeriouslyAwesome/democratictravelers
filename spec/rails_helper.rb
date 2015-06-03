@@ -51,6 +51,10 @@ RSpec.configure do |config|
     ActionMailer::Base.deliveries = []
   end
 
+  config.after(:each, js: true) do
+    expect(page).to_not have_content "No theme CSS loaded"
+  end
+
   config.after(:suite) do
     FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
   end
