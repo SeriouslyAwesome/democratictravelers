@@ -62,18 +62,17 @@ group :development do
 end
 
 group :development, :test do
+  gem 'dotenv-rails' # Must loaded first
+
   gem 'capybara'
   gem 'capybara-email'
-  gem 'capybara-webkit', '~>1.4.0'
   gem 'codeclimate-test-reporter', require: nil
   gem 'database_cleaner'
-  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-rubocop'
   gem 'launchy'
-  gem 'poltergeist'
   gem 'pry'
   gem 'rspec-rails'
   gem 'selenium-webdriver'

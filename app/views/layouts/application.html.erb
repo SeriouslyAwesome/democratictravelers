@@ -16,8 +16,10 @@
 
     <%= stylesheet_link_tag :application, media: 'all' %>
 
-    <script type="text/javascript" src="//use.typekit.net/lbm4dbw.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <% unless Rails.env.test? %>
+      <script type="text/javascript" src="//use.typekit.net/lbm4dbw.js"></script>
+      <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <% end %>
 
     <%= yield :head %>
   </head>

@@ -34,8 +34,7 @@ DemocraticTravelers::Application.routes.draw do
   end
 
   # API
-  namespace :api, path: '', defaults: { format: :json },
-                  constraints: { subdomain: 'api' } do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :suggestions, only: [:index, :create]
       resources :users, only: :show
