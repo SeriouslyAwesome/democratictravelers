@@ -4,10 +4,9 @@ class Admin::AssetsController < AdminController
   def create
     @asset = Asset.new(asset_params)
     @asset.save
-    if @asset.errors.any?
-      render json: [@asset.as_json.merge(error: @asset.errors
-          .to_a.to_sentence)]
-    end
+
+    return false unless @asset.errors.any?
+    render json: [@asset.as_json.merge(error: @asset.errors.to_a.to_sentence)]
   end
 
   def toggle_cover

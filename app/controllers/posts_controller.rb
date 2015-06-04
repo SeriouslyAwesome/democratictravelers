@@ -6,13 +6,7 @@ class PostsController < ApplicationController
 
   # PUBLIC ACTIONS
   def index
-    if admin?
-      @posts = Post.order('published_at DESC').page(params[:page]).per_page(19)
-      @first = Post.first
-    else
-      @posts = Post.published.page(params[:page]).per_page(19)
-      @first = Post.published.first
-    end
+    assign_post_variables
     respond_with(@posts)
   end
 
@@ -72,6 +66,16 @@ class PostsController < ApplicationController
 
   private
 
+  def assign_post_variables
+    if admin?
+      @posts = Post.order('published_at DESC').page(params[:page]).per_page(19)
+      @first = Post.first
+    else
+      @posts = Post.published.page(params[:page]).per_page(19)
+      @first = Post.published.first
+    end
+  end
+
   def post_params
     params.require(:post).permit(
       :title, :subtitle, :excerpt, :body, :slug, :user_id, :published_at,
@@ -92,10 +96,10 @@ class PostsController < ApplicationController
   end
 
   def notify_contributors(post)
-    if post.experiences.any?
-      post.experiences.each do |e|
-        ExperienceMailer.delay.we_blogged_this(e.id) if e.user.email.present?
-      end
+    return false unless post.experiences.any?
+
+    post.experiences.each do |e|
+      ExperienceMailer.delay.we_blogged_this(e.id) if e.user.email.present?
     end
   end
 end

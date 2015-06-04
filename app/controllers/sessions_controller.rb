@@ -15,9 +15,8 @@ class SessionsController < Devise::SessionsController
     scope = Devise::Mapping.find_scope!(resource_or_scope)
     resource ||= resource_or_scope
     sign_in(scope, resource) unless warden.user(scope) == resource
-    sign_out_link = view_context
-      .link_to 'Sign out', destroy_user_session_path, method: :delete
-
+    sign_out_link = view_context.link_to(
+      'Sign out', destroy_user_session_path, method: :delete)
     render json: {
       success: true,
       greeting: "Hey #{resource.first_name}! Welcome back! #{sign_out_link}",

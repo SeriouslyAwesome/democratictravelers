@@ -20,7 +20,7 @@ feature 'Admin area', js: true, vcr: true, record: :new_episodes do
     fill_in 'admin-location-search', with: 'Las Vegas, Nevada'
     sleep 1
     within('.pac-container') { first('.pac-item').click }
-    sleep 2
+    sleep 6
 
     click_button 'Set'
     sleep 1

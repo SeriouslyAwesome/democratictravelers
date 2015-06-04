@@ -52,12 +52,11 @@ class User < ActiveRecord::Base
   # CLASS METHODS
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.email = auth.info.email
-      user.username = auth.info.nickname
-      user.name = auth.info.name
-      user.location = auth.info.location
+      user.assign_attributes(
+        provider: auth.provider, uid: auth.uid, email: auth.info.email,
+        username: auth.info.nickname, name: auth.info.name,
+        location: auth.info.location
+      )
     end
   end
 
@@ -119,7 +118,7 @@ class User < ActiveRecord::Base
   def generate_auth_token
     loop do
       token = Devise.friendly_token
-      break token unless User.where(authentication_token: token).first
+      break token unless User.find_by(authentication_token: token)
     end
   end
 end

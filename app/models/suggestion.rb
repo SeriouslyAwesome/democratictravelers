@@ -25,30 +25,36 @@ class Suggestion
 
   # INSTANCE METHODS
   def submit
-    if valid?
-      find_or_create_location
-      @experience = @location.experiences.create!(
-        name: experience_name,
-        description: description,
-        user_id: user_id
-      )
-      @location.save!
-      SuggestionMailer.delay.new_suggestion(@experience.id)
-    end
+    return false unless valid?
+    find_state
+    find_or_create_location
+    create_experience
+    @location.save!
+    SuggestionMailer.delay.new_suggestion(@experience.id)
   end
 
   private
 
+  def create_experience
+    @experience = @location.experiences.create!(
+      name: experience_name,
+      description: description,
+      user_id: user_id
+    )
+  end
+
   def find_or_create_location
-    @state = State.find_by(abbr: state) || State.find_by(name: state)
     @location = Location.find_or_initialize_by(
       name: location_name, lat: latitude, long: longitude
     )
-    @location.address = address
-    @location.city = city
-    @location.state_id = @state.id
-    @location.zip = zip
-    @location.formatted_address = formatted_address
+    @location.assign_attributes(
+      address: address, city: city, state_id: @state.id, zip: zip,
+      formatted_address: formatted_address
+    )
     @location.save!
+  end
+
+  def find_state
+    @state = State.find_by(abbr: state) || State.find_by(name: state)
   end
 end

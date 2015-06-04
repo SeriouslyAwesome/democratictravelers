@@ -3,7 +3,7 @@ class API::V1::LocationsController < ApplicationController
 
   def index
     @locations = Location.includes(:experiences)
-      .where('experiences_count > ?', 0).all
+                 .where('experiences_count > ?', 0).all
     @experiences = Experience.all
   end
 

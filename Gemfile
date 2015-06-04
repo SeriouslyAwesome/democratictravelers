@@ -34,7 +34,7 @@ gem 'redcarpet'
 gem 'rolify'
 gem 'sass-rails'
 gem 'sidekiq'
-gem 'sinatra', '>= 1.3.0', :require => nil
+gem 'sinatra', '>= 1.3.0', require: nil
 gem 'socialization'
 gem 'uglifier'
 gem 'unicorn'
@@ -83,5 +83,6 @@ group :development, :test do
 end
 
 group :test do
+  gem 'shoulda-matchers'
   gem 'webmock'
 end

@@ -1,12 +1,35 @@
 AllCops:
+  RunRailsCops: true
+  Include:
+    - '**/Gemfile'
+    - '**/Rakefile'
   Exclude:
-    - db/**/*.rb
-    - script/*
-    - bin/*
-    - heroku_import.thor
+   - 'bin/*'
+   - 'db/seeds.rb'
+   - 'db/schema.rb'
+   - 'vendor/bundle/**/*'
+   - 'db/migrate/*'
+   - 'config/initializers/*'
+   - 'spec/**/*'
+   - 'config/**/*'
+   - 'script/*'
+   - heroku_import.thor
+   - Gemfile
 
 Documentation:
   Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: single_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
 
 ClassAndModuleChildren:
   Enabled: false

@@ -20,20 +20,20 @@ class HomeController < ApplicationController
   end
 
   def sitemap
-    p = Post.published.first
-    e = Experience.order('created_at DESC').first
+    fetch_latest_objects
 
-    @pages = [home_xml, map_xml(e), blog_xml(p), about_xml(p)]
-    @pages += posts_xml
-    @pages += experiences_xml
-    @pages += users_xml
+    @pages = [home_xml, map_xml(@experience), blog_xml(@post), about_xml(@post)]
+    @pages += posts_xml + experiences_xml + users_xml
 
-    respond_to do |format|
-      format.xml
-    end
+    respond_to { |format| format.xml }
   end
 
   private
+
+  def fetch_latest_objects
+    @post = Post.published.first
+    @experience = Experience.order('created_at DESC').first
+  end
 
   def home_xml
     {
