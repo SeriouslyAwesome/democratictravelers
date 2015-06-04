@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 feature 'Admin area', js: true, vcr: true, record: :new_episodes do
+  let!(:current) { create(:location, current: true) }
   let!(:state) { create(:state, name: 'Nevada', abbr: 'NV') }
 
   before do
@@ -19,11 +20,11 @@ feature 'Admin area', js: true, vcr: true, record: :new_episodes do
     fill_in 'admin-location-search', with: 'Las Vegas, Nevada'
     sleep 1
     within('.pac-container') { first('.pac-item').click }
-    sleep 1
+    sleep 2
 
     click_button 'Set'
     sleep 1
-    expect(Location.last.current).to eq(true)
+    expect(Location.order('updated_at DESC').first.current).to eq(true)
   end
 end
 

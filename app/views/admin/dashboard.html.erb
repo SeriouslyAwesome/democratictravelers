@@ -6,8 +6,8 @@
   <h2 class="structural">
     What up, <%= current_user.first_name %>
     <small>
-      <% if Location.current %>
-        You are currently in <%= Location.current.city %>, <%= Location.current.state.abbr %>
+      <% if @current %>
+        You are currently in <%= @current.city %>, <%= @current.state.abbr %>
       <% else %>
         WTF, bro? You don't have a current location.
       <% end %>
@@ -41,21 +41,21 @@
 <div class="row">
   <div id="admin-suggestions">
     <h3 class="structural">Suggestions</h3>
-    <% if Experience.closest.any? %>
+    <% if @closest.any? %>
       <table>
         <colgroup>
            <col span="1" style="width: 80%;">
            <col span="1" style="width: 10%;">
            <col span="1" style="width: 10%;">
         </colgroup>
-        <% for exp in Experience.closest.limit(30) %>
+        <% @closest.each do |exp| %>
           <%= content_tag_for :tr, exp do %>
             <td>
               <h5>
-                <%= exp.name %><br>
+                <%= pluralize exp.votes_cache, 'Vote' %><br><%= exp.name %><br>
                 <small>
                   at <%= exp.venue %> in <%= exp.city %>, <%= exp.state.abbr %><br>
-                  (<%= exp.distance %> miles away)
+                  (<%= exp.distance.to_i %> miles away)
                 </small>
               </h5>
 
@@ -78,13 +78,13 @@
   <div id="admin-users">
     <h3 class="structural">Users</h3>
 
-    <% if User.registered.any? %>
+    <% if @users.any? %>
       <table>
         <colgroup>
            <col span="1" style="width: 80%;">
            <col span="1" style="width: 10%;">
         </colgroup>
-        <% for user in User.registered.limit(50) %>
+        <% @users.each do |user| %>
           <tr>
             <td>
               <h5>
