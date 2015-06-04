@@ -1,8 +1,9 @@
 class Post < ActiveRecord::Base
   # SCOPES
-  scope :published,
-        -> { where('published_at < ? AND published = ?', Time.now, true)
-              .order('published_at DESC') }
+  scope :published, lambda {
+    where('published_at < ? AND published = ?', Time.zone.now, true)
+      .order('published_at DESC')
+  }
 
   # ASSOCIATIONS
   belongs_to :user
@@ -32,11 +33,11 @@ class Post < ActiveRecord::Base
 
   # INSTANCE METHODS
   def published?
-    if published_at > Time.now
+    if published_at > Time.zone.now
       false
     elsif published == false
       false
-    elsif published == true && published_at <= Time.now
+    elsif published == true && published_at <= Time.zone.now
       true
     end
   end
@@ -50,11 +51,17 @@ class Post < ActiveRecord::Base
   end
 
   def cover(size = nil)
-    if assets.any? && assets.cover.first.present?
+    if cover_asset_present?
       asset = assets.cover.first.asset || assets.first.asset
       size ? asset.url(size) : asset.url
     else
       ActionController::Base.helpers.asset_path 'missing-image.gif'
     end
+  end
+
+  private
+
+  def cover_asset_present?
+    assets.any? && assets.cover.first.present?
   end
 end

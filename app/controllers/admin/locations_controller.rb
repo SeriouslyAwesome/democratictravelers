@@ -4,13 +4,13 @@ class Admin::LocationsController < AdminController
   def create
     address = params[:location][:formatted_address]
     @location = Location.where(formatted_address: address)
-      .first_or_initialize(location_params)
+                .first_or_initialize(location_params)
     @location.state = find_state
-    if @location.save!
-      reset_non_current_locations(@location)
-      ExperiencesWorker.perform_async(@location.id)
-      render json: { success: true }
-    end
+
+    return false unless @location.save!
+    reset_non_current_locations(@location)
+    ExperiencesWorker.perform_async(@location.id)
+    render json: { success: true }
   end
 
   private

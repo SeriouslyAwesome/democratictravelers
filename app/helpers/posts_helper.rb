@@ -1,13 +1,16 @@
 module PostsHelper
   def hero_image_tag_for(post)
     content_tag :div, class: 'post-hero' do
-      html = ''
-      if post.assets.any? && post.assets.cover.any?
-        html << image_tag(post.assets.cover.first.asset.url)
-      end
-      html << content_tag(:div, nil, class: 'hero-chevron')
-      raw(html)
+      raw(hero_image_html_for(post))
     end
+  end
+
+  def hero_image_html_for(post)
+    html = ''
+    if post.assets.any? && post.assets.cover.any?
+      html << image_tag(post.assets.cover.first.asset.url)
+    end
+    html << content_tag(:div, nil, class: 'hero-chevron')
   end
 
   def title_tag_for(post)

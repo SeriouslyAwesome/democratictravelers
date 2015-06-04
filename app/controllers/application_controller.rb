@@ -69,12 +69,19 @@ class ApplicationController < ActionController::Base
   private
 
   def convert_user
+    convert_experiences
+    convert_votes
+  end
+
+  def convert_experiences
     experiences = guest_user.experiences.all
     experiences.each do |exp|
       exp.user_id = current_user.id
       exp.save!
     end
+  end
 
+  def convert_votes
     evals = ReputationSystem::Evaluation.where(source_id: guest_user.id).all
     evals.each do |e|
       e.source_id = current_user.id
@@ -83,7 +90,7 @@ class ApplicationController < ActionController::Base
   end
 
   def create_guest_user
-    email = "guest_#{Time.now.to_i}#{rand(99)}@thedemocratictravelers.com"
+    email = "guest_#{Time.zone.now.to_i}#{rand(99)}@thedemocratictravelers.com"
     user = User.create(name: 'Anonymous', email: email, guest: true)
     user.save!(validate: false)
     session[:guest_user_id] = user.id

@@ -1,8 +1,10 @@
 class Experience < ActiveRecord::Base
   # SCOPES
   default_scope { includes(:user, location: :state) }
-  scope :full_list, -> { includes(:evaluations, location: :state)
-                           .order('experiences.created_at DESC') }
+  scope :full_list, lambda {
+    includes(:evaluations, location: :state)
+      .order('experiences.created_at DESC')
+  }
   scope :popular, -> { includes(:posts).order('votes_cache DESC') }
   scope :recent, -> { includes(:posts).order('experience.created_at DESC') }
   scope :closest, -> { order('distance ASC') }
@@ -83,7 +85,7 @@ class Experience < ActiveRecord::Base
   private
 
   def check_vote_status(user, value)
-    evaluation = evaluations.select { |e| e.source_id == user.id }.first
+    evaluation = evaluations.find { |e| e.source_id == user.id }
     evaluation && evaluation.value == value ? true : false
   end
 end

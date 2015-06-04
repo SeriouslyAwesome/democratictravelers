@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  validates_presence_of :name
+  validates :name, presence: true
 
   def should_generate_new_friendly_id?
     new_record?
