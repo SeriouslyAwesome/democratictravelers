@@ -8,7 +8,7 @@
     @include outer-container;
     text-align: center;
     @include clearfix;
-    padding: ($baseline * 1.5) $baseline;
+    padding: $baseline * 0.5;
 
     #footer-social-links {
       font-size: 1.5em;
@@ -19,7 +19,7 @@
         float: right;
       }
 
-      li { 
+      li {
         display: inline-block;
 
         a {
@@ -37,7 +37,7 @@
       @include media($tablet) {
         float: left;
       }
-      a { 
+      a {
         color: $medium-gray;
         &:hover, &:focus { color: $white; }
       }

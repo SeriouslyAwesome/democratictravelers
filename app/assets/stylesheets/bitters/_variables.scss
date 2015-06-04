@@ -1,9 +1,9 @@
 // Typography
 ///////////////////////////////////////////////////////////////////////////////
-$sans-serif: "museo-sans-rounded", $helvetica;
-$serif: "adelle", $georgia;
+$sans-serif: "proxima-nova", $helvetica;
+$serif: "jubilat", $georgia;
 
-$base-font-family: $serif;
+$base-font-family: $sans-serif;
 $header-font-family: $serif;
 
 // Sizes
@@ -17,6 +17,7 @@ $baseline: $base-line-height;
 // Media Query Breakpoints
 ///////////////////////////////////////////////////////////////////////////////
 $tablet: 769px;
+$desktop: 1280px;
 
 // Colors
 ///////////////////////////////////////////////////////////////////////////////

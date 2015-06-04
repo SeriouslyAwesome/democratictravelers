@@ -1,6 +1,6 @@
 jQuery ->
   if $('#instagrams').length
-    fetchInstagrams(6)
+    fetchInstagrams(8)
 
 fetchInstagrams = (limit) ->
 
@@ -44,15 +44,14 @@ fetchInstagrams = (limit) ->
       $.each joinedFeeds, (i, obj) ->
         caption = ''
         caption = obj.caption.text if obj.caption
-        thumbnails += "<a href='#{obj.link}' class='social' alt='View on Instagram' target='_blank'><img src='#{obj.images.low_resolution.url}' title='#{caption}' style='display:none;'></a>"
+        thumbnails += "<a href='#{obj.link}' class='social instagram' style='background-image: url(#{obj.images.standard_resolution.url});' target='_blank'>#{caption}</a>"
 
       # Append the HTML string to the document
       $("#instagrams").html(thumbnails)
 
       # Wait for each one to load and then fade it in.
-      $("#instagrams img").each ->
-        $(this).load ->
-          $(this).fadeIn('fast');
+      $("#instagrams a").each ->
+        $(this).fadeIn('fast');
 
   #Start the whole process.
   johnsFeed.run()

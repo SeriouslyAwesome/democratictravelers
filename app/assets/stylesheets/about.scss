@@ -64,16 +64,18 @@ body.about {
   }
 
   #pets {
+    clear: both;
+
     div {
       h4 {
         margin-top: $baseline;
         margin-bottom: $baseline * 0.5;
       }
       @include media($tablet) {
+        position: relative;
         float: left;
         width: 33.3333333333%;
         margin: 0;
-        position: relative;
 
         img {
           margin: 0;
@@ -143,10 +145,10 @@ body.about {
     #rig-specs {
       background: #eee;
       padding: $baseline;
-      
+
       @include media($tablet) {
         width: 33.3333333333%;
-        
+
         text-align: left;
       }
     }
@@ -154,7 +156,7 @@ body.about {
 
   #press {
     @extend .row;
-    
+
     #press-logos { display: inline-block; }
 
     #natgeo-text {

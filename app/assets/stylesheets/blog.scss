@@ -6,19 +6,28 @@
 @import "blog/home";
 
 #instagrams {
+  position: relative;
   width: 100%;
-  height: 20%;
   padding: 0;
   background: image-url('loading.gif') no-repeat center center;
   line-height: 0;
 
-  a {
+  a.social.instagram {
     display: inline-block;
     width: 25%;
+    min-height: $baseline * 2.5;
+    height: 25%;
+    background: none no-repeat center center;
+    background-size: cover;
+    text-indent: -99999px;
     img { width: 100%; }
   }
 }
 
-body.home.index #instagrams {
-  background-image: image-url('loading-dark.gif');
+body.categories,
+body.posts {
+  #instagrams {
+    height: 20%;
+    min-height: $baseline * 10;
+  }
 }

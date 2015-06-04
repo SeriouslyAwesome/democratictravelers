@@ -17,8 +17,8 @@
     <%= stylesheet_link_tag :application, media: 'all' %>
 
     <% unless Rails.env.test? %>
-      <script type="text/javascript" src="//use.typekit.net/lbm4dbw.js"></script>
-      <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+      <script src="//use.typekit.net/mry3baf.js"></script>
+      <script>try{Typekit.load();}catch(e){}</script>
     <% end %>
 
     <%= yield :head %>
@@ -31,10 +31,10 @@
 
         <button id= "toggle-menu"><%= icon 'navicon', class: 'fa-fw' %></button>
         <ul>
-          <li><%= link_to 'Map', map_path, class: ('active' if controller.action_name == 'map') %></li>
+          <li><%= link_to 'Home', root_path %></li>
           <li><%= link_to 'Blog', blog_path, class: ('active' if ['posts', 'categories'].include? controller.controller_name) %></li>
           <li><%= link_to 'About', about_path, class: ('active' if controller.action_name == 'about') %></li>
-          <li><%= link_to 'Shop', 'http://www.society6.com/democratictravelers', target: '_blank', class: 'navbar-shop-link' %></li>
+          <li><%= link_to 'Map', map_path, class: ('active' if controller.action_name == 'map') %></li>
 
           <% if user_signed_in? %>
             <li class="sign-out"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>

@@ -6,91 +6,27 @@
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=true&amp;libraries=places"></script>
 <% end %>
 
-<% cache @post do %>
-  <div class="post-hero">
-    <h2 id="home-logo">
-      <%= image_tag 'home-logo.png', alt: 'The Democratic Travelers' %><br>
-      <small>An Airstream adventure with<br class="responsive">a crowdsourced itinerary</small>
-    </h2>
-    <%= image_tag 'hero-home-new.jpg', class: 'hero-image' %>
-    <div class="hero-chevron"></div>
-  </div>
+<% if @current && @post %>
+  <div id="home-content">
+    <%= content_tag :div, nil, id: 'home-map-object', data: {
+          'current-latitude' => @current.lat,
+          'current-longitude' => @current.long,
+          'current-city' => @current.city,
+          'current-state' => @current.state.abbr } %>
 
-  <section id="home-summary" class="row">
-    <div id="home-intro">
-      <p>For <%= traveling_for %> we've been traveling around the United States, making stops based on suggestions on our map from our friends, family, and followers, making our itinerary a democratic one. <%= link_to raw('Learn More &raquo;'), about_path %></p>
-    </div>
+    <div id="blog-excerpt" style="background-image:url(<%= @post.cover %>)">
+      <div>
+        <h3>
+          On The Blog:<br><%= @post.title %>
+          <small><%= @post.subtitle %></small>
+        </h3>
 
-    <% if @current.present? %>
-      <% cache @current do %>
-        <div id="home-map-wrap">
-          <%= image_tag 'home-map-circle.png' %>
-
-          <%= content_tag :div, nil, id: 'home-map-object', data: {
-            'current-latitude' => @current.lat,
-            'current-longitude' => @current.long } %>
-        </div>
-
-        <div id="home-current-location">
-          <h3>
-            Current Location:<br>
-            <small><%= "#{@current.city}, #{@current.state.name}" %></small>
-          </h3>
-
-          <p><%= link_to 'View the Map', map_path, class: 'home-map-link' %></p>
-        </div>
-      <% end %>
-    <% end %>
-  </section>
-
-  <% if @post %>
-    <section class="row">
-        <!-- QUICK TRIP -->
-        <div id="quicktrip">
-          <h2 class="category-heading">From the Blog</h2>
-
-          <%= link_to @post, class: 'quicktrip-image' do %>
-            <%= image_tag 'transparent.gif', style: "background-image: url(#{@post.cover(:big)}); width: 100%; height: 100%;" %>
-          <% end %>
-
-          <div>
-            <h3>
-              <%= link_to @post do %>
-                <%= @post.title %> <small><%= @post.subtitle %></small>
-              <% end %>
-            </h3>
-
-            <p class="post-meta">
-              <%= @post.published_date %> by <%= @post.author %>
-            </p>
-
-            <%= markdown @post.excerpt %>
-
-            <p>
-              <%= link_to @post, class: 'read-more' do %>
-                Read this Post &raquo;
-              <% end %>
-
-              <%= link_to blog_path, class: 'read-blog' do %>
-                Visit the Blog &raquo;
-              <% end %>
-            </p>
-          </div>
-        </div>
-
-      <!-- VISUAL DIARY -->
-      <div id="visual-diary">
-        <h2 class="category-heading">Visual Diary</h2>
-        <%= render 'shared/instagram' %>
+        <p class="post-meta"><%= @post.published_date %> by <%= @post.author %></p>
       </div>
-    </section>
-  <% end %>
 
-  <section id="home-quote" class="row">
-    <blockquote>
-      <h2>A journey is like marriage. The certain way to be wrong is to think you control it.</h2>
-      <footer>- John Steinbeck, Travels with Charley: In Search of America</footer>
-    </blockquote>
-  </section>
-
+      <p><%= link_to raw('Read the Blog &raquo;'), blog_path, class: 'read-more' %></p>
+    </div>
+  </div>
 <% end %>
+
+<div id="instagrams"></div>

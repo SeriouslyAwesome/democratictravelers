@@ -22,13 +22,13 @@
 
     @include media($tablet) {
       @include outer-container;
-      padding: $baseline;
-      height: $baseline * 4;
+      // padding: $baseline;
+      // height: $baseline * 4;
       ul {
         display: block !important;
       }
     }
-    
+
     h1 {
       background: image-url('dt-logo-wide.png') no-repeat center center;
       @include background-size(contain);
@@ -38,7 +38,7 @@
       position: relative;
       width: 350px;
       height: $baseline * 2;
-      
+
       a {
         display: block;
         position: absolute;
@@ -47,7 +47,7 @@
         top: 0; right: 0; bottom: 0; left: 0;
         text-indent: -9999px;
       }
-      
+
       @include media($tablet) {
         float: left;
         width: 350px;
@@ -100,7 +100,7 @@
         color: $white;
         padding: 0 $baseline * 0.25;
         text-shadow: 1px 0 2px rgba($black, 0.75);
-        
+
         &:hover, &:focus {
           color: $yellow;
         }
@@ -109,6 +109,15 @@
           line-height: $baseline * 2;
         }
       }
+    }
+  }
+}
+
+body.home.index {
+  #site-header {
+    @include media($tablet) {
+      background-color: $black;
+      @include background-image(linear-gradient(rgba($black, 0.8) 0, transparent 100%));
     }
   }
 }

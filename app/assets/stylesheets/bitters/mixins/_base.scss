@@ -28,12 +28,19 @@
   @include border-bottom-radius(5px);
   @include border-left-radius(5px);
   @include border-right-radius(5px);
-  
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.25);
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.25);
+  @include transition(all 0.1s ease-in-out);
+
   &:hover, &:focus {
     color: $white;
-    background-color: darken($color, 15%);
+    background-color: darken($color, 5%);
   }
-  
+
+  &:active {
+    box-shadow: 1px 1px 0px rgba(0,0,0,0.6);
+  }
+
   &:disabled {
     background-color: $color;
     opacity: 0.5;
