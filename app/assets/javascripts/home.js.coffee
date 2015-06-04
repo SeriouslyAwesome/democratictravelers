@@ -27,7 +27,7 @@ jQuery ->
     currentMarker.addTo(map)
 
     # Bind popup to marker
-    popupContent = "<h5><small>Current Location:</small><br>#{currentCity}, #{currentState}</h5>"
+    popupContent = "<h5><small>Current Location:</small><br>#{currentCity}, #{currentState}</h5><p><a href=\"/map\">View the Map »</a></p>"
 
     currentMarker.bindPopup popupContent, { offset: [0,-36], closeOnClick: false }
     currentMarker.openPopup()

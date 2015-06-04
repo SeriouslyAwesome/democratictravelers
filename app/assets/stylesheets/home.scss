@@ -20,17 +20,31 @@ body.home.index {
     }
 
     .leaflet-popup {
-      position: relative;
+      // position: fixed;
       background: white;
       padding: 1em;
       z-index: -100 !important;
-      margin-top: -4.75em;
+      margin-top: -(rem(104/2));
+      margin-left: 2em;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: -0.5em;
+        top: 50%;
+        margin-top: -0.55em;
+        @include triangle(1em, white, left);
+      }
 
       .leaflet-popup-close-button { display: none; }
       .leaflet-popup-content { padding-top: 0 !important; }
-      h5 {
+      h5, p {
         line-height: 1;
         margin-bottom: 0.5rem;
+      }
+
+      p a {
+        // @include
       }
     }
 
