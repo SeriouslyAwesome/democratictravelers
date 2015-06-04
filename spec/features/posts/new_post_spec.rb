@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 feature 'New blog post' do
+  let!(:current) { create(:location, current: true) }
   let!(:experience) { create(:experience, done: true) }
 
   before do

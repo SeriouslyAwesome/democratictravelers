@@ -2,7 +2,7 @@
 [![Code Climate](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers/badges/gpa.svg)](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers)
 [![Test Coverage](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers/badges/coverage.svg)](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers)
 
-#The Democratic Travelers v4.1
+#The Democratic Travelers v4.5
 
 This is the official code repository for [TheDemocraticTravelers.com](http://www.thedemocratictravelers.com), a travel blog where visitors submit their suggestions of places/events for John and Laura to visit (and for [Shane](https://github.com/shiftshane) to visit them while they're visiting things), and others vote on the suggestions.
 

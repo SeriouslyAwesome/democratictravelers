@@ -2,6 +2,8 @@ jQuery ->
   if $('#home-map-object').length
     currentLat = $('#home-map-object').data('current-latitude')
     currentLong = $('#home-map-object').data('current-longitude')
+    currentCity = $('#home-map-object').data('current-city')
+    currentState = $('#home-map-object').data('current-state')
     currentCoords = [currentLat, currentLong]
     map = L.mapbox.map 'home-map-object', 'seriouslyawesome.i675cgi9',
       center: currentCoords
@@ -13,7 +15,7 @@ jQuery ->
       dragging: false
       zoomControl: false
       attributionControl: false
-      
+
     currentMarker = L.marker currentCoords,
       title: 'Current Location'
       icon: L.divIcon
@@ -23,3 +25,9 @@ jQuery ->
         iconAnchor: [20,46]
 
     currentMarker.addTo(map)
+
+    # Bind popup to marker
+    popupContent = "<h5><small>Current Location:</small><br>#{currentCity}, #{currentState}</h5>"
+
+    currentMarker.bindPopup popupContent, { offset: [0,-36], closeOnClick: false }
+    currentMarker.openPopup()

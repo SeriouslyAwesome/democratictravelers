@@ -48,16 +48,16 @@ body {
 
 #site-content {
   min-height: 100%;
-  margin-top: -($baseline * 3);
-  padding-top: $baseline * 3;
-  margin-bottom: -($baseline * 6);
-  padding-bottom: $baseline * 6;
+  // // margin-top: -($baseline * 2);
+  // padding-top: $baseline * 2;
+  margin-bottom: -($baseline * 4);
+  padding-bottom: $baseline * 4;
 
   @include media($tablet) {
-    margin-top: -($baseline * 4);
-    padding-top: $baseline * 4;
-    margin-bottom: -($baseline * 4);
-    padding-bottom: $baseline * 4;
+    // margin-top: 0;
+    // padding-top: $baseline * 5;
+    margin-bottom: -($baseline * 2);
+    padding-bottom: $baseline * 2;
   }
 }
 
