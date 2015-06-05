@@ -31,9 +31,15 @@ describe 'Locations API' do
   end
 
   describe 'GET /v1/locations/current' do
-    it 'returns the current Location' do
-      create(:location, name: 'Homebase', current: true)
+    before { create(:location, name: 'Homebase', current: true) }
 
+    it 'does not require authentication' do
+      get current_api_v1_locations_url, nil
+
+      expect(json['success']).to eq true
+    end
+
+    it 'returns the current Location' do
       get current_api_v1_locations_url, nil, authentication_headers(user)
 
       expect(json['locations'][0]['properties']['name']).to eq('Homebase')
