@@ -6,8 +6,10 @@ run DemocraticTravelers::Application
 require 'rack/cors'
 use Rack::Cors do
   allow do
-    origins 'iamjohnellis.com', 'iamjohnellis.dev',
-            'www.thedemocratictravelers.com'
+    origins 'iamjohnellis.dev', 'www.iamjohnellis.dev',
+            'iamjohnellis.com', 'www.iamjohnellis.dev',
+            'democratictravelers.dev', 'www.democratictravelers.dev',
+            'thedemocratictravelers.com', 'www.thedemocratictravelers.com'
     resource '*',
       headers: :any,
       methods: [:get, :post, :delete, :put, :options]
