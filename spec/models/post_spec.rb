@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id           :integer          not null, primary key
+#  title        :string(255)      not null
+#  user_id      :integer          default(1), not null
+#  body         :text
+#  subtitle     :string(255)
+#  published_at :datetime
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  slug         :string(255)      not null
+#  excerpt      :text
+#  published    :boolean          default(FALSE), not null
+#
+
 require 'rails_helper'
 
 describe Post do

@@ -1,9 +1,11 @@
 source 'https://rubygems.org'
 ruby '2.2.2'
 
+gem 'active_model_serializers'
 gem 'activerecord-reputation-system', '~> 2.0',
   git: 'git://github.com/NARKOZ/activerecord-reputation-system.git',
   branch: 'rails4'
+gem 'annotate'
 gem 'bitters'
 gem 'bourbon'
 gem 'carrierwave'
@@ -83,6 +85,5 @@ group :development, :test do
 end
 
 group :test do
-  gem 'shoulda-matchers'
   gem 'webmock'
 end
