@@ -26,6 +26,7 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
+  config.filter_run focus: true
   config.run_all_when_everything_filtered = true
 
   config.include AbstractController::Translation

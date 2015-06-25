@@ -27,4 +27,3 @@ feature 'Admin area', js: true, vcr: true, record: :new_episodes do
     expect(Location.order('updated_at DESC').first.current).to eq(true)
   end
 end
-
