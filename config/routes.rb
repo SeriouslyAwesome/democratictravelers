@@ -79,4 +79,9 @@ DemocraticTravelers::Application.routes.draw do
   # Errors
   get '/404', to: 'errors#error_404'
   get '/500', to: 'errors#error_500'
+
+  # Anything else gets 404'd (in production)
+  unless Rails.application.config.consider_all_requests_local
+    get '*not_found', to: 'errors#error_404'
+  end
 end
