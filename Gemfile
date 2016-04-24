@@ -28,6 +28,7 @@ gem 'nested_form'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'pg'
+gem 'postmark-rails'
 gem 'rack-cors', require: 'rack/cors' # For cross-domain Ajax requests
 gem 'rails', '~>4.2'
 gem 'redcarpet'
