@@ -1,6 +1,6 @@
 [![Circle CI](https://circleci.com/gh/SeriouslyAwesome/democratictravelers/tree/v5.svg?style=svg)](https://circleci.com/gh/SeriouslyAwesome/democratictravelers/tree/v5)
-[![Code Climate](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers/badges/gpa.svg)](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers)
-[![Test Coverage](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers/badges/coverage.svg)](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers)
+[![Maintainability](https://api.codeclimate.com/v1/badges/1978cf68ea48a91649ac/maintainability)](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1978cf68ea48a91649ac/test_coverage)](https://codeclimate.com/github/SeriouslyAwesome/democratictravelers/test_coverage)
 
 # The Democratic Travelers v4.5
 
