@@ -2,4 +2,7 @@ languages:
   Ruby: true
   JavaScript: true
 exclude_paths:
-  - heroku_import.thor
+  - config/
+  - db/
+  - **/spec/
+  - **/vendor/
