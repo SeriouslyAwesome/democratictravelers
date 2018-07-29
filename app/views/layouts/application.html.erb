@@ -33,7 +33,6 @@
         <ul>
           <li><%= link_to 'Home', root_path %></li>
           <li><%= link_to 'Blog', blog_path, class: ('active' if ['posts', 'categories'].include? controller.controller_name) %></li>
-          <li><%= link_to 'About', about_path, class: ('active' if controller.action_name == 'about') %></li>
           <li><%= link_to 'Map', map_path, class: ('active' if controller.action_name == 'map') %></li>
 
           <% if user_signed_in? %>

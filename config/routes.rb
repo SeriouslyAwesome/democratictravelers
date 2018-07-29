@@ -74,7 +74,7 @@ DemocraticTravelers::Application.routes.draw do
   get '/about', to: 'home#about'
   get '/colophon', to: 'home#colophon'
   get '/sitemap', to: 'home#sitemap'
-  root to: 'home#index'
+  root to: 'home#about'
 
   # Errors
   get '/404', to: 'errors#error_404'
