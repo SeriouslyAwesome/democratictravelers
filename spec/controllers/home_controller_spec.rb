@@ -5,13 +5,6 @@ describe HomeController do
 
   let!(:current) { create(:location, current: true) }
 
-  describe 'GET #index' do
-    it 'renders home/index template' do
-      get :index
-      expect(response).to render_template('home/index')
-    end
-  end
-
   describe 'GET #map' do
     it 'renders the home/map template' do
       get :map
