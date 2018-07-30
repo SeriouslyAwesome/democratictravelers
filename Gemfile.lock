@@ -496,5 +496,8 @@ DEPENDENCIES
   yajl-ruby
   yui-compressor
 
+RUBY VERSION
+   ruby 2.2.7p470
+
 BUNDLED WITH
-   1.10.2
+   1.16.0

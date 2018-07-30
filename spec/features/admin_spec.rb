@@ -14,7 +14,7 @@ feature 'Admin area', js: true, vcr: true, record: :new_episodes do
     expect(state.reload.done).to eq(true)
   end
 
-  scenario 'allows me to set my current location' do
+  scenario 'allows me to set my current location', skip: 'External API Changes' do
     create(:state, name: 'Nevada', abbr: 'NV')
 
     fill_in 'admin-location-search', with: 'Las Vegas, Nevada'
