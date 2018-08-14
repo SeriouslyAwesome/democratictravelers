@@ -1,0 +1,94 @@
+version: 2
+jobs:
+  build:
+    parallelism: 1
+    working_directory: ~/democratictravelers
+    docker:
+      - image: circleci/ruby:2.2-node
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          PGHOST: 127.0.0.1
+          PGUSER: democratictravelers
+          RAILS_ENV: test
+      - image: circleci/postgres:9.5-alpine
+        environment:
+          POSTGRES_USER: democratictravelers
+          POSTGRES_DB: democratictravelers_test
+          POSTGRES_PASSWORD: ""
+    steps:
+      - checkout
+
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - democratictravelers-bundle-v2-{{ checksum "Gemfile.lock" }}
+            - democratictravelers-bundle-v2-
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      - run:
+          name:  Download cc-test-reporter
+          command: |
+            mkdir -p tmp/
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
+            chmod +x ./tmp/cc-test-reporter
+
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - cc-test-reporter
+
+      # Store bundle cache
+      - save_cache:
+          key: democratictravelers-bundle-v2-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # Only necessary if app uses webpacker or yarn in some other way
+      # - restore_cache:
+      #     keys:
+      #       - democratictravelers-yarn-{{ checksum "yarn.lock" }}
+      #       - democratictravelers-yarn-
+
+      # - run:
+      #     name: Yarn Install
+      #     command: yarn install --cache-folder ~/.cache/yarn
+      #
+      # # Store yarn / webpacker cache
+      # - save_cache:
+      #     key: democratictravelers-yarn-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.cache/yarn
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bundle exec rake db:schema:load --trace
+
+      # Run rspec in parallel
+      - run: ./tmp/cc-test-reporter before-build
+      - type: shell
+        command: |
+          bundle exec rspec --profile 10 \
+                            --format RspecJunitFormatter \
+                            --out test_results/rspec.xml \
+                            --format progress \
+                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+      - run: ./tmp/cc-test-reporter after-build --exit-code $?
+
+
+      # Save test results for timing analysis
+      - store_test_results:
+          path: test_results
