@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.7'
+ruby '2.2.10'
 
 gem 'activerecord-reputation-system', '~> 2.0',
   git: 'git://github.com/NARKOZ/activerecord-reputation-system.git',
