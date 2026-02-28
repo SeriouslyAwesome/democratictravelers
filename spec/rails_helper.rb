@@ -33,6 +33,10 @@ RSpec.configure do |config|
 
   OmniAuth.config.test_mode = true
 
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
   config.before(:each) do |example|
     OmniAuth.config.mock_auth[:twitter] = nil
     OmniAuth.config.mock_auth[:facebook] = nil
