@@ -1,4 +1,4 @@
-class CategoryConnection < ActiveRecord::Base
+class CategoryConnection < ApplicationRecord
   belongs_to :category
   belongs_to :connectable, polymorphic: true
 

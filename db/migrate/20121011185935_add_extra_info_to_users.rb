@@ -1,4 +1,4 @@
-class AddExtraInfoToUsers < ActiveRecord::Migration
+class AddExtraInfoToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :username, :string
 

@@ -7,7 +7,7 @@
     top: 0;
     width: 100%;
     background-color: transparent;
-    @include background-image(linear-gradient(rgba($black, 0.4) 0, transparent 100%));
+    background-image: linear-gradient(rgba($black, 0.4) 0, transparent 100%);
 
     &.opaque {
       position: relative;
@@ -117,7 +117,7 @@ body.home.index {
   #site-header {
     @include media($tablet) {
       background-color: $black;
-      @include background-image(linear-gradient(rgba($black, 0.8) 0, transparent 100%));
+      background-image: linear-gradient(rgba($black, 0.8) 0, transparent 100%);
     }
   }
 }
@@ -127,7 +127,7 @@ body.locations,
 body.users {
   #site-header {
     @include media($tablet) {
-      @include background-image(linear-gradient(rgba($black, 0.8) 0, transparent 100%));
+      background-image: linear-gradient(rgba($black, 0.8) 0, transparent 100%);
     }
   }
 }

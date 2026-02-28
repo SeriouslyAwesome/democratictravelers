@@ -1,5 +1,4 @@
-class ExperienceMailer < ActionMailer::Base
-  default from: 'yourstruly@thedemocratictravelers.com'
+class ExperienceMailer < ApplicationMailer
 
   def we_did_this(id)
     @experience = Experience.friendly.find(id)

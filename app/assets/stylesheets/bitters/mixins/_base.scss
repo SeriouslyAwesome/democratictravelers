@@ -30,7 +30,7 @@
   @include border-right-radius(5px);
   box-shadow: 2px 2px 0px rgba(0,0,0,0.25);
   text-shadow: 1px 1px 0px rgba(0,0,0,0.25);
-  @include transition(all 0.1s ease-in-out);
+  transition: all 0.1s ease-in-out;
 
   &:hover, &:focus {
     color: $white;

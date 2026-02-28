@@ -1,4 +1,4 @@
-class ChangeCommentAndAttachmentDefaultsOnPosts < ActiveRecord::Migration
+class ChangeCommentAndAttachmentDefaultsOnPosts < ActiveRecord::Migration[4.2]
   def self.up
     change_column_default :posts, :attachment_count, 0
     change_column_default :posts, :comment_count, 0

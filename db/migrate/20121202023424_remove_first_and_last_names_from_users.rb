@@ -1,4 +1,4 @@
-class RemoveFirstAndLastNamesFromUsers < ActiveRecord::Migration
+class RemoveFirstAndLastNamesFromUsers < ActiveRecord::Migration[4.2]
   def self.up
     remove_column :users, :first_name
     remove_column :users, :last_name

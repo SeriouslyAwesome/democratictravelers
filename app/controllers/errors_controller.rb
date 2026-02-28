@@ -4,7 +4,7 @@ class ErrorsController < ApplicationController
       format.html { render status: 404 }
     end
   rescue ActionController::UnknownFormat
-    render status: 404, text: 'Nope.'
+    render status: 404, plain: 'Nope.'
   end
 
   def error_500

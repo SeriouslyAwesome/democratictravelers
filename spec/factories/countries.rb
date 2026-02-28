@@ -1,6 +1,6 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :country do
-    name 'United States of America'
-    code 'US'
+    name { 'United States of America' }
+    code { 'US' }
   end
 end

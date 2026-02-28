@@ -30,7 +30,7 @@ class Suggestion
     find_or_create_location
     create_experience
     @location.save!
-    SuggestionMailer.delay.new_suggestion(@experience.id)
+    SuggestionMailer.new_suggestion(@experience.id).deliver_later
   end
 
   private

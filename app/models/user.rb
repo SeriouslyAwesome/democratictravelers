@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # SCOPES
   scope :registered, -> { where(guest: false).order('created_at DESC') }
   scope :guests, -> { where(guest: true) }
@@ -7,12 +7,13 @@ class User < ActiveRecord::Base
   # ASSOCIATIONS
   has_many :experiences, dependent: :destroy
   has_many :locations, through: :experiences
+  has_many :votes, dependent: :destroy
 
   # VALIDATIONS
   validates :name, presence: true
   validates :uuid, uniqueness: true
   validates :username, uniqueness: true,
-                       format: { with: /\A^[a-z0-9\-_]+$\z/i, multiline: true }
+                       format: { with: /\A[a-z0-9\-_]+\z/i }
 
   with_options unless: :from_social? do |u|
     u.validates :password, presence: true, length: { in: 4..100 }
@@ -31,9 +32,7 @@ class User < ActiveRecord::Base
   # MACROS
   rolify
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :omniauthable, :marketable
-  has_reputation :votes, source: { reputation: :votes, of: :experiences },
-                         aggregated_by: :sum
+         :trackable, :omniauthable
 
   # CALLBACK METHODS
   def generate_uuid
@@ -46,7 +45,12 @@ class User < ActiveRecord::Base
   end
 
   def subscribe
-    Gibbon::API.lists.subscribe id: '32d72a73df', email: { email: email }
+    gibbon = Gibbon::Request.new
+    gibbon.lists('32d72a73df').members.create(
+      body: { email_address: email, status: 'subscribed' }
+    )
+  rescue Gibbon::MailChimpError
+    # Silently fail if subscription fails
   end
 
   # CLASS METHODS
@@ -62,7 +66,7 @@ class User < ActiveRecord::Base
 
   def self.new_with_session(params, session)
     if session['devise.user_attributes']
-      new(session['devise.user_attributes'], without_protection: true) do |u|
+      new(session['devise.user_attributes']) do |u|
         u.attributes = params
         u.valid?
       end
@@ -86,7 +90,7 @@ class User < ActiveRecord::Base
 
   def update_with_password(params, *options)
     if encrypted_password.blank?
-      update_attributes(params, *options)
+      update(params)
     else
       super
     end
@@ -108,9 +112,9 @@ class User < ActiveRecord::Base
   end
 
   def voted_for?(experience)
-    evaluations.where(
-      target_type: experience.class,
-      target_id: experience.id).present?
+    votes.where(
+      votable_type: experience.class.name,
+      votable_id: experience.id).present?
   end
 
   private

@@ -32,7 +32,7 @@ body.home.index {
         left: -0.5em;
         top: 50%;
         margin-top: -0.55em;
-        @include triangle(1em, white, left);
+        @include triangle("left", 1em, 1em, white);
       }
 
       .leaflet-popup-close-button { display: none; }

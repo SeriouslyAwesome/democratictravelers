@@ -1,4 +1,4 @@
-class AddVotesCacheToLocations < ActiveRecord::Migration
+class AddVotesCacheToLocations < ActiveRecord::Migration[4.2]
   def change
     add_column :locations, :votes_cache, :integer, null: false, default: 0
     

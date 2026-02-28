@@ -51,7 +51,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update_attributes(post_params)
+    if @post.update(post_params)
       notify_contributors(@post) if params[:notify_contributors]
       flash[:notice] = 'Totally updated that bitch of a post.'
       redirect_to @post
@@ -68,10 +68,10 @@ class PostsController < ApplicationController
 
   def assign_post_variables
     if admin?
-      @posts = Post.order('published_at DESC').page(params[:page]).per_page(19)
+      @posts = Post.order('published_at DESC').page(params[:page]).per(19)
       @first = Post.first
     else
-      @posts = Post.published.page(params[:page]).per_page(19)
+      @posts = Post.published.page(params[:page]).per(19)
       @first = Post.published.first
     end
   end
@@ -99,7 +99,7 @@ class PostsController < ApplicationController
     return false unless post.experiences.any?
 
     post.experiences.each do |e|
-      ExperienceMailer.delay.we_blogged_this(e.id) if e.user.email.present?
+      ExperienceMailer.we_blogged_this(e.id).deliver_later if e.user.email.present?
     end
   end
 end

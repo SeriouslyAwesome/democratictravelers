@@ -53,9 +53,9 @@ body.admin.edit {
     input[type="text"], textarea {
       border: 0;
       padding: 0;
-      @include border-radius(0);
+      border-radius: 0;
       box-shadow: none;
-      @include placeholder {
+      &::placeholder {
         color: $light-gray;
       }
     }

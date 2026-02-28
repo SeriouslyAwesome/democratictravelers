@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @posts = @category.posts.published.page(params[:page]).per_page(9)
+    @posts = @category.posts.published.page(params[:page]).per(9)
     @latest = @posts.first
   end
 
@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(params[:category])
+    @category = Category.new(category_params)
 
     if @category.save
       flash[:notice] = 'Category was successfully created.'
@@ -33,7 +33,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    if @category.update_attributes(params[:category])
+    if @category.update(category_params)
       flash[:notice] = 'Category was successfully updated.'
       redirect_to(@category)
     else
@@ -46,6 +46,10 @@ class CategoriesController < ApplicationController
   end
 
   private
+
+  def category_params
+    params.require(:category).permit(:name, :description, :position)
+  end
 
   def find_category
     @category = Category.friendly.find(params[:id])

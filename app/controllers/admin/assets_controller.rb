@@ -11,7 +11,7 @@ class Admin::AssetsController < AdminController
 
   def toggle_cover
     @asset = Asset.find(params[:asset_id])
-    if @asset.update_attributes cover: (@asset.cover? ? false : true)
+    if @asset.update cover: (@asset.cover? ? false : true)
       render json: { success: true }
     else
       render json: { success: false }

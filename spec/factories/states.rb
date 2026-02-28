@@ -1,6 +1,6 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :state do
-    name 'Florida'
-    abbr 'FL'
+    name { 'Florida' }
+    abbr { 'FL' }
   end
 end

@@ -1,4 +1,4 @@
-class Location < ActiveRecord::Base
+class Location < ApplicationRecord
   # SCOPES
   default_scope { order('votes_cache DESC') }
   scope :done, -> { where(done: true) }
@@ -7,7 +7,7 @@ class Location < ActiveRecord::Base
   end)
 
   # ASSOCIATIONS
-  belongs_to :state
+  belongs_to :state, optional: true
   has_many :experiences
   has_many :users, through: :experiences
 
@@ -20,7 +20,7 @@ class Location < ActiveRecord::Base
   # CALLBACKS
   before_validation { self.country_id = 228 }
   before_save { self.experiences_count = experiences.count }
-  before_save { self.votes_cache = reputation_for(:votes) }
+  before_save { self.votes_cache = compute_votes }
 
   # ALIASES
   alias_attribute :venue, :name
@@ -28,8 +28,6 @@ class Location < ActiveRecord::Base
   # MACROS
   geocoded_by :formatted_address, latitude: :lat, longitude: :long
   reverse_geocoded_by :lat, :long
-  has_reputation :votes, source: { reputation: :votes, of: :experiences },
-                         aggregated_by: :sum
 
   # CALLBACK METHODS
 
@@ -39,5 +37,13 @@ class Location < ActiveRecord::Base
   end
 
   # INSTANCE METHODS
-  # None... yet.
+  def reputation_for(_name)
+    compute_votes
+  end
+
+  private
+
+  def compute_votes
+    Vote.where(votable_type: 'Experience', votable_id: experiences.select(:id)).sum(:value)
+  end
 end

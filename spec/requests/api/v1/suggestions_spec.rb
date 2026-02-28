@@ -10,8 +10,8 @@ describe 'Suggestions API' do
   describe 'GET /api/v1/suggestions' do
     it 'returns an array of experiences' do
       get api_v1_suggestions_url,
-           { suggestion: attributes_for(:suggestion), comment_body: 'spam!' },
-           authentication_headers(user)
+           params: { suggestion: attributes_for(:suggestion), comment_body: 'spam!' },
+           headers: authentication_headers(user)
 
       expect(json['experiences']).to be
     end
@@ -20,8 +20,8 @@ describe 'Suggestions API' do
   describe 'POST /api/v1/suggestions' do
     it 'cancels action when honeypot is filled in' do
       post api_v1_suggestions_url,
-           { suggestion: attributes_for(:suggestion), comment_body: 'spam!' },
-           authentication_headers(user)
+           params: { suggestion: attributes_for(:suggestion), comment_body: 'spam!' },
+           headers: authentication_headers(user)
 
       expect(response.status).to be(401)
       expect(Location.count).to eq(0)
@@ -29,7 +29,7 @@ describe 'Suggestions API' do
     end
 
     it 'requires authentication' do
-      post api_v1_suggestions_url, suggestion: attributes_for(:suggestion)
+      post api_v1_suggestions_url, params: { suggestion: attributes_for(:suggestion) }
       expect(response.status).to eq(401)
       expect(Location.count).to eq(0)
       expect(Experience.count).to eq(0)
@@ -38,8 +38,8 @@ describe 'Suggestions API' do
     context '(when signed in)' do
       before :each do
         post api_v1_suggestions_url,
-             { suggestion: attributes_for(:suggestion) },
-             authentication_headers(user)
+             params: { suggestion: attributes_for(:suggestion) },
+             headers: authentication_headers(user)
       end
 
       it 'returns a Location' do
@@ -59,8 +59,8 @@ describe 'Suggestions API' do
           user.update(guest: true)
 
           post api_v1_suggestions_url,
-               { suggestion: attributes_for(:suggestion) },
-               authentication_headers(user)
+               params: { suggestion: attributes_for(:suggestion) },
+               headers: authentication_headers(user)
 
           expect(json['notice']).to be
         end
@@ -70,8 +70,8 @@ describe 'Suggestions API' do
       context '(and with invalid attributes)' do
         it 'returns errors' do
           post api_v1_suggestions_url,
-             { suggestion: attributes_for(:suggestion, experience_name: '') },
-             authentication_headers(user)
+             params: { suggestion: attributes_for(:suggestion, experience_name: '') },
+             headers: authentication_headers(user)
 
           expect(json['errors']).to be
         end

@@ -1,10 +1,10 @@
 <div id="post-assets">
-  <%= form_for ['admin', Asset.new], :html => { :multipart => true } do |a| %>
+  <%= form_for [:admin, Asset.new], html: { multipart: true } do |a| %>
 
     <ul class="thumbnails files row">
       <% post.assets.each do |asset| %>
         <li id="asset_<%= asset.id %>" class="thumbnail asset-<%= asset.id %> <%= 'cover' if asset.cover? %>" data-asset-id="<%= asset.id %>" data-markdown="<div class='caption'><img src='<%= asset.asset.url %>' alt='<%= asset.alt_name %>' /><p>CAPTION</p></div>">
-          <%= image_tag asset.asset.thumb %>
+          <%= image_tag asset.asset.thumb.url %>
 
           <p class="thumbnail-controls">
             <a href="#" class="asset-copy-to-clipboard">
@@ -12,11 +12,11 @@
             </a>
 
             <%= link_to admin_asset_toggle_cover_path(asset), class: 'asset-toggle-cover' do %>
-              <%= icon 'picture-o' %>
+              <%= icon 'image' %>
             <% end %>
 
             <%= link_to admin_asset_path(asset), class: 'asset-delete' do %>
-              <%= icon 'trash-o' %>
+              <%= icon 'trash' %>
             <% end %>
           </p>
         </li>
@@ -65,11 +65,11 @@
           </a>
 
           <a href="{%=file.cover_url%}" class="asset-toggle-cover">
-            <%= icon 'picture-o' %>
+            <%= icon 'image' %>
           </a>
 
           <a href="{%=file.delete_url%}" class="asset-delete">
-            <%= icon 'trash-o' %>
+            <%= icon 'trash' %>
           </a>
         </p>
       </li>

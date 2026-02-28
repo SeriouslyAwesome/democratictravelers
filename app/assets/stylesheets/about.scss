@@ -85,7 +85,7 @@ body.about {
         h4 {
           -webkit-opacity: 0;
           opacity: 0;
-          @include transition(opacity 0.25s ease-in-out);
+          transition: opacity 0.25s ease-in-out;
           color: $white;
           position: absolute;
           margin: 0;

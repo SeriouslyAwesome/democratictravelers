@@ -1,4 +1,4 @@
-class AddIndexesToTables < ActiveRecord::Migration
+class AddIndexesToTables < ActiveRecord::Migration[4.2]
   def self.up
     add_index :assets, [:assetable_id, :assetable_type]
     add_index :categories, :post_count

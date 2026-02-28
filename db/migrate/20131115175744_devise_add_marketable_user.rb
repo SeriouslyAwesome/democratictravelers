@@ -1,4 +1,4 @@
-class DeviseAddMarketableUser < ActiveRecord::Migration
+class DeviseAddMarketableUser < ActiveRecord::Migration[4.2]
   def self.up
     add_column :users, :referring_url, :text
     add_column :users, :landing_url, :text
