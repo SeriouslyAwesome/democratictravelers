@@ -53,7 +53,17 @@ RSpec.configure do |config|
     FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_files/"])
   end
 
-  Capybara.javascript_driver = :selenium
+  Capybara.register_driver :selenium_chrome_headless do |app|
+    options = Selenium::WebDriver::Chrome::Options.new
+    options.add_argument('--headless=new')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--window-size=1400,900')
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  end
+
+  Capybara.javascript_driver = :selenium_chrome_headless
+  Capybara.default_max_wait_time = 5
   Capybara.asset_host = "http://localhost:5000"
   Capybara.server_port = 53023
 end

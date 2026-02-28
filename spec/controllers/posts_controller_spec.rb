@@ -38,7 +38,7 @@ describe PostsController do
       end
 
       it 'raises a RecordNotFound error if post is unpublished' do
-        post = create(:post, published_at: '2018-12-01 00:00:00')
+        post = create(:post, published: false)
         expect { get(:show, params: { id: post.id }) }
           .to raise_error(ActiveRecord::RecordNotFound)
       end

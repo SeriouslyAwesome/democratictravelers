@@ -95,6 +95,6 @@ module ApplicationHelper
   end
 
   def guest_user_conversion
-    render 'devise/registrations/conversion.html.erb'
+    render partial: 'devise/registrations/conversion', formats: [:html]
   end
 end

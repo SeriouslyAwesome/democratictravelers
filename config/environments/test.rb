@@ -13,6 +13,7 @@ Rails.application.configure do
 
   config.action_controller.allow_forgery_protection = false
 
+  config.active_job.queue_adapter = :inline
   config.action_mailer.delivery_method = :test
   config.action_mailer.default_url_options = { host: 'test.democratictravelers.dev' }
 

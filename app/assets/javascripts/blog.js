@@ -35,7 +35,8 @@
 
     initializeUploader: function() {
       $('#post-assets').fileupload({
-        autoUpload: true
+        autoUpload: true,
+        dataType: 'json'
       })
       .on('fileuploaddone', function(e, data) {
         var postAsset = `<input type="hidden" name="post[asset_ids][]" value="${data.result.files[0].id}" />`;
