@@ -70,6 +70,17 @@ module ApplicationHelper
     end
   end
 
+  # Font Awesome icon helper (compatible with old single-argument API)
+  BRAND_ICONS = %w[facebook facebook-square twitter tumblr instagram pinterest vimeo vimeo-square].freeze
+
+  def icon(name, options = {})
+    style = BRAND_ICONS.include?(name) ? 'fa-brands' : 'fa-solid'
+    content_class = "#{style} fa-#{name}"
+    content_class << " #{options[:class]}" if options[:class]
+    html_options = options.except(:class).merge(class: content_class, 'aria-hidden': true)
+    content_tag(:i, nil, html_options)
+  end
+
   # Devise form helpers
   def resource_name
     :user
@@ -84,6 +95,6 @@ module ApplicationHelper
   end
 
   def guest_user_conversion
-    render 'devise/registrations/conversion.html.erb'
+    render partial: 'devise/registrations/conversion', formats: [:html]
   end
 end

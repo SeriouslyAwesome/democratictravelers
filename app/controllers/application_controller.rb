@@ -82,10 +82,9 @@ class ApplicationController < ActionController::Base
   end
 
   def convert_votes
-    evals = ReputationSystem::Evaluation.where(source_id: guest_user.id).all
-    evals.each do |e|
-      e.source_id = current_user.id
-      e.save!
+    Vote.where(user_id: guest_user.id).find_each do |vote|
+      vote.user_id = current_user.id
+      vote.save!
     end
   end
 

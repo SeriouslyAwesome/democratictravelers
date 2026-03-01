@@ -1,4 +1,4 @@
-class RemoveEmailValidationFromUser < ActiveRecord::Migration
+class RemoveEmailValidationFromUser < ActiveRecord::Migration[4.2]
   def change
     change_column :users, :email, :string, :null => true
   end

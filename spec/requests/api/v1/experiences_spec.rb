@@ -9,9 +9,9 @@ describe 'Experiences API' do
       create(:experience)
       create(:experience)
 
-      get api_v1_experiences_url, nil, authentication_headers(user)
+      get api_v1_experiences_url, headers: authentication_headers(user)
 
-      expect(response).to be_success
+      expect(response).to have_http_status(:success)
       expect(assigns(:experiences).count).to be(2)
       expect(json['experiences'].length).to eq(2)
     end
@@ -22,9 +22,9 @@ describe 'Experiences API' do
       create(:experience, name: 'First')
       second = create(:experience, name: 'Second')
 
-      get api_v1_experience_url('second'), nil, authentication_headers(user)
+      get api_v1_experience_url('second'), headers: authentication_headers(user)
 
-      expect(response).to be_success
+      expect(response).to have_http_status(:success)
       expect(assigns(:experience)).to eq(second)
       expect(json['experiences'][0]['name']).to eq('Second')
     end
@@ -35,7 +35,7 @@ describe 'Experiences API' do
   describe 'PATCH /v1/experiences/:id' do
     it 'requires authentication' do
       patch api_v1_experience_url(experience),
-          experience: attributes_for(:experience, name: 'New')
+          params: { experience: attributes_for(:experience, name: 'New') }
 
       expect(response.status).to be(401)
     end
@@ -44,10 +44,10 @@ describe 'Experiences API' do
       context '(and attributes are valid)' do
         it 'returns the updated experience' do
           patch api_v1_experience_url(experience),
-              { experience: attributes_for(
+              params: { experience: attributes_for(
                   :experience, name: 'New', user: user
                 )
-              }, authentication_headers(user)
+              }, headers: authentication_headers(user)
 
           expect(response.status).to eq(200)
           expect(json['name']).to eq('New')
@@ -57,10 +57,10 @@ describe 'Experiences API' do
       context '(as a different user)' do
         it 'returns status 403' do
           patch api_v1_experience_url(experience),
-              { experience: attributes_for(
+              params: { experience: attributes_for(
                   :experience, name: nil, user_id: 5
                 )
-              }, authentication_headers(alt_user)
+              }, headers: authentication_headers(alt_user)
 
           expect(response.status).to eq(403)
         end
@@ -71,7 +71,7 @@ describe 'Experiences API' do
   describe 'PUT /v1/experiences/:id' do
     it 'requires authentication' do
       put api_v1_experience_url(experience),
-          experience: attributes_for(:experience, name: 'New')
+          params: { experience: attributes_for(:experience, name: 'New') }
 
       expect(response.status).to be(401)
     end
@@ -80,10 +80,10 @@ describe 'Experiences API' do
       context '(and attributes are valid)' do
         it 'returns the updated experience' do
           put api_v1_experience_url(experience),
-              { experience: attributes_for(
+              params: { experience: attributes_for(
                   :experience, name: 'New', user: user
                 )
-              }, authentication_headers(user)
+              }, headers: authentication_headers(user)
 
           expect(response.status).to eq(200)
           expect(json['name']).to eq('New')
@@ -93,10 +93,10 @@ describe 'Experiences API' do
       context '(as a different user)' do
         it 'returns status 403' do
           put api_v1_experience_url(experience),
-              { experience: attributes_for(
+              params: { experience: attributes_for(
                   :experience, name: nil, user_id: 5
                 )
-              }, authentication_headers(alt_user)
+              }, headers: authentication_headers(alt_user)
 
           expect(response.status).to eq(403)
         end
@@ -115,7 +115,7 @@ describe 'Experiences API' do
       let(:guest) { create(:user) }
       it 'returns the upvoted experience' do
         post upvote_api_v1_experience_url(experience),
-             nil, authentication_headers(guest)
+             headers: authentication_headers(guest)
 
         expect(response.status).to be(200)
         expect(assigns(:experience).votes_cache).to eq(2)
@@ -134,7 +134,7 @@ describe 'Experiences API' do
       let(:guest) { create(:user) }
       it 'returns the upvoted experience' do
         post downvote_api_v1_experience_url(experience),
-             nil, authentication_headers(guest)
+             headers: authentication_headers(guest)
 
         expect(response.status).to be(200)
         expect(assigns(:experience).votes_cache).to eq(0)
@@ -151,7 +151,7 @@ describe 'Experiences API' do
 
     it 'requries admin authorization' do
       post done_api_v1_experience_url(experience),
-           nil, authentication_headers(user)
+           headers: authentication_headers(user)
 
       expect(response.status).to be(403)
     end
@@ -161,7 +161,7 @@ describe 'Experiences API' do
         user.add_role(:admin)
 
         post done_api_v1_experience_url(experience),
-             nil, authentication_headers(user)
+             headers: authentication_headers(user)
 
         expect(response.status).to be(200)
         expect(response).to render_template('api/v1/experiences/done')
@@ -173,7 +173,7 @@ describe 'Experiences API' do
   describe 'DELETE /v1/experiences/:id' do
     it 'requires admin authorization' do
       delete api_v1_experience_url(experience),
-             nil, authentication_headers(user)
+             headers: authentication_headers(user)
 
       expect(response.status).to be(403)
     end
@@ -183,7 +183,7 @@ describe 'Experiences API' do
 
       it 'returns nothing' do
         delete api_v1_experience_url(experience),
-               nil, authentication_headers(user)
+               headers: authentication_headers(user)
 
         expect(response.status).to be(200)
       end

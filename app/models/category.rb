@@ -1,5 +1,5 @@
-class Category < ActiveRecord::Base
-  belongs_to :connectable, polymorphic: true
+class Category < ApplicationRecord
+  belongs_to :connectable, polymorphic: true, optional: true
   has_many :categorizations, dependent: :destroy
   has_many :posts, through: :categorizations
 

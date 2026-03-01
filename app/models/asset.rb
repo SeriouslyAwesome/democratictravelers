@@ -1,9 +1,9 @@
-class Asset < ActiveRecord::Base
+class Asset < ApplicationRecord
   # SCOPES
   scope :cover, -> { where(cover: true) }
 
   # ASSOCIATIONS
-  belongs_to :assetable, polymorphic: true
+  belongs_to :assetable, polymorphic: true, optional: true
 
   # MACROS
   mount_uploader :asset, AssetUploader

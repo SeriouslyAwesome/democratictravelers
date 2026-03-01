@@ -1,4 +1,4 @@
-class ChangeFileNameToAssetForAssets < ActiveRecord::Migration
+class ChangeFileNameToAssetForAssets < ActiveRecord::Migration[4.2]
   def self.up
     rename_column :assets, :filename, :asset
     add_column :assets, :title, :string

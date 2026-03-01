@@ -12,7 +12,7 @@ class API::V1::ExperiencesController < ApplicationController
 
   def update
     if @experience.user_id == @user.id
-      @experience.update_attributes(experience_params)
+      @experience.update(experience_params)
     else
       head 403
     end
@@ -33,7 +33,7 @@ class API::V1::ExperiencesController < ApplicationController
 
   def destroy
     @experience.destroy
-    render nothing: true
+    head :ok
   end
 
   private

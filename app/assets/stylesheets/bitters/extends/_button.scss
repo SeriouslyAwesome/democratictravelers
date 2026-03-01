@@ -1,7 +1,18 @@
 %button {
-  @include button(simple, $base-accent-color);
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: $base-accent-color;
+  color: $white;
+  border: none;
+  border-radius: $base-border-radius;
+  cursor: pointer;
+  text-decoration: none;
   -webkit-font-smoothing: antialiased;
   font-size: $base-font-size;
   font-weight: bold;
   line-height: 1em;
+
+  &:hover, &:focus {
+    background-color: darken($base-accent-color, 5%);
+  }
 }

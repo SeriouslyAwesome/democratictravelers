@@ -1,6 +1,4 @@
-class RegistrationMailer < ActionMailer::Base
-  default from: 'The Democratic Travelers
-    <yourstruly@thedemocratictravelers.com>'
+class RegistrationMailer < ApplicationMailer
 
   def conversion(id, password)
     @user = User.find(id)

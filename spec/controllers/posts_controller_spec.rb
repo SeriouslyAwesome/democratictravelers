@@ -7,7 +7,7 @@ describe PostsController do
     describe 'GET #index' do
       it 'does not require authentication' do
         get :index
-        expect(response).to be_success
+        expect(response).to have_http_status(:success)
       end
 
       it 'finds only published posts' do
@@ -27,19 +27,19 @@ describe PostsController do
     describe 'GET #show' do
       it 'does not require authentication' do
         @post = create(:post, title: 'Correct')
-        get :show, id: @post.id
-        expect(response).to be_success
+        get :show, params: { id: @post.id }
+        expect(response).to have_http_status(:success)
       end
 
       it 'fetches the correct post' do
         @post = create(:post, title: 'Correct')
-        get :show, id: @post.id
+        get :show, params: { id: @post.id }
         expect(@post.title).to eq 'Correct'
       end
 
       it 'raises a RecordNotFound error if post is unpublished' do
-        post = create(:post, published_at: '2018-12-01 00:00:00')
-        expect { get(:show, id: post.id) }
+        post = create(:post, published: false)
+        expect { get(:show, params: { id: post.id }) }
           .to raise_error(ActiveRecord::RecordNotFound)
       end
     end
@@ -61,7 +61,7 @@ describe PostsController do
     describe 'GET #edit' do
       before :each do
         post = create(:post)
-        get :edit, id: post.id
+        get :edit, params: { id: post.id }
       end
 
       it 'renders 404 page' do
@@ -71,7 +71,7 @@ describe PostsController do
 
     describe 'POST #create' do
       it 'renders 404 page' do
-        post :create, post: attributes_for(:post)
+        post :create, params: { post: attributes_for(:post) }
         expect(response).to render_template('errors/error_404')
       end
     end
@@ -79,7 +79,7 @@ describe PostsController do
     describe 'PUT #update' do
       it 'renders 404 page' do
         post = create(:post)
-        put :update, id: post.id, post: attributes_for(:post, name: 'No')
+        put :update, params: { id: post.id, post: attributes_for(:post, name: 'No') }
         expect(response).to render_template('errors/error_404')
       end
     end
@@ -87,7 +87,7 @@ describe PostsController do
     describe 'DELETE #destroy' do
       it 'renders 404 page' do
         post = create(:post)
-        delete :destroy, id: post.id
+        delete :destroy, params: { id: post.id }
         expect(response).to render_template('errors/error_404')
       end
     end
@@ -108,14 +108,14 @@ describe PostsController do
     describe 'GET #edit' do
       it 'renders posts/new template' do
         post = create(:post)
-        get :edit, id: post.id
+        get :edit, params: { id: post.id }
         expect(response).to render_template('posts/edit')
       end
     end
 
     describe 'POST #create' do
       before :each do
-        post :create, post: attributes_for(:post)
+        post :create, params: { post: attributes_for(:post) }
       end
 
       it 'creates a new post with the supplied (valid) attributes' do
@@ -130,7 +130,7 @@ describe PostsController do
     describe 'PUT #update' do
       before :each do
         @post = create(:post)
-        put :update, id: @post.id, post: attributes_for(:post, title: 'Done')
+        put :update, params: { id: @post.id, post: attributes_for(:post, title: 'Done') }
       end
 
       it 'saves the post with the new attributes' do
@@ -141,7 +141,7 @@ describe PostsController do
     describe 'DELETE #destroy' do
       before :each do
         @post = create(:post)
-        delete :destroy, id: @post.id
+        delete :destroy, params: { id: @post.id }
       end
 
       it 'destroys the specified post' do

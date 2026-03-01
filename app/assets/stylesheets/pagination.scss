@@ -28,8 +28,7 @@
     @include border-radius(100px);
     border: 1px solid $medium-gray;
     margin: 0 $base-line-height * 0.125;
-    @include transition(color 0.1s linear);
-    @include transition(border-color 0.1s linear);
+    transition: color 0.1s linear, border-color 0.1s linear;
     
     &.first, &.prev, &.next, &.last {
       width: $base-line-height * 1;

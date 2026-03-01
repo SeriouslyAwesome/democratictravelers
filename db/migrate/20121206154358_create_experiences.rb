@@ -1,4 +1,4 @@
-class CreateExperiences < ActiveRecord::Migration
+class CreateExperiences < ActiveRecord::Migration[4.2]
   def change
     create_table :experiences do |t|
       t.integer :location_id

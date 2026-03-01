@@ -1,4 +1,4 @@
-class CleanupSchemaOnPosts < ActiveRecord::Migration
+class CleanupSchemaOnPosts < ActiveRecord::Migration[4.2]
   def change
     change_column :posts, :title, :string, null: false
     change_column :posts, :slug, :string, null: false

@@ -14,7 +14,7 @@
 #  limitations under the License.
 ##
 
-class AddEvaluationsIndex < ActiveRecord::Migration
+class AddEvaluationsIndex < ActiveRecord::Migration[4.2]
   def self.up
     add_index :rs_evaluations, [:reputation_name, :source_id, :source_type, :target_id, :target_type], :name => "index_rs_evaluations_on_reputation_name_and_source_and_target"
   end

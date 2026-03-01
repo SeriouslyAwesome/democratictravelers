@@ -1,4 +1,4 @@
-class AddDoneToExperiences < ActiveRecord::Migration
+class AddDoneToExperiences < ActiveRecord::Migration[4.2]
   def change
     add_column :experiences, :done, :boolean, null: false, default: false
     

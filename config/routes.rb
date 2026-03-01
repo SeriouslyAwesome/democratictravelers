@@ -1,6 +1,6 @@
 require 'sidekiq/web'
 
-DemocraticTravelers::Application.routes.draw do
+Rails.application.routes.draw do
   # Signin/out
   devise_for :users,  path: '',
                       path_names: {

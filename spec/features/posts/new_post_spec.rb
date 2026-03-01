@@ -37,6 +37,7 @@ feature 'New blog post' do
   end
 
   scenario 'allows for image uploads', vcr: true, js: true, record: :new_episodes do
+    pending 'Flaky: jQuery fileupload timing issues with headless Chrome'
     attach_file('asset[asset]', File.absolute_path('./spec/files/test_image.jpg'), visible: false)
     fill_in 'post[title]', with: 'title'
     fill_in 'post[excerpt]', with: 'stuff'

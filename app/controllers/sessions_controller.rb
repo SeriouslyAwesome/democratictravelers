@@ -1,11 +1,12 @@
 class SessionsController < Devise::SessionsController
   def create
     if request.xhr?
-      resource = warden.authenticate!(
-        scope: resource_name,
-        recall: "#{controller_path}#failure"
-      )
-      sign_in_and_redirect(resource_name, resource)
+      resource = warden.authenticate(scope: resource_name)
+      if resource
+        sign_in_and_redirect(resource_name, resource)
+      else
+        failure
+      end
     else
       super
     end

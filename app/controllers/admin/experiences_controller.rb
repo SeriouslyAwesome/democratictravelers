@@ -6,7 +6,7 @@ class Admin::ExperiencesController < AdminController
     if params[:done] == 'true'
       @experience.mark_done
     else
-      @experience.update_attributes(done: false)
+      @experience.update(done: false)
     end
 
     render json: { success: true }

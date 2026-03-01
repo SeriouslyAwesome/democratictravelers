@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Asset, type: :model do
-  it { should belong_to(:assetable) }
+  it { should belong_to(:assetable).optional }
   it { should respond_to(:cover?) }
 
   describe '#alt_name', vcr: true, record: :new_episodes do

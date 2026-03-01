@@ -24,7 +24,7 @@
   z-index: 98;
 
   @include media($tablet) {
-    @include box-sizing(content-box);
+    box-sizing: content-box;
     top: 0;
     width: 100%;
   }
@@ -33,7 +33,7 @@
     margin-left: 0%;
   }
 
-  @include transition(margin-left 0.25s ease-in-out);
+  transition: margin-left 0.25s ease-in-out;
 }
 
 #map-list {
@@ -51,7 +51,7 @@
     margin-left: 100%;
   }
 
-  @include transition(margin-left 0.25s ease-in-out);
+  transition: margin-left 0.25s ease-in-out;
 
   @include media($tablet) {
     -webkit-border-radius: $baseline * 0.25 0 0 $baseline * 0.25;
@@ -265,16 +265,16 @@ p.social-sign-in {
   margin-bottom: -32px;
 }
 
-@include keyframes(pulsate) {
+@keyframes pulsate {
   0% {
-    @include transform(scale(0.1, 0.1));
+    transform: scale(0.1, 0.1);
     opacity: 0.0;
   }
 
   20% { opacity: 1.0; }
 
   40% {
-    @include transform(scale(1.2, 1.2));
+    transform: scale(1.2, 1.2);
     opacity: 0.0;
   }
 
@@ -296,7 +296,7 @@ p.social-sign-in {
   position: absolute;
   top: auto; right: auto; bottom: 0; left: auto;
   margin: 0 0 -4px 13px;
-  @include transform(rotateX(55deg));
+  transform: rotateX(55deg);
   z-index: -20;
   &:after {
     content: "";
@@ -305,11 +305,10 @@ p.social-sign-in {
     width: 40px;
     position: absolute;
     margin: -12px 0 0 -13px;
-    @include animation(pulsate 2.5s ease-out);
-    @include animation-iteration-count(infinite);
+    animation: pulsate 2.5s ease-out infinite;
+    animation-delay: 1s;
     opacity: 0.0;
     box-shadow: 0 0 1px 4px $blue;
-    @include animation-delay(1s);
   }
 }
 

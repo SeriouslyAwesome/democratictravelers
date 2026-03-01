@@ -56,7 +56,7 @@ body.locations.show {
       color: $white;
       text-shadow: 0 0 2px $black;
       z-index: 5000;
-      @include background-image(linear-gradient(transparent 0, rgba($black, 0.4) 100%));
+      background-image: linear-gradient(transparent 0, rgba($black, 0.4) 100%);
 
       #footer {
         padding: ($baseline * 0.5) $baseline;
@@ -70,7 +70,7 @@ body.locations.show {
 body.map {
   #site-footer {
     @include media($tablet) {
-      @include background-image(linear-gradient(transparent 0, rgba($black, 0.75) 100%));
+      background-image: linear-gradient(transparent 0, rgba($black, 0.75) 100%);
     }
   }
 }

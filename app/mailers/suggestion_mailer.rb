@@ -1,5 +1,4 @@
-class SuggestionMailer < ActionMailer::Base
-  default from: 'yourstruly@thedemocratictravelers.com'
+class SuggestionMailer < ApplicationMailer
 
   def new_suggestion(experience_id)
     @experience = Experience.find(experience_id)

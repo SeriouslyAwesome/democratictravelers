@@ -1,0 +1,102 @@
+(function() {
+  DemocraticTravelers.Map.Experiences = {
+    List: null,
+
+    filterList: function(selector) {
+      if (typeof selector !== 'undefined') {
+        this.List.detach();
+        var showables = [];
+        showables.push(this.List.filter(selector));
+        $('#map-list').append(showables);
+      } else {
+        var inBounds = [];
+        var bounds = DemocraticTravelers.Map.mapObject.getBounds();
+
+        DemocraticTravelers.Map.locationsLayer.eachLayer(function(marker) {
+          if (bounds.contains(marker.getLatLng())) {
+            inBounds.push(marker.options.id);
+          }
+        });
+
+        this.List.detach();
+        var showables = [];
+        for (var i = 0; i < inBounds.length; i++) {
+          showables.push(this.List.filter('[data-location-id=' + inBounds[i] + ']'));
+        }
+
+        $('#map-list').append(showables);
+      }
+    },
+
+    render: function(experience) {
+      return DemocraticTravelers.Templates.experience(experience);
+    },
+
+    renderAll: function(data) {
+      var html = DemocraticTravelers.Templates.experiences(data);
+      $('#map-list').append(html);
+
+      // Cache the jQuery selection of list items for later filtering performance
+      this.List = $('#map-list').find('.suggestion').not('#new-suggestion');
+
+      $('#map-list').on('click', 'button.upvote', function(e) {
+        var id = $(this).data('id');
+        var endpoint = 'experiences/' + id + '/upvote';
+        DemocraticTravelers.Map.Experiences.vote(this, endpoint);
+      });
+
+      $('#map-list').on('click', 'button.downvote', function(e) {
+        var id = $(this).data('id');
+        var endpoint = 'experiences/' + id + '/downvote';
+        DemocraticTravelers.Map.Experiences.vote(this, endpoint);
+      });
+
+      // Initialize Router
+      DemocraticTravelers.Map.Router.start();
+    },
+
+    vote: function(btn, endpoint) {
+      var base = "<%= ENV['API_BASE'] %>";
+      var url = base + endpoint;
+      var apiKey = $("meta[name='application-name']").attr('data-api-key');
+      var userId = $("meta[name='application-name']").attr('data-user-id');
+      var btnClass = $(btn).find('i').attr('class');
+      var id = $(btn).data('id');
+
+      $.ajax(url, {
+        dataType: 'json',
+        type: 'POST',
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('X-API-KEY', apiKey);
+          xhr.setRequestHeader('X-USER-ID', userId);
+          $(btn).find('i').attr('class', 'fa fa-circle-o-notch fa-spin fa-lg');
+          $(btn).attr('disabled', 'disabled');
+        },
+        success: function(data, callback) {
+          var exp = data.experiences[0];
+          var html = DemocraticTravelers.Map.Experiences.render(exp);
+          var target = $('[data-experience-id=' + id + ']');
+          target.replaceWith(html);
+
+          // Google Analytics
+          var label = exp.name + ' at ' + exp.venue + ' in ' + exp.city + ', ' + exp.state;
+          if (btnClass === 'fa fa-thumbs-up fa-lg') {
+            ga('send', 'event', 'Suggestion', 'Upvote', label);
+          } else if (btnClass === 'fa fa-thumbs-down fa-lg') {
+            ga('send', 'event', 'Suggestion', 'Downvote', label);
+          }
+        },
+        error: function(e) {
+          console.log(e);
+          $(btn).removeAttr('disabled');
+          $(btn).find('i').attr('class', btnClass);
+        },
+        statusCode: {
+          401: function() { console.log('Login is required.'); },
+          403: function() { console.log('Not authorized.'); },
+          404: function() { console.log('Dead link.'); }
+        }
+      });
+    }
+  };
+})();

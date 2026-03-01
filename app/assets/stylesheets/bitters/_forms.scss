@@ -60,8 +60,8 @@ span.checkbox {
 textarea,
 #{$all-text-inputs},
 select[multiple=multiple] {
-  @include box-sizing(border-box);
-  @include transition(border-color);
+  box-sizing: border-box;
+  transition: border-color 150ms ease;
   background-color: white;
   border-radius: $form-border-radius;
   border: 1px solid $form-border-color;
@@ -88,7 +88,8 @@ textarea {
 }
 
 input[type="search"] {
-  @include appearance(none);
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 input[type="checkbox"], input[type="radio"] {
@@ -113,7 +114,8 @@ select {
 
 button,
 input[type="submit"] {
-  @include appearance(none);
+  appearance: none;
+  -webkit-appearance: none;
   @include btn($yellow);
   cursor: pointer;
   user-select: none;

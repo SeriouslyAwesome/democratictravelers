@@ -12,7 +12,7 @@ class Admin::UsersController < AdminController
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user], as: :admin)
+    if @user.update(user_params)
       redirect_to users_path, notice: 'User updated.'
     else
       redirect_to users_path, alert: 'Unable to update user.'
@@ -26,5 +26,11 @@ class Admin::UsersController < AdminController
     else
       render json: { success: false }
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :username, :guest, role_ids: [])
   end
 end

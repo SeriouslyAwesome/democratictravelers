@@ -1,5 +1,5 @@
 # United States of 'Murica
-class State < ActiveRecord::Base
+class State < ApplicationRecord
   default_scope { order('name ASC') }
   has_many :locations
   has_many :experiences, through: :locations

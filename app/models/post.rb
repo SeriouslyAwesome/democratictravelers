@@ -1,4 +1,4 @@
-class Post < ActiveRecord::Base
+class Post < ApplicationRecord
   # SCOPES
   scope :published, lambda {
     where('published_at < ? AND published = ?', Time.zone.now, true)
@@ -6,7 +6,7 @@ class Post < ActiveRecord::Base
   }
 
   # ASSOCIATIONS
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :assets, as: :assetable
   has_many :categorizations
   has_many :categories, through: :categorizations

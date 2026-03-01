@@ -49,7 +49,7 @@
            <col span="1" style="width: 10%;">
         </colgroup>
         <% @closest.each do |exp| %>
-          <%= content_tag_for :tr, exp do %>
+          <%= content_tag :tr, id: dom_id(exp), class: dom_class(exp) do %>
             <td>
               <h5>
                 <%= pluralize exp.votes_cache, 'Vote' %><br><%= exp.name %><br>
@@ -66,7 +66,7 @@
             </td>
             <td class="admin-controls">
               <%= link_to admin_experience_path(exp), class: 'delete' do %>
-                <%= icon 'trash-o', class: 'fa-fw fa-lg' %>
+                <%= icon 'trash', class: 'fa-fw fa-lg' %>
               <% end %>
             </td>
           <% end %>
@@ -98,7 +98,7 @@
             </td>
             <td class="admin-controls">
               <%= link_to admin_user_path(user), class: 'delete' do %>
-                <%= icon 'trash-o', class: 'fa-fw fa-lg' %>
+                <%= icon 'trash', class: 'fa-fw fa-lg' %>
               <% end %>
             </td>
           </tr>

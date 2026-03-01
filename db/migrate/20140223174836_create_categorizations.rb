@@ -1,4 +1,4 @@
-class CreateCategorizations < ActiveRecord::Migration
+class CreateCategorizations < ActiveRecord::Migration[4.2]
   def change
     create_table :categorizations, id: false do |t|
       t.integer :post_id

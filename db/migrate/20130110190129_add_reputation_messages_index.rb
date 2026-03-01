@@ -14,7 +14,7 @@
 #  limitations under the License.
 ##
 
-class AddReputationMessagesIndex < ActiveRecord::Migration
+class AddReputationMessagesIndex < ActiveRecord::Migration[4.2]
   def self.up
     add_index :rs_reputation_messages, [:receiver_id, :sender_id, :sender_type], :name => "index_rs_reputation_messages_on_receiver_id_and_sender"
   end

@@ -1,8 +1,10 @@
-class Experience < ActiveRecord::Base
+class Experience < ApplicationRecord
+  include Votable
+
   # SCOPES
   default_scope { includes(:user, location: :state) }
   scope :full_list, lambda {
-    includes(:evaluations, location: :state)
+    includes(:votes, location: :state)
       .order('experiences.created_at DESC')
   }
   scope :popular, -> { includes(:posts).order('votes_cache DESC') }
@@ -30,7 +32,6 @@ class Experience < ActiveRecord::Base
   # MACROS
   extend FriendlyId
   friendly_id :name, use: :slugged
-  has_reputation :votes, source: :user, aggregated_by: :sum
   accepts_nested_attributes_for :location
 
   # CALLBACK METHODS
@@ -49,21 +50,21 @@ class Experience < ActiveRecord::Base
   # INSTANCE METHODS
   def upvote(user)
     add_or_update_evaluation(:votes, 1, user)
-    update_attributes(votes_cache: reputation_for(:votes))
+    update(votes_cache: reputation_for(:votes))
   end
 
   def downvote(user)
     add_or_update_evaluation(:votes, -1, user)
-    update_attributes(votes_cache: reputation_for(:votes))
+    update(votes_cache: reputation_for(:votes))
   end
 
   def mark_done
     ActiveRecord::Base.transaction do
-      update_attributes done: true
-      location.update_attributes done: true
+      update(done: true)
+      location.update(done: true)
     end
 
-    ExperienceMailer.delay.we_did_this(id) if user.email.present?
+    ExperienceMailer.we_did_this(id).deliver_later if user.email.present?
   end
 
   def name_for_checkboxes
@@ -85,7 +86,7 @@ class Experience < ActiveRecord::Base
   private
 
   def check_vote_status(user, value)
-    evaluation = evaluations.find { |e| e.source_id == user.id }
-    evaluation && evaluation.value == value ? true : false
+    vote = votes.find { |v| v.user_id == user.id }
+    vote && vote.value == value ? true : false
   end
 end

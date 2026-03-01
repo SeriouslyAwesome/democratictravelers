@@ -6,14 +6,14 @@ describe RegistrationsController do
   describe 'POST #create' do
     it 'creates a new user' do
       @request.env['devise.mapping'] = Devise.mappings[:user]
-      post :create, user: attributes_for(:user), format: :json
-      expect(response).to be_success
+      post :create, params: { user: attributes_for(:user) }, format: :json
+      expect(response).to have_http_status(:success)
     end
 
     context 'When using Conversion form' do
       before :each do
         @request.env['devise.mapping'] = Devise.mappings[:user]
-        post :create, user: { name: 'Johnny Test', email: 'example@test.com' }
+        post :create, params: { user: { name: 'Johnny Test', email: 'example@test.com' } }
       end
 
       it 'generates a new password' do
