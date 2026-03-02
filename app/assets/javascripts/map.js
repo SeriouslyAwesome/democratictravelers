@@ -7,33 +7,44 @@
     CurrentLocation: {},
     Suggestions: {},
     mapObject: null,
-    searchLayer: null,
-    locationsLayer: null,
+    searchMarker: null,
     markers: [],
 
     init: function() {
-      // Initialize Map
-      this.mapObject = L.mapbox.map('map', 'seriouslyawesome.i675cgi9', {
-        center: [37.09024, -95.71289100000001],
-        zoom: 4,
-        minZoom: 4,
-        maxZoom: 12
-      });
+      var token = $('#map').data('mapbox-token');
 
-      var offset = this.mapObject.getSize().x * 0.15;
-      this.mapObject.panBy(new L.Point(offset, 0), { animate: false });
-      this.mapObject.zoomControl.setPosition('bottomleft');
+      // Initialize Map (requires WebGL)
+      if (typeof mapboxgl !== 'undefined' && mapboxgl.supported()) {
+        mapboxgl.accessToken = token;
 
-      // Initialize Markers
-      this.locationsLayer = L.layerGroup().addTo(this.mapObject);
-      this.CurrentLocation.init(this.mapObject);
+        this.mapObject = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/dark-v11',
+          center: [-95.71289, 37.09024],
+          zoom: 4,
+          minZoom: 4,
+          maxZoom: 12
+        });
+
+        var self = this;
+        this.mapObject.on('load', function() {
+          var offset = self.mapObject.getContainer().offsetWidth * 0.15;
+          self.mapObject.panBy([offset, 0], { animate: false });
+        });
+
+        this.mapObject.addControl(new mapboxgl.NavigationControl(), 'bottom-left');
+
+        // Initialize Markers
+        this.CurrentLocation.init(this.mapObject);
+        this.Search.initialize(this.mapObject);
+        this.initDragFiltering();
+      }
+
       this.Suggestions.initialize();
       this.Suggestions.fetch();
-      this.Search.initialize(this.mapObject);
       this.Auth.initialize();
 
       // Setup Map/List view toggler
-      this.initDragFiltering();
       $('#show-map, #show-list').click(function() {
         DemocraticTravelers.Map.toggleView(this);
       });
@@ -57,6 +68,20 @@
     renderMarkers: function(locations) {
       for (var i = 0; i < locations.length; i++) {
         this.Marker.render(locations[i]);
+      }
+    },
+
+    clearMarkers: function() {
+      for (var i = 0; i < this.markers.length; i++) {
+        this.markers[i].remove();
+      }
+      this.markers = [];
+    },
+
+    clearSearchMarker: function() {
+      if (this.searchMarker) {
+        this.searchMarker.remove();
+        this.searchMarker = null;
       }
     },
 

@@ -2,14 +2,18 @@
   /*
   Copyright (C) <2012> <haithem bel haj>
   (MIT License text)
+  Updated to use native History API instead of History.js
   */
   window.Router = function(routes) {
     this.routes = routes || {};
     this.trigger = true;
 
     var self = this;
-    History.Adapter.bind(window, 'statechange', () => {
-      self.checkRoutes(History.getState());
+    window.addEventListener('popstate', function() {
+      self.checkRoutes({
+        data: {},
+        url: window.location.pathname
+      });
     });
   };
 
@@ -27,7 +31,7 @@
       for (var regexText in this.routes) {
         var callback = this.routes[regexText];
         var regex = new RegExp(regexText);
-        var url = state.data.url || state.hash;
+        var url = state.url || state.data.url || window.location.pathname;
         if (regex.test(url)) {
           callback.apply(window, regex.exec(url).slice(1));
         }
@@ -41,23 +45,28 @@
     if (typeof replace === 'undefined') { replace = true; }
     data = data || {};
     this.trigger = trigger;
+    if (title) { document.title = title; }
     if (replace) {
-      History.replaceState(data, title, url);
+      window.history.replaceState(data, title, url);
     } else {
-      History.pushState(data, title, url);
+      window.history.pushState(data, title, url);
     }
+    if (this.trigger) {
+      this.checkRoutes({ data: data, url: url });
+    }
+    this.trigger = true;
   };
 
   Router.prototype.start = function(url) {
     url = url || window.location.pathname;
-    return this.checkRoutes(History.getState(url));
+    return this.checkRoutes({ data: {}, url: url });
   };
 
   Router.prototype.go = function(num) {
-    History.go(num);
+    window.history.go(num);
   };
 
   Router.prototype.back = function() {
-    History.back();
+    window.history.back();
   };
 })();

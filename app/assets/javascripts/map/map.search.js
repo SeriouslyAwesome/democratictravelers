@@ -8,8 +8,6 @@
         }
       });
 
-      DemocraticTravelers.Map.searchLayer = L.layerGroup().addTo(map);
-
       var self = this;
       google.maps.event.addListener(autocomplete, 'place_changed', () => {
         var place = autocomplete.getPlace();
@@ -18,7 +16,8 @@
     },
 
     selectPlace: function(place) {
-      var coordinates = [place.geometry.location.A, place.geometry.location.F];
+      var lat = place.geometry.location.lat();
+      var lng = place.geometry.location.lng();
       var address = {};
 
       jQuery.each(place.address_components, function(k, v1) {
@@ -27,8 +26,8 @@
         });
       });
 
-      this.setFormFields(place, coordinates, address);
-      this.showOnMap(coordinates);
+      this.setFormFields(place, [lat, lng], address);
+      this.showOnMap([lng, lat]);
     },
 
     setFormFields: function(place, coordinates, address) {
@@ -55,18 +54,18 @@
       }
     },
 
-    showOnMap: function(coordinates) {
-      DemocraticTravelers.Map.searchLayer.clearLayers();
-      var searchMarker = L.marker(coordinates, {
-        icon: L.divIcon({
-          className: 'map-pin map-pin-search',
-          html: '<span><i class="fa fa-search"></i></span>',
-          iconSize: [40, 51],
-          iconAnchor: [20, 46]
-        })
-      });
-      searchMarker.addTo(DemocraticTravelers.Map.searchLayer);
-      DemocraticTravelers.Map.mapObject.setView(coordinates, 12);
+    showOnMap: function(lngLat) {
+      DemocraticTravelers.Map.clearSearchMarker();
+
+      var el = document.createElement('div');
+      el.className = 'map-pin map-pin-search';
+      el.innerHTML = '<span><i class="fa fa-search"></i></span>';
+
+      DemocraticTravelers.Map.searchMarker = new mapboxgl.Marker({ element: el, anchor: 'bottom' })
+        .setLngLat(lngLat)
+        .addTo(DemocraticTravelers.Map.mapObject);
+
+      DemocraticTravelers.Map.mapObject.flyTo({ center: lngLat, zoom: 12 });
     }
   };
 })();

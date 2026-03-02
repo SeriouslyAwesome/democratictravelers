@@ -15,12 +15,13 @@
     id = id.split('?')[0];
     DemocraticTravelers.Map.Experiences
       .filterList(`[data-location-id="${id}"]`);
-    DemocraticTravelers.Map.locationsLayer.eachLayer(function(marker) {
-      if (marker.options.id == parseInt(id)) {
-        marker.openPopup();
-        return false;
+    var markers = DemocraticTravelers.Map.markers;
+    for (var i = 0; i < markers.length; i++) {
+      if (markers[i]._locationId == parseInt(id)) {
+        markers[i].togglePopup();
+        break;
       }
-    });
+    }
   });
 
   dtr.route('/map/:id', function(id) {
@@ -28,11 +29,12 @@
     DemocraticTravelers.Map.Experiences
       .filterList(`[data-experience-id="${id}"]`);
     var locationId = $(`.suggestion[data-experience-id="${id}"]`).data('location-id');
-    DemocraticTravelers.Map.locationsLayer.eachLayer(function(marker) {
-      if (marker.options.id == parseInt(locationId)) {
-        marker.openPopup();
-        return false;
+    var markers = DemocraticTravelers.Map.markers;
+    for (var i = 0; i < markers.length; i++) {
+      if (markers[i]._locationId == parseInt(locationId)) {
+        markers[i].togglePopup();
+        break;
       }
-    });
+    }
   });
 })();

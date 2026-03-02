@@ -3,20 +3,24 @@
     List: null,
 
     filterList: function(selector) {
+      if (!this.List) return;
+
       if (typeof selector !== 'undefined') {
         this.List.detach();
         var showables = [];
         showables.push(this.List.filter(selector));
         $('#map-list').append(showables);
-      } else {
+      } else if (DemocraticTravelers.Map.mapObject) {
         var inBounds = [];
         var bounds = DemocraticTravelers.Map.mapObject.getBounds();
 
-        DemocraticTravelers.Map.locationsLayer.eachLayer(function(marker) {
-          if (bounds.contains(marker.getLatLng())) {
-            inBounds.push(marker.options.id);
+        var markers = DemocraticTravelers.Map.markers;
+        for (var i = 0; i < markers.length; i++) {
+          var lngLat = markers[i].getLngLat();
+          if (bounds.contains(lngLat)) {
+            inBounds.push(markers[i]._locationId);
           }
-        });
+        }
 
         this.List.detach();
         var showables = [];

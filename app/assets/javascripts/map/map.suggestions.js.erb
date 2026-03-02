@@ -19,7 +19,7 @@
         beforeSend: function(xhr) {
           xhr.setRequestHeader('X-API-KEY', apiKey);
           xhr.setRequestHeader('X-USER-ID', userId);
-          DemocraticTravelers.Map.locationsLayer.clearLayers();
+          DemocraticTravelers.Map.clearMarkers();
           $('.suggestion').not('#new-suggestion').remove();
           $('#map-loading:hidden').fadeIn('fast');
         },
@@ -59,7 +59,7 @@
         success: function(data, status, xhr) {
           if (data.success) {
             $('form#suggestion')[0].reset();
-            DemocraticTravelers.Map.searchLayer.clearLayers();
+            DemocraticTravelers.Map.clearSearchMarker();
             $('#new-suggestion').slideUp('fast');
             self.render(data);
 

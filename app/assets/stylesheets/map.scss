@@ -247,7 +247,7 @@ p.social-sign-in {
   }
 }
 
-.leaflet-popup-content {
+.mapboxgl-popup-content {
   padding-top: $baseline !important;
   h4 {
     line-height: 0;
@@ -260,7 +260,7 @@ p.social-sign-in {
   &:hover, &:focus { color: $black; }
 }
 
-.leaflet-bottom.leaflet-left {
+.mapboxgl-ctrl-bottom-left {
   bottom: 50%;
   margin-bottom: -32px;
 }

@@ -3,17 +3,14 @@
     init: function(map) {
       var currentLat = $('#map').data('current-latitude');
       var currentLong = $('#map').data('current-longitude');
-      var currentMarker = L.marker([currentLat, currentLong], {
-        title: 'Current Location',
-        icon: L.divIcon({
-          className: 'map-pin-current',
-          html: '<div class="map-pin"><span><i class="fa fa-compass fa-lg"></i></span></div><div class="pulse"></div>',
-          iconSize: [40, 51],
-          iconAnchor: [20, 46]
-        })
-      });
 
-      currentMarker.addTo(map);
+      var el = document.createElement('div');
+      el.className = 'map-pin-current';
+      el.innerHTML = '<div class="map-pin"><span><i class="fa fa-compass fa-lg"></i></span></div><div class="pulse"></div>';
+
+      new mapboxgl.Marker({ element: el, anchor: 'bottom' })
+        .setLngLat([currentLong, currentLat])
+        .addTo(map);
     }
   };
 })();
