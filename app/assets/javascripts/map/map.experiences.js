@@ -60,7 +60,7 @@
     },
 
     vote: function(btn, endpoint) {
-      var base = "<%= ENV['API_BASE'] %>";
+      var base = "/api/v1/";
       var url = base + endpoint;
       var apiKey = $("meta[name='application-name']").attr('data-api-key');
       var userId = $("meta[name='application-name']").attr('data-user-id');

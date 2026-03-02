@@ -10,7 +10,7 @@
     },
 
     fetch: function() {
-      var url = "<%= ENV['API_BASE'] %>suggestions/";
+      var url = "/api/v1/suggestions/";
       var apiKey = $("meta[name='application-name']").attr('data-api-key');
       var userId = $("meta[name='application-name']").attr('data-user-id');
 
@@ -44,7 +44,7 @@
 
     create: function(data) {
       var self = this;
-      var url = "<%= ENV['API_BASE'] %>suggestions/";
+      var url = "/api/v1/suggestions/";
       var apiKey = $("meta[name='application-name']").attr('data-api-key');
       var userId = $("meta[name='application-name']").attr('data-user-id');
 
