@@ -248,10 +248,21 @@ p.social-sign-in {
 }
 
 .mapboxgl-popup-content {
-  padding-top: $baseline !important;
+  padding: $baseline !important;
   h4 {
-    line-height: 0;
+    line-height: $base-line-height;
     text-align: center;
+    margin: 0;
+  }
+
+  .mapboxgl-popup-close-button {
+    background: none;
+    color: $black;
+    font-size: $base-font-size * 1.25;
+    padding: 2px 6px;
+    height: auto;
+    text-transform: none;
+    box-shadow: none;
   }
 }
 
