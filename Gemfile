@@ -5,7 +5,7 @@ gem 'bootsnap', require: false
 gem 'bourbon', '~> 7.3'
 gem 'carrierwave', '~> 3.0'
 gem 'carrierwave-aws', '~> 1.6'
-gem 'devise', '~> 4.9'
+gem 'devise', '~> 5.0'
 gem 'font-awesome-sass', '~> 6.5'
 gem 'friendly_id', '~> 5.5'
 gem 'geocoder', '~> 1.8'
