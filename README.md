@@ -1,5 +1,7 @@
 # The Democratic Travelers v5.0
 
+[![Hypercommit](https://img.shields.io/badge/Hypercommit-DB2475)](https://hypercommit.com/democratictravelers)
+
 This is the official code repository for [TheDemocraticTravelers.com](http://www.thedemocratictravelers.com), a travel blog where visitors submit their suggestions of places/events for John and Laura to visit (and for [Shane](https://github.com/shiftshane) to visit them while they're visiting things), and others vote on the suggestions.
 
 ## Overview
