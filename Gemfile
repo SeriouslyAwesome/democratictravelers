@@ -59,7 +59,7 @@ group :development, :test do
   gem 'pry'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 6.1'
-  gem 'selenium-webdriver', '~> 4.16'
+  gem 'selenium-webdriver', '~> 4.43'
   gem 'shoulda-matchers', '~> 6.0', require: false
   gem 'simplecov', require: false
 end
